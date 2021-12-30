@@ -1,6 +1,7 @@
 package com.sparrows.geometry.geometry3;
 
 import com.sparrows.geometry.exception.ZeroVectorException;
+import com.sparrows.geometry.geometry2.Point2;
 import com.sparrows.geometry.spherical.SphericalPoint;
 import com.sparrows.geometry.transformation.d3.AffineTransformation3;
 import com.sparrows.geometry.transformation.d3.LinearTransformation3;
@@ -115,6 +116,10 @@ public class Point3 implements GeometryObject3<Point3> {
 
     public Point3 project(Plane3 plane) {
         return translate(plane.getNormal().multiply(plane.getDistanceOrigin() - new Vector3(this).dot(plane.getNormal())));
+    }
+
+    public Point2 project2D() {
+        return new Point2(x,y);
     }
 
     // Transformations

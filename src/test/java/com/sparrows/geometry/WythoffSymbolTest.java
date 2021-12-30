@@ -1,5 +1,10 @@
 package com.sparrows.geometry;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -9,8 +14,10 @@ import com.sparrows.geometry.exception.GeometryException;
 import com.sparrows.geometry.exception.InvalidSchwarzTriangle;
 import com.sparrows.geometry.exception.InvalidWythoffSymbol;
 import com.sparrows.geometry.exception.NotAPointSymmetry;
-import com.sparrows.geometry.geometry3.PointSymmetryGroup3;
-import com.sparrows.geometry.geometry3.Polyhedron;
+import com.sparrows.geometry.geometry2.Point2;
+import com.sparrows.geometry.geometry3.*;
+import com.sparrows.geometry.graphics.GeoImage;
+import com.sparrows.geometry.maths.Maths;
 import com.sparrows.geometry.maths.Rational;
 import com.sparrows.geometry.maths.exceptions.InvalidRational;
 import com.sparrows.geometry.maths.exceptions.ZeroDenominator;
@@ -19,6 +26,8 @@ import com.sparrows.geometry.spherical.SphericalPolyhedron;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import javax.imageio.ImageIO;
 
 class WythoffSymbolTest {
     WythoffSymbolTest() throws InvalidSchwarzTriangle, InvalidRational, ZeroDenominator, InvalidWythoffSymbol, DoesNotTileSphere, NotAPointSymmetry {
@@ -322,6 +331,30 @@ class WythoffSymbolTest {
 
         }
         Assertions.fail();
+    }
+
+    @Test
+    void stuff2() throws IOException, GeometryException {
+        GeoImage geoImage= new GeoImage(600,400,-3,-2,6);
+/*
+        geoImage.setColour(Color.BLUE);
+        geoImage.setStroke(new BasicStroke(5,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
+        geoImage.drawLine(new Point3(-1,-.5,9),new Point3(1,.5,999));
+
+        geoImage.setColour(Color.GREEN);
+        geoImage.setStroke(new BasicStroke(10,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
+        geoImage.drawPoint(new Point3(0,-.5,9));
+
+        Polygon3 poly = new Polygon3(new Point3(-1,-1,0),new Point3(-1,1,0),new Point3(1,1,0),new Point3(1,-1,0));
+        geoImage.fillPolygon(poly);
+        geoImage.setColour(Color.RED);
+        geoImage.setStroke(new BasicStroke(1,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
+        geoImage.drawPolygon(poly);*/
+
+        Polyhedron h = StandardPolyhedra.uniformPrism(5).rotate(Line3.xAxis, Maths.PI4);
+        geoImage.drawPolyhedron(h);
+
+        geoImage.write("c:\\Users\\tmhoo\\Documents\\test.png");
     }
 
     void tryWythoff(SchwarzTriangle s, WythoffSymbol.Type t) {

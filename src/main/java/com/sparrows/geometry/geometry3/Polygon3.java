@@ -8,6 +8,7 @@ import com.sparrows.geometry.exception.PointsCollinearException;
 import com.sparrows.geometry.exception.PolygonNotPlanar;
 import com.sparrows.geometry.exception.ZeroExternalAngle;
 import com.sparrows.geometry.exception.ZeroVectorException;
+import com.sparrows.geometry.geometry2.Polygon2;
 import com.sparrows.geometry.maths.Maths;
 import com.sparrows.geometry.spherical.SphericalPolygon;
 import com.sparrows.geometry.transformation.d3.AffineTransformation3;
@@ -47,13 +48,13 @@ public class Polygon3 extends Polygon implements GeometryObject3<Polygon3> {
     private final List<Point3> vertices;
 
     // Constructors
-    public Polygon3(List<Point3> vertices) throws NotEnoughVertices {
+    public Polygon3(List<Point3> vertices) {
         if (vertices.size() < 3) {
-            throw new NotEnoughVertices();
+            throw new IllegalArgumentException("A polygon must have at least three vertices.");
         }
         this.vertices = vertices;
     }
-    public Polygon3(Point3...vertices) throws NotEnoughVertices {
+    public Polygon3(Point3...vertices) {
         this(Arrays.asList(vertices));
     }
     public Polygon3(Polygon3 g) {
@@ -166,11 +167,7 @@ public class Polygon3 extends Polygon implements GeometryObject3<Polygon3> {
     public Polygon3 reverse() {
         ArrayList<Point3> newVertices = new ArrayList<>(vertices);
         Collections.reverse(newVertices);
-        try {
-            return new Polygon3(newVertices);
-        } catch (NotEnoughVertices notEnoughVertices) {
-            return null; // cannot hapeen
-        }
+        return new Polygon3(newVertices);
     }
 
     public Point3 centroid() {
@@ -183,29 +180,17 @@ public class Polygon3 extends Polygon implements GeometryObject3<Polygon3> {
 
     @Override
     public Polygon3 linearTransform(LinearTransformation3 t) {
-        try {
-            return new Polygon3(vertices.stream().map(p -> p.linearTransform(t)).collect(Collectors.toList()));
-        } catch (NotEnoughVertices notEnoughVertices) {
-            return null;
-        }
+        return new Polygon3(vertices.stream().map(p -> p.linearTransform(t)).collect(Collectors.toList()));
     }
 
     @Override
     public Polygon3 affineTransform(AffineTransformation3 a) {
-        try {
-            return new Polygon3(vertices.stream().map(p -> p.affineTransform(a)).collect(Collectors.toList()));
-        } catch (NotEnoughVertices notEnoughVertices) {
-            return null;
-        }
+        return new Polygon3(vertices.stream().map(p -> p.affineTransform(a)).collect(Collectors.toList()));
     }
 
     @Override
     public Polygon3 translate(Translation3 t) {
-        try {
-            return new Polygon3(vertices.stream().map(p -> p.translate(t)).collect(Collectors.toList()));
-        } catch (NotEnoughVertices notEnoughVertices) {
-            return null;
-        }
+        return new Polygon3(vertices.stream().map(p -> p.translate(t)).collect(Collectors.toList()));
     }
 
     private Boolean isEquilateral;
@@ -263,6 +248,9 @@ public class Polygon3 extends Polygon implements GeometryObject3<Polygon3> {
         return .5/Math.sin(Math.PI*density/sides);
     }
 
+    public Polygon2 project2D() {
+        return new Polygon2(vertices.stream().map(Point3::project2D).collect(Collectors.toList()));
+    }
 
     public static Polygon3 regular(int sides) throws GeometryException {
         return regular(sides,1);

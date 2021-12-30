@@ -46,13 +46,13 @@ public class Polygon2 extends Polygon implements GeometryObject2<Polygon2> {
     private final List<Point2> vertices;
 
     // Constructors
-    public Polygon2(List<Point2> vertices) throws NotEnoughVertices {
+    public Polygon2(List<Point2> vertices) {
         if (vertices.size() < 3) {
-            throw new NotEnoughVertices();
+            throw new IllegalArgumentException("A polygon must have at least three vertices.");
         }
         this.vertices = vertices;
     }
-    public Polygon2(Point2...vertices) throws NotEnoughVertices {
+    public Polygon2(Point2...vertices) {
         this(Arrays.asList(vertices));
     }
     public Polygon2(Polygon2 g) {
@@ -208,29 +208,17 @@ public class Polygon2 extends Polygon implements GeometryObject2<Polygon2> {
 
     @Override
     public Polygon2 linearTransform(LinearTransformation2 t) {
-        try {
-            return new Polygon2(vertices.stream().map(p -> p.linearTransform(t)).collect(Collectors.toList()));
-        } catch (NotEnoughVertices notEnoughVertices) {
-            return null;
-        }
+        return new Polygon2(vertices.stream().map(p -> p.linearTransform(t)).collect(Collectors.toList()));
     }
 
     @Override
     public Polygon2 affineTransform(AffineTransformation2 a) {
-        try {
-            return new Polygon2(vertices.stream().map(p -> p.affineTransform(a)).collect(Collectors.toList()));
-        } catch (NotEnoughVertices notEnoughVertices) {
-            return null;
-        }
+        return new Polygon2(vertices.stream().map(p -> p.affineTransform(a)).collect(Collectors.toList()));
     }
 
     @Override
     public Polygon2 translate(Translation2 t) {
-        try {
-            return new Polygon2(vertices.stream().map(p -> p.translate(t)).collect(Collectors.toList()));
-        } catch (NotEnoughVertices notEnoughVertices) {
-            return null;
-        }
+        return new Polygon2(vertices.stream().map(p -> p.translate(t)).collect(Collectors.toList()));
     }
 
     public static Polygon2 regular(int sides, int density) throws GeometryException {

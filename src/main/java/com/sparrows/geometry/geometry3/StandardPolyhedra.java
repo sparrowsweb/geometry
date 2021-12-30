@@ -94,7 +94,7 @@ public abstract class StandardPolyhedra {
                     new Polygon3(c,b,d),
                     new Polygon3(a,c,d)
             );
-        } catch (NotEnoughVertices | NotEnoughFaces e) {
+        } catch (NotEnoughFaces e) {
             throw new CoplanarPoints();
         }
     }
@@ -220,11 +220,7 @@ public abstract class StandardPolyhedra {
         Polygon3 face2 = face.translate(translation);
         faceList.add(face2.reverse());
         for (var i = 0; i < face.vertexCount(); i++) {
-            try {
-                faceList.add(new Polygon3(face.getVertex((i+1)%face.vertexCount()),face.getVertex(i),face2.getVertex(i),face2.getVertex((i+1)%face.vertexCount())));
-            } catch (NotEnoughVertices notEnoughVertices) {
-                notEnoughVertices.printStackTrace();
-            }
+            faceList.add(new Polygon3(face.getVertex((i+1)%face.vertexCount()),face.getVertex(i),face2.getVertex(i),face2.getVertex((i+1)%face.vertexCount())));
         }
         try {
             return new Polyhedron(faceList);
@@ -241,11 +237,7 @@ public abstract class StandardPolyhedra {
         List<Polygon3> faceList = new ArrayList<>();
         faceList.add(base);
         for (var i = 0; i < base.vertexCount(); i++) {
-            try {
-                faceList.add(new Polygon3(base.getVertex((i+1)%base.vertexCount()),base.getVertex(i),apex));
-            } catch (NotEnoughVertices notEnoughVertices) {
-                notEnoughVertices.printStackTrace();
-            }
+            faceList.add(new Polygon3(base.getVertex((i+1)%base.vertexCount()),base.getVertex(i),apex));
         }
         try {
             return new Polyhedron(faceList);
@@ -263,11 +255,7 @@ public abstract class StandardPolyhedra {
         faceList.add(base);
         faceList.add(top.reverse());
         for (var i = 0; i < base.vertexCount(); i++) {
-            try {
-                faceList.add(new Polygon3(base.getVertex((i+1)%base.vertexCount()),base.getVertex(i),top.getVertex(i),top.getVertex((i+1)%top.vertexCount())));
-            } catch (NotEnoughVertices notEnoughVertices) {
-                notEnoughVertices.printStackTrace();
-            }
+            faceList.add(new Polygon3(base.getVertex((i+1)%base.vertexCount()),base.getVertex(i),top.getVertex(i),top.getVertex((i+1)%top.vertexCount())));
         }
         try {
             return new Polyhedron(faceList);
@@ -286,18 +274,14 @@ public abstract class StandardPolyhedra {
         faceList.add(base);
         faceList.add(top.reverse());
         for (var i = 0; i < base.vertexCount(); i++) {
-            try {
-                faceList.add(new Polygon3(
-                        base.getVertex((i + 1) % base.vertexCount()),
-                        base.getVertex(i),
-                        top.getVertex(i)));
-                faceList.add(new Polygon3(
-                        base.getVertex(i),
-                        top.getVertex((i + base.vertexCount() - 1) % base.vertexCount()),
-                        top.getVertex(i)));
-            } catch (NotEnoughVertices e) {
-                // cannot happen
-            }
+            faceList.add(new Polygon3(
+                    base.getVertex((i + 1) % base.vertexCount()),
+                    base.getVertex(i),
+                    top.getVertex(i)));
+            faceList.add(new Polygon3(
+                    base.getVertex(i),
+                    top.getVertex((i + base.vertexCount() - 1) % base.vertexCount()),
+                    top.getVertex(i)));
         }
         try {
             return new Polyhedron(faceList);
@@ -328,7 +312,7 @@ public abstract class StandardPolyhedra {
             Polygon3 face12 = face4.rotate(Line3.xAxis, Maths.PI2).rotate(Line3.zAxis, Maths.PI2);
 
             return new Polyhedron(Arrays.asList(face1, face2, face3, face4, face5, face6, face7, face8, face9, face10, face11, face12));
-        } catch (NotEnoughVertices | NotEnoughFaces e) {
+        } catch (NotEnoughFaces e) {
             return null;
         }
     }
@@ -354,11 +338,7 @@ public abstract class StandardPolyhedra {
             for (var f = 0; f < faces.size(); f++) {
                 vertexList.add(new Point3(newFaces.get(faces.get(f)).getVertex(vertices.get(f))));
             }
-            try {
-                newFaces.add(new Polygon3(vertexList));
-            } catch (NotEnoughVertices e) {
-                //
-            }
+            newFaces.add(new Polygon3(vertexList));
         }
 
         // create snub triangles from old edges
@@ -367,12 +347,8 @@ public abstract class StandardPolyhedra {
             var sides = h.edgeSides().get(oldEdgeNo);
             LineSegment3 side1 = newFaces.get(faces.get(0)).side(sides.get(0));
             LineSegment3 side2 = newFaces.get(faces.get(1)).side(sides.get(1));
-            try {
-                newFaces.add(new Polygon3(side1.getPoint1(), side2.getPoint1(), side2.getPoint2()));
-                newFaces.add(new Polygon3(side1.getPoint1(), side2.getPoint1(), side1.getPoint2()));
-            } catch (NotEnoughVertices e) {
-                //
-            }
+            newFaces.add(new Polygon3(side1.getPoint1(), side2.getPoint1(), side2.getPoint2()));
+            newFaces.add(new Polygon3(side1.getPoint1(), side2.getPoint1(), side1.getPoint2()));
         }
 
         try {
