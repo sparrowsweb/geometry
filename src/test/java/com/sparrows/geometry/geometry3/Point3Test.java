@@ -137,21 +137,21 @@ class Point3Test {
     @Test
     void TestReflectOriginX0() throws GeometryException {
         Point3 p = new Point3(1,2,3);
-        Point3 q = p.reflectOrigin(Vector3.xUnit);
+        Point3 q = p.reflectOrigin(Vector3.X_UNIT);
         checkPoint3(q,-1,2,3);
     }
 
     @Test
     void TestReflectOriginY0() throws GeometryException {
         Point3 p = new Point3(1,2,3);
-        Point3 q = p.reflectOrigin(Vector3.yUnit);
+        Point3 q = p.reflectOrigin(Vector3.Y_UNIT);
         checkPoint3(q,1,-2,3);
     }
 
     @Test
     void TestReflectOriginZ0() throws GeometryException {
         Point3 p = new Point3(1,2,3);
-        Point3 q = p.reflectOrigin(Vector3.zUnit);
+        Point3 q = p.reflectOrigin(Vector3.Z_UNIT);
         checkPoint3(q,1,2,-3);
     }
 
@@ -179,14 +179,14 @@ class Point3Test {
     @Test
     void TestReflect() throws ZeroVectorException {
         Point3 p = new Point3(1,2,3);
-        p = p.reflect(new Plane3(Vector3.xUnit, 4));
+        p = p.reflect(new Plane3(Vector3.X_UNIT, 4));
         checkPoint3(p, 7,2,3);
     }
 
     @Test
     void TestRotateOriginZero() {
         Point3 p = new Point3(1,2,3);
-        Assertions.assertThrows(ZeroVectorException.class,() -> {
+        Assertions.assertThrows(IllegalArgumentException.class,() -> {
             p.rotateOrigin(Vector3.zero, Maths.PI2);
         });
     }
@@ -194,21 +194,21 @@ class Point3Test {
     @Test
     void TestRotateOriginXAxis() throws GeometryException {
         Point3 p = new Point3(1,2,3);
-        Point3 q = p.rotateOrigin(Vector3.xUnit, Maths.PI2);
+        Point3 q = p.rotateOrigin(Vector3.X_UNIT, Maths.PI2);
         checkPoint3(q,1,-3,2);
     }
 
     @Test
     void TestRotateOriginYAxis() throws GeometryException {
         Point3 p = new Point3(1,2,3);
-        Point3 q = p.rotateOrigin(Vector3.yUnit, Maths.PI2);
+        Point3 q = p.rotateOrigin(Vector3.Y_UNIT, Maths.PI2);
         checkPoint3(q,3,2,-1);
     }
 
     @Test
     void TestRotateOriginZAxis() throws GeometryException {
         Point3 p = new Point3(1,2,3);
-        Point3 q = p.rotateOrigin(Vector3.zUnit, Maths.PI2);
+        Point3 q = p.rotateOrigin(Vector3.Z_UNIT, Maths.PI2);
         checkPoint3(q,-2,1,3);
     }
 

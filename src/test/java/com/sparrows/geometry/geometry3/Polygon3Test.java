@@ -2,13 +2,9 @@ package com.sparrows.geometry.geometry3;
 
 import com.sparrows.geometry.exception.GeometryException;
 import com.sparrows.geometry.exception.IdenticalVertices;
-import com.sparrows.geometry.exception.InvalidSidesDensity;
 import com.sparrows.geometry.exception.NotEnoughVertices;
 import com.sparrows.geometry.exception.PolygonNotPlanar;
 import com.sparrows.geometry.exception.ZeroExternalAngle;
-import com.sparrows.geometry.geometry2.Point2;
-import com.sparrows.geometry.geometry2.Polygon2;
-import com.sparrows.geometry.geometry2.Vector2;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +13,6 @@ import java.util.Arrays;
 
 import static com.sparrows.geometry.utils.TestUtils.checkDouble;
 import static com.sparrows.geometry.utils.TestUtils.checkPlane3;
-import static com.sparrows.geometry.utils.TestUtils.checkPolygon2;
 import static com.sparrows.geometry.utils.TestUtils.checkPolygon3;
 
 class Polygon3Test {
@@ -30,14 +25,14 @@ class Polygon3Test {
 
     @Test
     void TestConstructorNoSides() {
-        Assertions.assertThrows(NotEnoughVertices.class, () -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Polygon3 g = new Polygon3();
         });
     }
 
     @Test
     void TestConstructorTwoSides() {
-        Assertions.assertThrows(NotEnoughVertices.class, () -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Polygon3 g = new Polygon3(new Point3(0, 0,0), new Point3(1, 0,1));
         });
     }
@@ -50,7 +45,7 @@ class Polygon3Test {
 
     @Test
     void TestRegularDigon() {
-        Exception e = Assertions.assertThrows(NotEnoughVertices.class, () -> {
+        Exception e = Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Polygon3.regular(2,1);
         });
         Assertions.assertEquals("A polygon must have at least three vertices.",e.getMessage());
@@ -58,7 +53,7 @@ class Polygon3Test {
 
     @Test
     void TestRegularDoubleTriangle() {
-        Exception e = Assertions.assertThrows(InvalidSidesDensity.class, () -> {
+        Exception e = Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Polygon3.regular(6,2);
         });
         Assertions.assertEquals("Inconsistent sides and density (6/2).",e.getMessage());
@@ -216,7 +211,7 @@ class Polygon3Test {
 
     void checkRegular(Polygon3 g, int sides, int density) throws GeometryException {
         Assertions.assertEquals(sides,g.getVertices().size());
-        Assertions.assertTrue(g.sideVector(0).sameDirection(Vector3.xUnit));
+        Assertions.assertTrue(g.sideVector(0).sameDirection(Vector3.X_UNIT));
         double circumradius = g.getVertex(0).distance(Point3.origin);
         for (var v = 0; v < sides; v++) {
             checkDouble(1.,g.getVertex(v).distance(g.getVertex((v+1)%g.vertexCount())), "side " + v + " unexpected length");

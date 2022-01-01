@@ -3,7 +3,6 @@ package com.sparrows.geometry.geometry3;
 import com.sparrows.geometry.exception.GeometryException;
 import com.sparrows.geometry.exception.ParallelLinesException;
 import com.sparrows.geometry.exception.SkewLines;
-import com.sparrows.geometry.exception.ZeroVectorException;
 import com.sparrows.geometry.transformation.d3.AffineTransformation3;
 import com.sparrows.geometry.transformation.d3.LinearTransformation3;
 import com.sparrows.geometry.transformation.Translation3;
@@ -13,45 +12,23 @@ import java.util.Objects;
 
 public class Line3 implements GeometryObject3<Line3> {
 
-    public static final Line3 xAxis;
-    public static final Line3 yAxis;
-    public static final Line3 zAxis;
-
-    static {
-        Line3 temp;
-        try {
-            temp = new Line3(Point3.origin, Vector3.xUnit);
-        } catch (ZeroVectorException e) {
-            temp = null;
-        }
-        xAxis = temp;
-        try {
-            temp = new Line3(Point3.origin, Vector3.yUnit);
-        } catch (ZeroVectorException e) {
-            temp = null;
-        }
-        yAxis = temp;
-        try {
-            temp = new Line3(Point3.origin, Vector3.zUnit);
-        } catch (ZeroVectorException e) {
-            temp = null;
-        }
-        zAxis = temp;
-    }
+    public static final Line3 xAxis = new Line3(Point3.origin, Vector3.X_UNIT);
+    public static final Line3 yAxis = new Line3(Point3.origin, Vector3.Y_UNIT);
+    public static final Line3 zAxis = new Line3(Point3.origin, Vector3.Z_UNIT);
 
     private Point3 point;
     private Vector3 vector;
 
     // Constructors
-    public Line3(Point3 point, Vector3 vector) throws ZeroVectorException {
+    public Line3(Point3 point, Vector3 vector) throws IllegalArgumentException {
         this.point = point;
         this.vector = vector;
         normalise();
     }
-    public Line3(Point3 point1, Point3 point2) throws ZeroVectorException {
+    public Line3(Point3 point1, Point3 point2) throws IllegalArgumentException {
         this(point1, new Vector3(point1,point2));
     }
-    private void normalise() throws ZeroVectorException {
+    private void normalise() throws IllegalArgumentException {
         vector = vector.unit();
         // choose point closest to the origin
         double t = -(point.getX()*vector.getX() + point.getY()*vector.getY() + point.getZ()*vector.getZ());
@@ -113,11 +90,7 @@ public class Line3 implements GeometryObject3<Line3> {
 
     // Properties
     public Line3 reverse() {
-        try {
-            return new Line3(point, vector.reverse());
-        } catch (ZeroVectorException e) {
-            return null; // can't happen
-        }
+        return new Line3(point, vector.reverse());
     }
 
     // Line and point
@@ -127,11 +100,7 @@ public class Line3 implements GeometryObject3<Line3> {
 
     // Line and line
     public double angle(Line3 l) {
-        try {
-            return vector.angle(l.vector);
-        } catch (ZeroVectorException e) {
-            return 0; // this can't happen
-        }
+        return vector.angle(l.vector);
     }
     public Point3 intersection(Line3 l) throws ParallelLinesException, SkewLines {
         double t;
@@ -192,11 +161,7 @@ public class Line3 implements GeometryObject3<Line3> {
     // Transformations
     @Override
     public Line3 linearTransform(LinearTransformation3 t) {
-        try {
-            return new Line3(point.linearTransform(t),vector.linearTransform(t));
-        } catch (ZeroVectorException e) {
-            return null;
-        }
+        return new Line3(point.linearTransform(t),vector.linearTransform(t));
     }
 
     @Override
@@ -206,11 +171,7 @@ public class Line3 implements GeometryObject3<Line3> {
 
     @Override
     public Line3 translate(Translation3 t) {
-        try {
-            return new Line3(point.translate(t),vector);
-        } catch (ZeroVectorException e) {
-            return null; // can't happen
-        }
+        return new Line3(point.translate(t),vector);
     }
 
     @Override

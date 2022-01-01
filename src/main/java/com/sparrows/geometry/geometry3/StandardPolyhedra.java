@@ -10,9 +10,7 @@ import com.sparrows.geometry.exception.GeometryException;
 import com.sparrows.geometry.exception.InvalidFrustum;
 import com.sparrows.geometry.exception.InvalidRegularPolyhedronIndex;
 import com.sparrows.geometry.exception.NotEnoughFaces;
-import com.sparrows.geometry.exception.NotEnoughVertices;
 import com.sparrows.geometry.exception.PolygonNotPlanar;
-import com.sparrows.geometry.exception.ZeroVectorException;
 import com.sparrows.geometry.maths.Maths;
 import com.sparrows.geometry.transformation.Translation3;
 import com.sparrows.geometry.utils.GeometryUtils;
@@ -106,7 +104,7 @@ public abstract class StandardPolyhedra {
     public static Polyhedron uniformPrism(int sides,int density) throws GeometryException {
         GeometryUtils.validateSidesDensity(sides, density);
         var face1 = Polygon3.regular(sides, density);
-        var translation = new Translation3(Vector3.zUnit);
+        var translation = new Translation3(Vector3.Z_UNIT);
         return prism(face1,translation);
     }
 
@@ -118,7 +116,7 @@ public abstract class StandardPolyhedra {
         GeometryUtils.validateSidesDensity(sides, density);
         var face1 = Polygon3.regular(sides, density);
         double height = Math.sqrt(1-1./4/ Maths.square(Math.cos(Maths.PI2*density/sides)));
-        Polygon3 face2 = face1.translate(Vector3.zUnit.multiply(height)).rotate(Line3.zAxis,Math.PI*density/sides);
+        Polygon3 face2 = face1.translate(Vector3.Z_UNIT.multiply(height)).rotate(Line3.zAxis,Math.PI*density/sides);
         List<Polygon3> faces = new ArrayList<>();
         faces.add(face1);
         for (var i = 0; i < sides; i++) {
@@ -143,7 +141,7 @@ public abstract class StandardPolyhedra {
         GeometryUtils.validateSidesDensity(sides, density);
         var face1 = Polygon3.regular(sides, density);
         double height = 1;
-        Polygon3 face2 = face1.translate(Vector3.zUnit.multiply(height)).rotate(Line3.zAxis,twist);
+        Polygon3 face2 = face1.translate(Vector3.Z_UNIT.multiply(height)).rotate(Line3.zAxis,twist);
         List<Polygon3> faces = new ArrayList<>();
         faces.add(face1);
         for (var i = 0; i < sides; i++) {
@@ -299,9 +297,9 @@ public abstract class StandardPolyhedra {
                     new Point3(+1, -1, +1),
                     new Point3(0, -(1 - h * h), +(1 + h)),
                     new Point3(-1, -1, +1));
-            Polygon3 face2 = face1.reflect(Plane3.z0).reverse();
-            Polygon3 face3 = face1.reflect(Plane3.y0).reverse();
-            Polygon3 face4 = face2.reflect(Plane3.y0).reverse();
+            Polygon3 face2 = face1.reflect(Plane3.Z_EQUALS_0).reverse();
+            Polygon3 face3 = face1.reflect(Plane3.Y_EQUALS_0).reverse();
+            Polygon3 face4 = face2.reflect(Plane3.Y_EQUALS_0).reverse();
             Polygon3 face5 = face1.rotate(Line3.zAxis, Maths.PI2).rotate(Line3.xAxis, Maths.PI2);
             Polygon3 face6 = face2.rotate(Line3.zAxis, Maths.PI2).rotate(Line3.xAxis, Maths.PI2);
             Polygon3 face7 = face3.rotate(Line3.zAxis, Maths.PI2).rotate(Line3.xAxis, Maths.PI2);
@@ -321,14 +319,9 @@ public abstract class StandardPolyhedra {
         Point3 centre = h.centroid();
 
         // move faces out and twist
-        var newFaces = h.getFaces().stream().map(f -> {
-            try {
-                return f.translate(new Vector3(f.centroid(),centre)).rotate(new Line3(centre,f.centroid()),twist);
-            } catch (ZeroVectorException e) {
-                e.printStackTrace();
-                return null;
-            }
-        }).collect(Collectors.toList());
+        var newFaces = h.getFaces().stream().map(f ->
+            f.translate(new Vector3(f.centroid(),centre)).rotate(new Line3(centre,f.centroid()),twist)
+        ).collect(Collectors.toList());
 
         // create new faces from old vertices
         for (var oldVertexNo = 0; oldVertexNo < h.vertexFaces().size(); oldVertexNo++) {

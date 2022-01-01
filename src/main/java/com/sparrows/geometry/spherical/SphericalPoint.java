@@ -38,9 +38,9 @@ public class SphericalPoint implements SphericalObject<SphericalPoint> {
         this.y = y;
         this.z = z;
     }
-    public SphericalPoint(double x, double y, double z) throws InvalidSphericalPoint {
+    public SphericalPoint(double x, double y, double z) {
         if (!Maths.equal(x*x + y*y + z*z, 1.0)) {
-            throw new InvalidSphericalPoint();
+            throw new IllegalArgumentException("Invalid spherical point.");
         }
         this.x = x;
         this.y = y;
@@ -51,13 +51,13 @@ public class SphericalPoint implements SphericalObject<SphericalPoint> {
         this.y = p.y;
         this.z = p.z;
     }
-    public SphericalPoint(Vector3 v) throws InvalidSphericalPoint {
+    public SphericalPoint(Vector3 v) {
         this(v.getX(),v.getY(), v.getZ());
     }
-    public SphericalPoint(Point3 p) throws InvalidSphericalPoint {
+    public SphericalPoint(Point3 p) {
         this(p.getX(),p.getY(),p.getZ());
     }
-    public SphericalPoint(SimpleMatrix matrix) throws InvalidSphericalPoint {
+    public SphericalPoint(SimpleMatrix matrix) {
         this(matrix.get(0,0),matrix.get(1,0),matrix.get(2,0));
     }
 
@@ -98,12 +98,7 @@ public class SphericalPoint implements SphericalObject<SphericalPoint> {
 
     // Properties
     public SphericalPoint antipode() {
-        try {
-            return new SphericalPoint(-x,-y,-z);
-        } catch (InvalidSphericalPoint invalidSphericalPoint) {
-            invalidSphericalPoint.printStackTrace();
-            return null;
-        }
+        return new SphericalPoint(-x,-y,-z);
     }
     public SimpleMatrix matrix() {
         return new SimpleMatrix(new double[][] {{this.x},{this.y},{this.z}});
@@ -153,13 +148,8 @@ public class SphericalPoint implements SphericalObject<SphericalPoint> {
             throw new PointArc();
         }
 
-        try {
-            var shortMidpoint = new SphericalPoint(new Vector3(this).add(new Vector3(point)).unit());
-            return minor ? shortMidpoint : shortMidpoint.invert();
-        } catch (ZeroVectorException | InvalidSphericalPoint e) {
-            e.printStackTrace();
-            return null;
-        }
+        var shortMidpoint = new SphericalPoint(new Vector3(this).add(new Vector3(point)).unit());
+        return minor ? shortMidpoint : shortMidpoint.invert();
     }
 
     // Three points
@@ -348,12 +338,7 @@ public class SphericalPoint implements SphericalObject<SphericalPoint> {
     // Transformations
     @Override
     public SphericalPoint sphericalTransform(SphericalTransformation t) {
-        try {
-            return new SphericalPoint(t.getMatrix().mult(matrix()));
-        } catch (InvalidSphericalPoint invalidSphericalPoint) {
-            invalidSphericalPoint.printStackTrace();
-            return null;
-        }
+        return new SphericalPoint(t.getMatrix().mult(matrix()));
     }
 
     @Override

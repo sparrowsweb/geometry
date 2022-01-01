@@ -338,7 +338,7 @@ public class Polyhedron implements GeometryObject3<Polyhedron> {
                         if (!match) {
                             candidateAxes.add(new RotationalSymmetryAxis(axis,2));
                         }
-                    } catch (ZeroVectorException e) {
+                    } catch (IllegalArgumentException e) {
                         // ignore
                     }
                 }
@@ -388,7 +388,7 @@ public class Polyhedron implements GeometryObject3<Polyhedron> {
                                 if (!match) {
                                     candidateAxes.add(new RotationalSymmetryAxis(axis,maxOrder));
                                 }
-                            } catch (ZeroVectorException e) {
+                            } catch (IllegalArgumentException e) {
                                 // means centre is the average of point1, point2 and point3
                             }
                         }

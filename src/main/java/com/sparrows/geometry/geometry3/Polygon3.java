@@ -3,8 +3,6 @@ package com.sparrows.geometry.geometry3;
 import com.sparrows.geometry.Polygon;
 import com.sparrows.geometry.exception.GeometryException;
 import com.sparrows.geometry.exception.IdenticalVertices;
-import com.sparrows.geometry.exception.NotEnoughVertices;
-import com.sparrows.geometry.exception.PointsCollinearException;
 import com.sparrows.geometry.exception.PolygonNotPlanar;
 import com.sparrows.geometry.exception.ZeroExternalAngle;
 import com.sparrows.geometry.exception.ZeroVectorException;
@@ -142,11 +140,7 @@ public class Polygon3 extends Polygon implements GeometryObject3<Polygon3> {
         // check planar
         if (vertexCount() > 3) {
             Plane3 plane = null;
-            try {
-                plane = new Plane3(vertices.get(0),vertices.get(1),vertices.get(2));
-            } catch (PointsCollinearException e) {
-                // can't happen
-            }
+            plane = new Plane3(vertices.get(0),vertices.get(1),vertices.get(2));
             for (var v = 3; v < vertexCount(); v++) {
                 if (!plane.contains(vertices.get(v))) {
                     throw new PolygonNotPlanar();
@@ -156,12 +150,8 @@ public class Polygon3 extends Polygon implements GeometryObject3<Polygon3> {
 
     }
 
-    public Plane3 plane() throws PolygonNotPlanar {
-        try {
-            return new Plane3(vertices.get(0),vertices.get(1),vertices.get(2));
-        } catch (PointsCollinearException e) {
-            throw new PolygonNotPlanar();
-        }
+    public Plane3 plane() {
+        return new Plane3(vertices.get(0),vertices.get(1),vertices.get(2));
     }
 
     public Polygon3 reverse() {
@@ -262,7 +252,7 @@ public class Polygon3 extends Polygon implements GeometryObject3<Polygon3> {
         List<Point3> vertices = new ArrayList<>();
         vertices.add(v0);
         for (var v = 1; v < sides; v++) {
-            vertices.add(v0.rotateOrigin(Vector3.zUnit, v*angle));
+            vertices.add(v0.rotateOrigin(Vector3.Z_UNIT, v*angle));
         }
         return new Polygon3(vertices);
     }

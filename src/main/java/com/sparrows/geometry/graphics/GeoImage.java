@@ -2,17 +2,17 @@ package com.sparrows.geometry.graphics;
 
 import com.sparrows.geometry.geometry2.Point2;
 import com.sparrows.geometry.geometry2.Polygon2;
-import com.sparrows.geometry.geometry3.Point3;
-import com.sparrows.geometry.geometry3.Polygon3;
-import com.sparrows.geometry.geometry3.Polyhedron;
+import com.sparrows.geometry.geometry3.*;
+import com.sparrows.geometry.maths.Range;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class GeoImage extends BufferedImage {
     int pixelWidth;
@@ -79,14 +79,139 @@ public class GeoImage extends BufferedImage {
         graphics.fillPolygon(convertPolygon2ToPolygon(polygon));
     }
 
-    public void drawPolyhedron(Polyhedron polyhedron) {
+    public void fillPolygonB(Polygon3 polygon) {
+        Polygon2 polygon2 = polygon.project2D();
+        boolean first = true;
+        double minX = 0, maxX = 0, minY = 0, maxY = 0;
+        for (var point : polygon2.getVertices()) {
+            if (first) {
+                minX = point.getX();
+                maxX = minX;
+                minY = point.getY();
+                maxY = minY;
+                first = false;
+            } else {
+                if (point.getX() < minX) {
+                    minX = point.getX();
+                } else if (point.getX() > maxX) {
+                    maxX = point.getX();
+                }
+                if (point.getY() < minY) {
+                    minY = point.getY();
+                } else if (point.getY() > maxY) {
+                    maxY = point.getY();
+                }
+            }
+        }
+
+        for (int pixelY = 0; pixelY < getWidth(); pixelY++) {
+            double y = convertPixelYToY(pixelY);
+            if (y >= minY && y <= maxY) {
+                double x = convertPixelXToX(0);
+                Range r = intersection(polygon2,y);
+                graphics.drawLine(convertXToPixelX(r.getStart()),pixelY,convertXToPixelX(r.getEnd()),pixelY);
+            }
+        }
+
+
+    }
+
+    public Range intersection(Polygon2 polygon, double y) {
+        double lowX = 0, highX = 0;
+        for (int v = 0; v < polygon.vertexCount(); v++) {
+            Point2 p1 = polygon.getVertex(v);
+            Point2 p2 = polygon.getVertex((v+1)%polygon.vertexCount());
+            if (p1.getY() <= y && p2.getY() >= y || p1.getY() >= y && p2.getY() <= y) {
+                double xCross = p1.getX() + (y - p1.getY()) / (p2.getY() - p1.getY()) * (p2.getX() - p1.getX());
+                if (p1.getY() <= y && p2.getY() >= y) {
+                    highX = xCross;
+                } else {
+                    lowX = xCross;
+                }
+            }
+        }
+        return new Range(lowX,highX);
+    }
+
+
+    public void drawConvexPolyhedron(Polyhedron polyhedron) {
         for (Polygon3 polygon : polyhedron.getFaces()) {
-            drawPolygon(polygon);
+            Vector3 normal;
+            normal = polygon.plane().getNormal();
+            float dot = (float)Vector3.Z_UNIT.dot(normal);
+            if (dot <= 0) {
+                Color savedColour = graphics.getColor();
+                graphics.setColor(dimColour(savedColour,-dot));
+                fillPolygon(polygon);
+
+                graphics.setColor(Color.BLACK);
+                drawPolygon(polygon);
+
+                graphics.setColor(savedColour);
+            }
+        }
+    }
+
+    public void drawConcavePolyhedron(Polyhedron polyhedron, java.util.List<Color> colours, boolean oriented) {
+        var pixelPolygons = polyhedron.getFaces().stream().
+                map(Polygon3::project2D).
+                map(this::convertPolygon2ToPolygon).
+                collect(Collectors.toList());
+        var planes = polyhedron.getFaces().stream().map(Polygon3::plane).collect(Collectors.toList());
+        var normals = planes.stream().map(Plane3::getNormal).collect(Collectors.toList());
+        var dots = normals.stream().map(x -> x.dot(Vector3.Z_UNIT)).collect(Collectors.toList());
+        var faceRGBs = new ArrayList<Integer>();
+        for (int i = 0; i < polyhedron.faceCount(); i++) {
+            faceRGBs.add(dimColour(colours.get(i),Math.abs(dots.get(i))).getRGB());
+        }
+        // hx + jy + kz = d
+        // z = (d - hx - kz)/k
+        for (int pixelX = 0; pixelX < getWidth(); pixelX++) {
+            double x = convertPixelXToX(pixelX);
+            double y = convertPixelYToY(0);
+            for (int pixelY = 0; pixelY < getWidth(); pixelY++) {
+                Point pixelPoint = new Point(pixelX,pixelY);
+                boolean found = false;
+                double maxZ = 0;
+                int nearestFace = 0;
+                for (int face = 0; face < pixelPolygons.size(); face++) {
+                    if (!oriented || dots.get(face) > 0) {
+                        if (pixelPolygons.get(face).contains(pixelPoint)) {
+                            double z =
+                                    (planes.get(face).getDistanceOrigin() -
+                                            normals.get(face).getX() * x -
+                                            normals.get(face).getY() * y) / normals.get(face).getZ();
+                            if (!found) {
+                                found = true;
+                                maxZ = z;
+                                nearestFace = face;
+                            } else {
+                                if (z > maxZ) {
+                                    maxZ = z;
+                                    nearestFace = face;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (found) {
+                    setRGB(pixelX,pixelY,faceRGBs.get(nearestFace));
+                }
+                y -= height / (pixelHeight-1);
+            }
         }
     }
 
     public void setColour(Color colour) {
         graphics.setColor(colour);
+    }
+
+    public static Color dimColour(Color colour, double factor) {
+        float[] c = colour.getRGBColorComponents(null);
+        c[0] *= factor;
+        c[1] *= factor;
+        c[2] *= factor;
+        return  new Color((int) (255 * c[0]), (int) (255 * c[1]), (int) (255 * c[2]));
     }
 
     public void setStroke(Stroke stroke) {
@@ -103,6 +228,23 @@ public class GeoImage extends BufferedImage {
         double pixelY = (p.getY() - bottom) * (pixelHeight-1) / height;
         pixelY = pixelHeight-1-pixelY;
         return new Point((int)pixelX,(int)pixelY);
+    }
+
+    private int convertXToPixelX(double x) {
+        return (int)((x - left) * (pixelWidth-1) / width);
+    }
+
+    private int convertYToPixelY(double y) {
+        return pixelHeight-1-(int)((y - bottom) * (pixelHeight-1) / height);
+    }
+
+    private double convertPixelXToX(int pixelX) {
+        return  (pixelX * width) / (pixelWidth-1) + left;
+    }
+
+    private double convertPixelYToY(int pixelY) {
+        pixelY = pixelHeight-1-pixelY;
+        return  (pixelY * height) / (pixelHeight-1) + bottom;
     }
 
     private Polygon convertPolygon2ToPolygon(Polygon2 polygon2) {

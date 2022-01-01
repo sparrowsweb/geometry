@@ -66,11 +66,12 @@ class SphericalPointTest {
 
     @Test
     void TestConstructorException()  {
-        Assertions.assertThrows(InvalidSphericalPoint.class, () -> new SphericalPoint(1,1,1));
+        Exception e = Assertions.assertThrows(IllegalArgumentException.class, () -> new SphericalPoint(1,1,1));
+        Assertions.assertEquals("Invalid spherical point.", e.getMessage());
     }
 
     @Test
-    void TestDistanceSame() throws InvalidSphericalPoint {
+    void TestDistanceSame() {
         SphericalPoint p = new SphericalPoint(0,0,1);
         SphericalPoint q = new SphericalPoint(0,0,1);
         checkDouble(0., p.minorDistance(q));

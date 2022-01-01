@@ -45,9 +45,9 @@ class LinearTransformation3Test {
     void TestToBasis() {
         Basis3 b = new Basis3(new Vector3(1,1,1),new Vector3(1,-1,1),new Vector3(1,-1,-1));
         LinearTransformation3 l = LinearTransformation3.toBasis(b);
-        checkVector3(Vector3.xUnit.linearTransform(l),1,1,1);
-        checkVector3(Vector3.yUnit.linearTransform(l),1,-1,1);
-        checkVector3(Vector3.zUnit.linearTransform(l),1,-1,-1);
+        checkVector3(Vector3.X_UNIT.linearTransform(l),1,1,1);
+        checkVector3(Vector3.Y_UNIT.linearTransform(l),1,-1,1);
+        checkVector3(Vector3.Z_UNIT.linearTransform(l),1,-1,-1);
     }
 
     @Test

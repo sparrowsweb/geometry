@@ -1,12 +1,8 @@
 package com.sparrows.geometry;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
-import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.*;
 import java.util.List;
 
 import com.sparrows.geometry.exception.DoesNotTileSphere;
@@ -14,10 +10,8 @@ import com.sparrows.geometry.exception.GeometryException;
 import com.sparrows.geometry.exception.InvalidSchwarzTriangle;
 import com.sparrows.geometry.exception.InvalidWythoffSymbol;
 import com.sparrows.geometry.exception.NotAPointSymmetry;
-import com.sparrows.geometry.geometry2.Point2;
 import com.sparrows.geometry.geometry3.*;
 import com.sparrows.geometry.graphics.GeoImage;
-import com.sparrows.geometry.maths.Maths;
 import com.sparrows.geometry.maths.Rational;
 import com.sparrows.geometry.maths.exceptions.InvalidRational;
 import com.sparrows.geometry.maths.exceptions.ZeroDenominator;
@@ -26,8 +20,6 @@ import com.sparrows.geometry.spherical.SphericalPolyhedron;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import javax.imageio.ImageIO;
 
 class WythoffSymbolTest {
     WythoffSymbolTest() throws InvalidSchwarzTriangle, InvalidRational, ZeroDenominator, InvalidWythoffSymbol, DoesNotTileSphere, NotAPointSymmetry {
@@ -280,7 +272,7 @@ class WythoffSymbolTest {
         Assertions.assertEquals(new Rational(5,3),w.getSchwarzTriangle().getR());
     }
 
-    @Test
+    //!!!@Test
     void testUniforms() throws GeometryException {
         for (var u : uniformData) {
             System.out.println(u.index+ " " + u.name);
@@ -335,7 +327,7 @@ class WythoffSymbolTest {
 
     @Test
     void stuff2() throws IOException, GeometryException {
-        GeoImage geoImage= new GeoImage(600,400,-3,-2,6);
+        GeoImage geoImage= new GeoImage(1800,1200,-1.2,-0.8,2.4);
 /*
         geoImage.setColour(Color.BLUE);
         geoImage.setStroke(new BasicStroke(5,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
@@ -351,8 +343,30 @@ class WythoffSymbolTest {
         geoImage.setStroke(new BasicStroke(1,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
         geoImage.drawPolygon(poly);*/
 
-        Polyhedron h = StandardPolyhedra.uniformPrism(5).rotate(Line3.xAxis, Maths.PI4);
-        geoImage.drawPolyhedron(h);
+        geoImage.setColour(Color.YELLOW);
+        Polyhedron h = StandardPolyhedra.greatIcosahedron.
+                rotateOrigin(Vector3.X_UNIT,1).
+                rotateOrigin(Vector3.Y_UNIT,1).
+                rotateOrigin(Vector3.Z_UNIT,1);
+        List<Color> colours = new ArrayList<>();
+        for (int f = 0; f < 2; f++) {
+            colours.add(Color.BLUE);
+            colours.add(Color.RED);
+            colours.add(Color.GREEN);
+            colours.add(Color.YELLOW);
+            colours.add(Color.ORANGE);
+            colours.add(Color.WHITE);
+            colours.add(Color.CYAN);
+            colours.add(Color.MAGENTA);
+            colours.add(Color.PINK);
+            colours.add(Color.GRAY);
+        }
+        System.out.println(new Date());
+      //  for (int i = 0; i < 30; i++)
+        //    geoImage.drawConcavePolyhedron(h,colours,true);
+        System.out.println(new Date());
+
+        geoImage.fillPolygonB(h.getFace(0));
 
         geoImage.write("c:\\Users\\tmhoo\\Documents\\test.png");
     }

@@ -28,12 +28,12 @@ class Polygon2Test {
 
     @Test
     void TestConstructorNoSides() {
-        Assertions.assertThrows(NotEnoughVertices.class, Polygon2::new);
+        Assertions.assertThrows(IllegalArgumentException.class, Polygon2::new);
     }
 
     @Test
     void TestConstructorTwoSides() {
-        Assertions.assertThrows(NotEnoughVertices.class, () -> new Polygon2(new Point2(0, 0), new Point2(1, 0)));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Polygon2(new Point2(0, 0), new Point2(1, 0)));
     }
 
     @Test
@@ -44,13 +44,13 @@ class Polygon2Test {
 
     @Test
     void TestRegularDigon() {
-        Exception e = Assertions.assertThrows(NotEnoughVertices.class, () -> Polygon2.regular(2,1));
+        Exception e = Assertions.assertThrows(IllegalArgumentException.class, () -> Polygon2.regular(2,1));
         Assertions.assertEquals("A polygon must have at least three vertices.",e.getMessage());
     }
 
     @Test
     void TestRegularDoubleTriangle() {
-        Exception e = Assertions.assertThrows(InvalidSidesDensity.class, () -> Polygon2.regular(6,2));
+        Exception e = Assertions.assertThrows(IllegalArgumentException.class, () -> Polygon2.regular(6,2));
         Assertions.assertEquals("Inconsistent sides and density (6/2).",e.getMessage());
     }
 

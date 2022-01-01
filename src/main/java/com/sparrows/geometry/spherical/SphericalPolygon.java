@@ -200,7 +200,7 @@ public class SphericalPolygon extends Polygon implements SphericalObject<Spheric
             double distanceAC = Maths.sphericalTriangleSideFromAngles(angleB,angleC,angleA);
             SphericalPoint vertexC = vertexA.rotate(new SphericalPoint(1,0,0),distanceAC).rotate(SphericalPoint.northPole,angleA);
             return new SphericalPolygon(vertexA,vertexB,vertexC);
-        } catch (InvalidSphericalPoint | NotEnoughSphericalVertices e) {
+        } catch (NotEnoughSphericalVertices e) {
             // can't happen
             e.printStackTrace();
             return null;

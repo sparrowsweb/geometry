@@ -13,9 +13,9 @@ import java.util.Objects;
 
 public class Vector3 implements GeometryObject3<Vector3> {
     public static final Vector3 zero = new Vector3(0,0,0);
-    public static final Vector3 xUnit = new Vector3(1,0,0);
-    public static final Vector3 yUnit = new Vector3(0,1,0);
-    public static final Vector3 zUnit = new Vector3(0,0,1);
+    public static final Vector3 X_UNIT = new Vector3(1,0,0);
+    public static final Vector3 Y_UNIT = new Vector3(0,1,0);
+    public static final Vector3 Z_UNIT = new Vector3(0,0,1);
 
     private double x;
     private double y;
@@ -89,18 +89,10 @@ public class Vector3 implements GeometryObject3<Vector3> {
         return Maths.equal(x*v.y - y*v.x, 0) && Maths.equal(y*v.z - z*v.y, 0) && Maths.equal(z*v.x - x*v.z, 0);
     }
     public boolean sameDirection(Vector3 v) {
-        try {
-            return parallel(v) && unit().identical(v.unit());
-        } catch (ZeroVectorException e) {
-            return true;
-        }
+        return parallel(v) && unit().identical(v.unit());
     }
     public boolean oppositeDirection(Vector3 v) {
-        try {
-            return parallel(v) && !unit().identical(v.unit());
-        } catch (ZeroVectorException e) {
-            return true;
-        }
+        return parallel(v) && !unit().identical(v.unit());
     }
     public boolean perpendicular(Vector3 v) {
         return Maths.equal(dot(v),0);
@@ -116,10 +108,10 @@ public class Vector3 implements GeometryObject3<Vector3> {
     public double length () {
         return Math.sqrt(lengthSquared());
     }
-    public Vector3 unit() throws ZeroVectorException {
+    public Vector3 unit() {
         double len = length();
         if (Maths.equal(len, 0)) {
-            throw new ZeroVectorException();
+            throw new IllegalArgumentException("Zero vector.");
         }
         return divide(len);
     }
@@ -158,21 +150,12 @@ public class Vector3 implements GeometryObject3<Vector3> {
                 x*v.getY()-y*v.getX()
         );
     }
-    public double angle(Vector3 v) throws ZeroVectorException {
+    public double angle(Vector3 v) {
         if (isZero() || v.isZero()) {
-            throw new ZeroVectorException();
+            throw new IllegalArgumentException("Zero Vector.");
         }
         double d = dot(v)/length()/v.length();
-        double a = Math.acos(d);
-        // catering for rounding errors that result in cosine being slightly over 1 or slightly under -1
-        if (Double.isNaN(a)) {
-            if (Maths.equal(d,1)) {
-                a = 0;
-            } else if (Maths.equal(d,-1)) {
-                a = Math.PI;
-            }
-        }
-        return a;
+        return Maths.arcCosine(d);
     }
 
     // Transformations

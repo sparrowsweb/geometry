@@ -255,25 +255,25 @@ public class PointSymmetryGroup3 {
         try {
             if (this.type == Type.D && this.subtype == Subtype.d) {
                 // DnD
-                generators.add(new RotoreflectionOrigin3(Vector3.zUnit,Math.PI/this.n));
+                generators.add(new RotoreflectionOrigin3(Vector3.Z_UNIT,Math.PI/this.n));
             } else if (this.type == Type.C || this.type == Type.D) {
                 // Cn, Cnh, Cnv, D, Dnh
-                generators.add(new RotationOrigin3(Vector3.zUnit, 2*Math.PI/this.n));
+                generators.add(new RotationOrigin3(Vector3.Z_UNIT, 2*Math.PI/this.n));
                 if (this.subtype == Subtype.h) {
                     // Cnh, Dnh
-                    generators.add(new ReflectionOrigin3(Plane3.z0));
+                    generators.add(new ReflectionOrigin3(Plane3.Z_EQUALS_0));
                 }
                 if (this.subtype == Subtype.v || this.type == Type.D && this.subtype == Subtype.h) {
                     // Cnv, Dnh
-                    generators.add(new ReflectionOrigin3(Plane3.y0));
+                    generators.add(new ReflectionOrigin3(Plane3.Y_EQUALS_0));
                 }
                 if (this.type == Type.D && this.subtype == null) {
                     // Dn
-                    generators.add(new RotationOrigin3(Vector3.yUnit,Math.PI));
+                    generators.add(new RotationOrigin3(Vector3.Y_UNIT,Math.PI));
                 }
             } else if (this.type == Type.S) {
                 // Sn
-                generators.add(new RotoreflectionOrigin3(Vector3.zUnit,2*Math.PI/this.n));
+                generators.add(new RotoreflectionOrigin3(Vector3.Z_UNIT,2*Math.PI/this.n));
             }
         } catch (GeometryException e) {
             e.printStackTrace();

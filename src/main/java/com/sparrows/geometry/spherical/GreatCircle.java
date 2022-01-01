@@ -52,13 +52,7 @@ public class GreatCircle implements SphericalObject<GreatCircle> {
         if (a.identicalOrAntipodal(b)) {
             throw new AntipodalPoints();
         }
-        try {
-            result = new SphericalPoint(new Vector3(a).cross(new Vector3(b)).unit());
-        } catch (ZeroVectorException | InvalidSphericalPoint e) {
-            // can't happen
-            e.printStackTrace();
-            result = null;
-        }
+        result = new SphericalPoint(new Vector3(a).cross(new Vector3(b)).unit());
         return result;
     }
 
@@ -73,11 +67,7 @@ public class GreatCircle implements SphericalObject<GreatCircle> {
      * @throws IdenticalOrOppositeGreatCircles
      */
     public SphericalPoint intersection(GreatCircle c) throws IdenticalOrOppositeGreatCircles {
-        try {
-            return new SphericalPoint(new Vector3(centre).cross(new Vector3(c.getCentre())).unit());
-        } catch (ZeroVectorException | InvalidSphericalPoint e) {
-            throw new IdenticalOrOppositeGreatCircles();
-        }
+        return new SphericalPoint(new Vector3(centre).cross(new Vector3(c.getCentre())).unit());
     }
 
     /**

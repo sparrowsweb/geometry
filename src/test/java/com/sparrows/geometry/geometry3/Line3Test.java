@@ -16,16 +16,16 @@ class Line3Test {
 
     @Test
     void TestConstructorZeroVector() {
-        Assertions.assertThrows(ZeroVectorException.class, () -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             var l = new Line3(new Point3(0,0,0), new Vector3(0,0,0));
         });
-        Assertions.assertThrows(ZeroVectorException.class, () -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             var l = new Line3(new Point3(1,2,3), new Vector3(0,0,0));
         });
     }
 
     @Test
-    void TestConstructorYAxis() throws ZeroVectorException {
+    void TestConstructorYAxis() {
         Line3 l = new Line3(new Point3(0,3,0), new Vector3(0,5,0));
         checkLine3(l, 0, 0, 0, 0, 1, 0);
     }
@@ -234,64 +234,64 @@ class Line3Test {
     void TestIntersectionSkew () {
         Assertions.assertThrows(SkewLines.class, () -> {
             Line3 l = Line3.xAxis;
-            Line3 m = new Line3(new Point3(0,0,1),Vector3.yUnit);
+            Line3 m = new Line3(new Point3(0,0,1),Vector3.Y_UNIT);
             l.intersection(m);
         });
         Assertions.assertThrows(SkewLines.class, () -> {
             Line3 l = Line3.xAxis.reverse();
-            Line3 m = new Line3(new Point3(0,0,1),Vector3.yUnit);
+            Line3 m = new Line3(new Point3(0,0,1),Vector3.Y_UNIT);
             l.intersection(m);
         });
         Assertions.assertThrows(SkewLines.class, () -> {
             Line3 l = Line3.xAxis;
-            Line3 m = new Line3(new Point3(0,0,1),Vector3.yUnit.reverse());
+            Line3 m = new Line3(new Point3(0,0,1),Vector3.Y_UNIT.reverse());
             l.intersection(m);
         });
         Assertions.assertThrows(SkewLines.class, () -> {
             Line3 l = Line3.xAxis.reverse();
-            Line3 m = new Line3(new Point3(0,0,1),Vector3.yUnit.reverse());
+            Line3 m = new Line3(new Point3(0,0,1),Vector3.Y_UNIT.reverse());
             l.intersection(m);
         });
 
         Assertions.assertThrows(SkewLines.class, () -> {
             Line3 l = Line3.yAxis;
-            Line3 m = new Line3(new Point3(-1,0,0),Vector3.zUnit);
+            Line3 m = new Line3(new Point3(-1,0,0),Vector3.Z_UNIT);
             l.intersection(m);
         });
         Assertions.assertThrows(SkewLines.class, () -> {
             Line3 l = Line3.yAxis.reverse();
-            Line3 m = new Line3(new Point3(-1,0,0),Vector3.zUnit);
+            Line3 m = new Line3(new Point3(-1,0,0),Vector3.Z_UNIT);
             l.intersection(m);
         });
         Assertions.assertThrows(SkewLines.class, () -> {
             Line3 l = Line3.yAxis;
-            Line3 m = new Line3(new Point3(-1,0,0),Vector3.zUnit.reverse());
+            Line3 m = new Line3(new Point3(-1,0,0),Vector3.Z_UNIT.reverse());
             l.intersection(m);
         });
         Assertions.assertThrows(SkewLines.class, () -> {
             Line3 l = Line3.yAxis.reverse();
-            Line3 m = new Line3(new Point3(-1,0,0),Vector3.zUnit.reverse());
+            Line3 m = new Line3(new Point3(-1,0,0),Vector3.Z_UNIT.reverse());
             l.intersection(m);
         });
 
         Assertions.assertThrows(SkewLines.class, () -> {
             Line3 l = Line3.zAxis;
-            Line3 m = new Line3(new Point3(0,0.02,0),Vector3.xUnit);
+            Line3 m = new Line3(new Point3(0,0.02,0),Vector3.X_UNIT);
             l.intersection(m);
         });
         Assertions.assertThrows(SkewLines.class, () -> {
             Line3 l = Line3.zAxis.reverse();
-            Line3 m = new Line3(new Point3(0,0.02,0),Vector3.xUnit);
+            Line3 m = new Line3(new Point3(0,0.02,0),Vector3.X_UNIT);
             l.intersection(m);
         });
         Assertions.assertThrows(SkewLines.class, () -> {
             Line3 l = Line3.zAxis;
-            Line3 m = new Line3(new Point3(0,0.02,0),Vector3.xUnit.reverse());
+            Line3 m = new Line3(new Point3(0,0.02,0),Vector3.X_UNIT.reverse());
             l.intersection(m);
         });
         Assertions.assertThrows(SkewLines.class, () -> {
             Line3 l = Line3.zAxis.reverse();
-            Line3 m = new Line3(new Point3(0,0.02,0),Vector3.xUnit).reverse();
+            Line3 m = new Line3(new Point3(0,0.02,0),Vector3.X_UNIT).reverse();
             l.intersection(m);
         });
     }
