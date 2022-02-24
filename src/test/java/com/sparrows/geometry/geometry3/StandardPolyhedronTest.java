@@ -8,7 +8,7 @@ import com.sparrows.geometry.exception.GeometryException;
 class StandardPolyhedronTest {
     @Test
     void TestTetrahedron() throws GeometryException {
-        Polyhedron h = StandardPolyhedra.tetrahedron;
+        Polyhedron h = StandardPolyhedra.TETRAHEDRON;
         Assertions.assertEquals(4,h.faceCount());
         h.validate();
         Assertions.assertTrue(h.oriented());
@@ -16,7 +16,7 @@ class StandardPolyhedronTest {
 
     @Test
     void TestCube() throws GeometryException {
-        Polyhedron h = StandardPolyhedra.cube;
+        Polyhedron h = StandardPolyhedra.CUBE;
         Assertions.assertEquals(6,h.faceCount());
         h.validate();
         Assertions.assertTrue(h.oriented());
@@ -24,7 +24,7 @@ class StandardPolyhedronTest {
 
     @Test
     void TestOctahedron() throws GeometryException {
-        Polyhedron h = StandardPolyhedra.octahedron;
+        Polyhedron h = StandardPolyhedra.OCTAHEDRON;
         Assertions.assertEquals(8,h.faceCount());
         h.validate();
         Assertions.assertTrue(h.oriented());
@@ -32,7 +32,7 @@ class StandardPolyhedronTest {
 
     @Test
     void TestDodecahedron() throws GeometryException {
-        Polyhedron h = StandardPolyhedra.dodecahedron;
+        Polyhedron h = StandardPolyhedra.DODECAHEDRON;
         Assertions.assertEquals(12,h.faceCount());
         h.validate();
         Assertions.assertTrue(h.oriented());
@@ -40,7 +40,7 @@ class StandardPolyhedronTest {
 
     @Test
     void TestIcosahedron() throws GeometryException {
-        Polyhedron h = StandardPolyhedra.icosahedron;
+        Polyhedron h = StandardPolyhedra.ICOSAHEDRON;
         Assertions.assertEquals(20,h.faceCount());
         h.validate();
         Assertions.assertTrue(h.oriented());
@@ -48,7 +48,7 @@ class StandardPolyhedronTest {
 
     @Test
     void TestSmallStellatedDodecahedron() throws GeometryException {
-        Polyhedron h = StandardPolyhedra.smallStellatedDodecahedron;
+        Polyhedron h = StandardPolyhedra.SMALL_STELLATED_DODECAHEDRON;
         Assertions.assertEquals(12,h.faceCount());
         h.validate();
         Assertions.assertTrue(h.oriented());
@@ -56,7 +56,7 @@ class StandardPolyhedronTest {
 
     @Test
     void TestGreatStellatedDodecahedron() throws GeometryException {
-        Polyhedron h = StandardPolyhedra.greatStellatedDodecahedron;
+        Polyhedron h = StandardPolyhedra.GREAT_STELLATED_DODECAHEDRON;
         Assertions.assertEquals(12,h.faceCount());
         h.validate();
         Assertions.assertTrue(h.oriented());
@@ -64,7 +64,7 @@ class StandardPolyhedronTest {
 
     @Test
     void TestGreatDodecahedron() throws GeometryException {
-        Polyhedron h = StandardPolyhedra.greatDodecahedron;
+        Polyhedron h = StandardPolyhedra.GREAT_DODECAHEDRON;
         Assertions.assertEquals(12,h.faceCount());
         h.validate();
         Assertions.assertTrue(h.oriented());
@@ -72,7 +72,7 @@ class StandardPolyhedronTest {
 
     @Test
     void TestGreatIcosahedron() throws GeometryException {
-        Polyhedron h = StandardPolyhedra.greatIcosahedron;
+        Polyhedron h = StandardPolyhedra.GREAT_ICOSAHEDRON;
         Assertions.assertEquals(20,h.faceCount());
         h.validate();
         Assertions.assertTrue(h.oriented());

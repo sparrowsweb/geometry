@@ -13,9 +13,7 @@ import com.sparrows.geometry.exception.IdenticalOrOppositeGreatCircles;
 import com.sparrows.geometry.exception.IdenticalSphericalPoints;
 import com.sparrows.geometry.exception.InvalidSphericalPoint;
 import com.sparrows.geometry.exception.NotEnoughSphericalVertices;
-import com.sparrows.geometry.exception.NotEnoughVertices;
 import com.sparrows.geometry.exception.PointArc;
-import com.sparrows.geometry.exception.PointsCollinearException;
 import com.sparrows.geometry.exception.ZeroVectorException;
 import com.sparrows.geometry.geometry3.Plane3;
 import com.sparrows.geometry.geometry3.Point3;
@@ -326,7 +324,7 @@ public class SphericalPoint implements SphericalObject<SphericalPoint> {
             } else {
                 newPoint = new Point3(candidate).translate(new Vector3(new Point3(candidate), moveFrom).multiply(-diff * 0.5));
             }
-            candidate = new SphericalPoint(newPoint.scale(1/newPoint.distance(Point3.origin)));
+            candidate = new SphericalPoint(newPoint.scaleOrigin(1/newPoint.distance(Point3.origin)));
             System.out.println(i + " new try = " + candidate);
 
         }

@@ -1,12 +1,6 @@
 package com.sparrows.geometry.geometry3;
 
-import com.sparrows.geometry.exception.GeometryException;
-import com.sparrows.geometry.exception.InvalidDihedralAngle;
-import com.sparrows.geometry.exception.InvalidEdgeException;
-import com.sparrows.geometry.exception.InvalidRegularPolyhedronIndex;
-import com.sparrows.geometry.exception.InvalidVertexException;
-import com.sparrows.geometry.exception.NotEnoughFaces;
-import com.sparrows.geometry.exception.ZeroVectorException;
+import com.sparrows.geometry.exception.*;
 import com.sparrows.geometry.spherical.SphericalPolygon;
 import com.sparrows.geometry.spherical.SphericalPolyhedron;
 import com.sparrows.geometry.transformation.d3.AffineTransformation3;
@@ -20,6 +14,9 @@ import com.sparrows.geometry.transformation.RotoreflectionalSymmetryAxis;
 import com.sparrows.geometry.transformation.Translation3;
 import com.sparrows.geometry.maths.Maths;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,9 +27,11 @@ public class Polyhedron implements GeometryObject3<Polyhedron> {
     private Point3 centroid = null;
     private List<Point3> vertices = null;
     private List<List<Integer>> vertexFaces = null;
+    private List<List<Integer>> faceVertices = null;
     private List<List<Integer>> vertexVertices = null;
     private List<LineSegment3> edges = null;
     private List<List<Integer>> edgeFaces = null;
+    private List<List<Integer>> edgeVertices = null;
     private List<List<Integer>> edgeSides = null;
     private Boolean oriented = null;
     private List<AffineTransformation3> symmetries = null;
@@ -46,31 +45,31 @@ public class Polyhedron implements GeometryObject3<Polyhedron> {
     private final List<Polygon3> faces;
 
     // Constructors
-    public Polyhedron(List<Polygon3> faces) throws NotEnoughFaces {
+    public Polyhedron(List<Polygon3> faces) {
         if (faces.size() < 4) {
-            throw new NotEnoughFaces();
+            throw new IllegalArgumentException("Not enough faces.");
         }
         this.faces = faces;
     }
-    public Polyhedron(Polygon3 ... faces) throws NotEnoughFaces {
+    public Polyhedron(Polygon3 ... faces) {
         if (faces.length < 4) {
-            throw new NotEnoughFaces();
+            throw new IllegalArgumentException("Not enough faces.");
         }
         this.faces = Arrays.asList(faces);
     }
-    public Polyhedron(Polyhedron h) throws NotEnoughFaces {
+    public Polyhedron(Polyhedron h) {
         this(h.faces.stream().map(Polygon3::new).collect(Collectors.toList()));
     }
-    public Polyhedron(SphericalPolyhedron s) throws NotEnoughFaces {
+    public Polyhedron(SphericalPolyhedron s) {
         this(s.getFaces().stream().map(Polygon3::new).collect(Collectors.toList()));
     }
-    public Polyhedron(Polyhedron ... poly) throws NotEnoughFaces {
+    public Polyhedron(Polyhedron ... poly) {
         List<Polygon3> faceList = new ArrayList<>();
         for (var p : poly) {
             faceList.addAll(p.faces);
         }
         if (faceList.size() < 4) {
-            throw new NotEnoughFaces();
+            throw new IllegalArgumentException("Not enough faces.");
         }
         faces = faceList;
     }
@@ -103,14 +102,20 @@ public class Polyhedron implements GeometryObject3<Polyhedron> {
         findVertices();
         return vertexVertices;
     }
+    public List<List<Integer>> faceVertices() {
+        findVertices();
+        return faceVertices;
+    }
 
     private void findVertices() {
         if (vertices == null) {
             vertices = new ArrayList<>();
             vertexFaces = new ArrayList<>();
             vertexVertices = new ArrayList<>();
+            faceVertices = new ArrayList<>();
             for (var f = 0; f < faceCount(); f++) {
                 Polygon3 face = getFace(f);
+                faceVertices.add(new ArrayList<>());
                 for (var v = 0; v < face.vertexCount(); v++) {
                     Point3 vertex = face.getVertex(v);
                     var found = false;
@@ -118,6 +123,7 @@ public class Polyhedron implements GeometryObject3<Polyhedron> {
                         if (vertex.identical(vertices.get(i))) {
                             vertexFaces.get(i).add(f);
                             vertexVertices.get(i).add(v);
+                            faceVertices.get(f).add(i);
                             found = true;
                             break;
                         }
@@ -130,6 +136,7 @@ public class Polyhedron implements GeometryObject3<Polyhedron> {
                         ArrayList<Integer> y = new ArrayList<>();
                         y.add(v);
                         vertexVertices.add(y);
+                        faceVertices.get(f).add(vertices.size()-1);
                     }
                 }
             }
@@ -192,6 +199,33 @@ public class Polyhedron implements GeometryObject3<Polyhedron> {
                 }
             }
         }
+    }
+
+    public List<List<Integer>> edgeVertices() {
+        if (edgeVertices == null) {
+            findVertices();
+            findEdges();
+            edgeVertices = new ArrayList<>();
+            for (int e = 0; e < edges.size(); e++) {
+                LineSegment3 edge = edges.get(e);
+                edgeVertices.add(new ArrayList<>());
+                Point3 p1 = edge.getPoint1();
+                for (int v = 0; v < vertices.size(); v++) {
+                    if (vertices.get(v).identical(p1)) {
+                        edgeVertices.get(e).add(v);
+                        break;
+                    }
+                }
+                Point3 p2 = edge.getPoint2();
+                for (int v = 0; v < vertices.size(); v++) {
+                    if (vertices.get(v).identical(p2)) {
+                        edgeVertices.get(e).add(v);
+                        break;
+                    }
+                }
+            }
+        }
+        return edgeVertices;
     }
 
     // Validate
@@ -528,6 +562,106 @@ public class Polyhedron implements GeometryObject3<Polyhedron> {
         return this;
     }
 
+    public void unityData() {
+        System.out.println("Polyhedron XXX = new Polyhedron(");
+        System.out.println("    new List<Polygon> {");
+        for (int f = 0; f < faceCount(); f++) {
+            System.out.print("        new Polygon (new List<Vector3> { ");
+            Polygon3 face = faces.get(f);
+            for (int v = 0; v < face.vertexCount(); v++) {
+                Point3 vertex = face.getVertex(v);
+                System.out.print("new Vector3" + "(" + vertex.getX() + "f," + vertex.getY() + "f," + vertex.getZ() + "f)");
+                if (v < face.vertexCount() - 1) {
+                    System.out.print(", ");
+                }
+            }
+            System.out.print(" })");
+            if (f < faceCount()-1) {
+                System.out.print(",");
+            }
+            System.out.println();
+        }
+        System.out.println("    }");
+        System.out.println(");");
+    }
+
+    public String objString() {
+        String s = "";
+        for (Point3 vertex : this.vertices()) {
+            s += "v " + vertex.getX() + " " + vertex.getY() + " " + vertex.getZ() + "\r\n";
+        }
+        for (Polygon3 face : this.faces) {
+            s += "f";
+            for (Point3 vertex : face.getVertices()) {
+                for (int v = 0; v < this.vertices().size(); v++) {
+                    if (vertex.identical(this.vertices.get(v))) {
+                        s += " " + (v+1);
+                        break;
+                    }
+                }
+            }
+            s += "\r\n";
+        }
+        return s;
+    }
+
+    public String objStringIndependentFaces() {
+        String s = "";
+        int totalVertices = 0;
+        for (var face : getFaces()) {
+            for (Point3 vertex : face.getVertices()) {
+                s += "v " + vertex.getX() + " " + vertex.getY() + " " + vertex.getZ() + "\r\n";
+            }
+            s += "f ";
+            for (int v = 0; v < face.getVertices().size(); v++) {
+                s += " " + ((totalVertices++) + 1);
+            }
+            s += "\r\n";
+        }
+        return s;
+    }
+
+    public void writeObjFile(String fileName) throws IOException {
+        String s = objString();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".obj"))) {
+            writer.write(s);
+        }
+    }
+
+    public void writeObjFileIndependentFaces(String fileName) throws IOException {
+        String s = objStringIndependentFaces();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".obj"))) {
+            writer.write(s);
+        }
+    }
+
+    public void writeFaceObjFiles(String fileName) throws IOException {
+        for (var v = 0; v < faceCount(); v++) {
+            String faceFileName = fileName + (v+1) + ".obj";
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(faceFileName))) {
+                writer.write(getFace(v).objString());
+            }
+        }
+    }
+
+    public void writeFacePrismObjFiles(String fileName) throws IOException {
+        Point3 centre = centroid();
+        String s = objString();
+        this.writeObjFile(fileName);
+        for (var v = 0; v < faceCount(); v++) {
+            Polygon3 face1 = getFace(v).reverse();
+            Polygon3 face2 = null;
+            try {
+                face2 = face1.scale(centre,1.01);
+            } catch (GeometryException e) {
+                e.printStackTrace();
+            }
+            Polyhedron facePrism = StandardPolyhedra.prism(face1,face2);
+            String faceFileName = fileName + (v+1);
+            facePrism.writeObjFile(faceFileName);
+        }
+    }
+
     @Override
     public Polyhedron linearTransform(LinearTransformation3 t) throws GeometryException {
         return new Polyhedron(faces.stream().map(f -> f.linearTransform(t)).collect(Collectors.toList()));
@@ -540,11 +674,7 @@ public class Polyhedron implements GeometryObject3<Polyhedron> {
 
     @Override
     public Polyhedron translate(Translation3 t) {
-        try {
-            return new Polyhedron(faces.stream().map(f -> f.translate(t)).collect(Collectors.toList()));
-        } catch (NotEnoughFaces e) {
-            return null; // cannot happen
-        }
+        return new Polyhedron(faces.stream().map(f -> f.translate(t)).collect(Collectors.toList()));
     }
 
     private Boolean isFaceEquilateral;

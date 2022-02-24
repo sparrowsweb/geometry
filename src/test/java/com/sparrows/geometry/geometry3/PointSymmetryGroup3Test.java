@@ -68,14 +68,14 @@ class PointSymmetryGroup3Test {
 
     @Test
     void TestPolyhedronC5() throws GeometryException {
-        Polyhedron h = StandardPolyhedra.frustum(Polygon3.pentagon, Polygon3.pentagon.translate(Vector3.Z_UNIT).scale(0.5).rotate(Line3.zAxis,Math.PI/20));
+        Polyhedron h = StandardPolyhedra.frustum(Polygon3.pentagon, Polygon3.pentagon.translate(Vector3.Z_UNIT).scaleOrigin(0.5).rotate(Line3.zAxis,Math.PI/20));
         PointSymmetryGroup3 g = new PointSymmetryGroup3(h);
         Assertions.assertEquals("C5",g.toString());
     }
 
     @Test
     void TestPolyhedronC49() throws GeometryException {
-        Polyhedron h = StandardPolyhedra.frustum(Polygon3.regular(49), Polygon3.regular(49).translate(Vector3.Z_UNIT).scale(0.5).rotate(Line3.zAxis,Math.PI/300));
+        Polyhedron h = StandardPolyhedra.frustum(Polygon3.regular(49), Polygon3.regular(49).translate(Vector3.Z_UNIT).scaleOrigin(0.5).rotate(Line3.zAxis,Math.PI/300));
         PointSymmetryGroup3 g = new PointSymmetryGroup3(h);
         Assertions.assertEquals("C49",g.toString());
     }
@@ -97,7 +97,7 @@ class PointSymmetryGroup3Test {
 
     @Test
     void TestPolyhedronC5h() throws GeometryException {
-        Polyhedron h = StandardPolyhedra.frustum(Polygon3.pentagon, Polygon3.pentagon.translate(Vector3.Z_UNIT).scale(0.5).rotate(Line3.zAxis,Math.PI/20));
+        Polyhedron h = StandardPolyhedra.frustum(Polygon3.pentagon, Polygon3.pentagon.translate(Vector3.Z_UNIT).scaleOrigin(0.5).rotate(Line3.zAxis,Math.PI/20));
         Polyhedron h2 = h.reflect(Polygon3.pentagon.plane());
         Polyhedron compound = new Polyhedron(h,h2);
         PointSymmetryGroup3 g = new PointSymmetryGroup3(compound);
@@ -106,7 +106,7 @@ class PointSymmetryGroup3Test {
 
     @Test
     void TestPolyhedronC30h() throws GeometryException {
-        Polyhedron h = StandardPolyhedra.frustum(Polygon3.regular(30), Polygon3.regular(30).translate(Vector3.Z_UNIT).scale(0.5).rotate(Line3.zAxis,Math.PI/20));
+        Polyhedron h = StandardPolyhedra.frustum(Polygon3.regular(30), Polygon3.regular(30).translate(Vector3.Z_UNIT).scaleOrigin(0.5).rotate(Line3.zAxis,Math.PI/20));
         Polyhedron h2 = h.reflect(Polygon3.regular(30).plane());
         Polyhedron compound = new Polyhedron(h,h2);
         PointSymmetryGroup3 g = new PointSymmetryGroup3(compound);
@@ -116,7 +116,7 @@ class PointSymmetryGroup3Test {
     @Test
     void TestPolyhedronC2v() throws GeometryException {
         Polygon3 base = new Polygon3(new Point3(-2,-1,0), new Point3(2,-1,0), new Point3(2,1,0), new Point3(-2,1,0));
-        Polyhedron h = StandardPolyhedra.frustum(base, base.translate(Vector3.Z_UNIT).scale(0.5));
+        Polyhedron h = StandardPolyhedra.frustum(base, base.translate(Vector3.Z_UNIT).scaleOrigin(0.5));
         PointSymmetryGroup3 g = new PointSymmetryGroup3(h);
         Assertions.assertEquals("C2v",g.toString());
     }
@@ -214,7 +214,7 @@ class PointSymmetryGroup3Test {
 
     @Test
     void TestPolyhedronS10() throws GeometryException {
-        Polyhedron h = StandardPolyhedra.frustum(Polygon3.pentagon, Polygon3.pentagon.translate(Vector3.Z_UNIT).scale(0.5).rotate(Line3.zAxis,Math.PI/30));
+        Polyhedron h = StandardPolyhedra.frustum(Polygon3.pentagon, Polygon3.pentagon.translate(Vector3.Z_UNIT).scaleOrigin(0.5).rotate(Line3.zAxis,Math.PI/30));
         Polyhedron h2 = h.reflect(Plane3.Z_EQUALS_0).rotate(Line3.zAxis,Math.PI/5);
         Polyhedron compound = new Polyhedron(h,h2);
         PointSymmetryGroup3 g = new PointSymmetryGroup3(compound);
@@ -223,7 +223,7 @@ class PointSymmetryGroup3Test {
 
     @Test
     void TestPolyhedronS30() throws GeometryException {
-        Polyhedron h = StandardPolyhedra.frustum(Polygon3.regular(15), Polygon3.regular(15).translate(Vector3.Z_UNIT).scale(0.5).rotate(Line3.zAxis,Math.PI/300));
+        Polyhedron h = StandardPolyhedra.frustum(Polygon3.regular(15), Polygon3.regular(15).translate(Vector3.Z_UNIT).scaleOrigin(0.5).rotate(Line3.zAxis,Math.PI/300));
         Polyhedron h2 = h.reflect(Plane3.Z_EQUALS_0).rotate(Line3.zAxis,Math.PI/15);
         Polyhedron compound = new Polyhedron(h,h2);
         PointSymmetryGroup3 g = new PointSymmetryGroup3(compound);
@@ -232,7 +232,7 @@ class PointSymmetryGroup3Test {
 
     @Test
     void TestPolyhedronT() throws GeometryException {
-        Polyhedron h = StandardPolyhedra.tetrahedron;
+        Polyhedron h = StandardPolyhedra.TETRAHEDRON;
         h = StandardPolyhedra.snub(h,2,Math.PI/20);
         h.validate();
         PointSymmetryGroup3 g = new PointSymmetryGroup3(h);
@@ -241,7 +241,7 @@ class PointSymmetryGroup3Test {
 
     @Test
     void TestPolyhedronTd() throws GeometryException {
-        Polyhedron h = StandardPolyhedra.tetrahedron;
+        Polyhedron h = StandardPolyhedra.TETRAHEDRON;
         PointSymmetryGroup3 g = new PointSymmetryGroup3(h);
         Assertions.assertEquals("Td",g.toString());
     }
@@ -263,7 +263,7 @@ class PointSymmetryGroup3Test {
 
     @Test
     void TestPolyhedronOh() throws GeometryException {
-        Polyhedron h = StandardPolyhedra.octahedron;
+        Polyhedron h = StandardPolyhedra.OCTAHEDRON;
         PointSymmetryGroup3 g = new PointSymmetryGroup3(h);
         Assertions.assertEquals("Oh",g.toString());
     }
@@ -278,7 +278,7 @@ class PointSymmetryGroup3Test {
 
     @Test
     void TestPolyhedronIh() throws GeometryException {
-        Polyhedron h = StandardPolyhedra.icosahedron;
+        Polyhedron h = StandardPolyhedra.ICOSAHEDRON;
         PointSymmetryGroup3 g = new PointSymmetryGroup3(h);
         Assertions.assertEquals("Ih",g.toString());
     }

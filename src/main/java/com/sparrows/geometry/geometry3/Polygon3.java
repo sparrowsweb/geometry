@@ -21,27 +21,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Polygon3 extends Polygon implements GeometryObject3<Polygon3> {
-    public static final Polygon3 triangle;
-    public static final Polygon3 square;
-    public static final Polygon3 pentagon;
-    public static final Polygon3 pentagram;
-    public static final Polygon3 hexagon;
-    public static final Polygon3 octagon;
-    public static final Polygon3 octagram;
-    public static final Polygon3 decagon;
-    public static final Polygon3 decagram;
-
-    static {
-        triangle = regularNoException(3, 1);
-        square = regularNoException(4, 1);
-        pentagon = regularNoException(5, 1);
-        pentagram = regularNoException(5,2);
-        hexagon = regularNoException(6, 1);
-        octagon = regularNoException(8,1);
-        octagram = regularNoException(8,3);
-        decagon = regularNoException(10,1);
-        decagram = regularNoException(10,3);
-    }
+    public static final Polygon3 triangle = regular(3, 1);
+    public static final Polygon3 square = regular(4, 1);
+    public static final Polygon3 pentagon = regular(5, 1);
+    public static final Polygon3 pentagram = regular(5,2);
+    public static final Polygon3 hexagon = regular(6, 1);
+    public static final Polygon3 octagon = regular(8,1);
+    public static final Polygon3 octagram = regular(8,3);
+    public static final Polygon3 decagon = regular(10,1);
+    public static final Polygon3 decagram = regular(10,3);
 
     private final List<Point3> vertices;
 
@@ -242,26 +230,36 @@ public class Polygon3 extends Polygon implements GeometryObject3<Polygon3> {
         return new Polygon2(vertices.stream().map(Point3::project2D).collect(Collectors.toList()));
     }
 
-    public static Polygon3 regular(int sides) throws GeometryException {
+    public static Polygon3 regular(int sides) {
         return regular(sides,1);
     }
-    public static Polygon3 regular(int sides, int density) throws GeometryException {
+    public static Polygon3 regular(int sides, int density) {
         GeometryUtils.validateSidesDensity(sides, density);
         var v0 = new Point3(-.5,-inradius(sides, density),0);
         double angle = 2*Math.PI*density/sides;
         List<Point3> vertices = new ArrayList<>();
         vertices.add(v0);
         for (var v = 1; v < sides; v++) {
-            vertices.add(v0.rotateOrigin(Vector3.Z_UNIT, v*angle));
+            try {
+                vertices.add(v0.rotateOrigin(Vector3.Z_UNIT, v * angle));
+            } catch (GeometryException e) {
+                //
+            }
         }
         return new Polygon3(vertices);
     }
 
-    private static Polygon3 regularNoException(int sides, int density) {
-        try {
-            return regular(sides,density);
-        } catch (GeometryException e) {
-            return null; // assume won't happen
+    public String objString() {
+        String s = "";
+        for (Point3 vertex : this.vertices) {
+            s += "v " + vertex.getX() + " " + vertex.getY() + " " + vertex.getZ() + "\r\n";
         }
+        s += "f ";
+        for (int v = 0; v < this.vertices.size(); v++) {
+            s += " " + (v + 1);
+        }
+        s += "\r\n";
+        return s;
     }
+
 }

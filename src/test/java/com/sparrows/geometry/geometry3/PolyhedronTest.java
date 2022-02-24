@@ -13,18 +13,18 @@ import java.util.List;
 
 class PolyhedronTest {
     @Test
-    void TestConstructorNotEnoughFaces() throws NotEnoughVertices {
+    void TestConstructorNotEnoughFaces() {
         List<Polygon3> faces = Arrays.asList(
                 new Polygon3(new Point3(-1,-1,-1),new Point3(-1,-1,1),new Point3(-1,1,1),new Point3(-1,-1,1)),
                 new Polygon3(new Point3(1,-1,-1),new Point3(1,-1,1),new Point3(1,1,1),new Point3(1,-1,1))
         );
-        Assertions.assertThrows(NotEnoughFaces.class, () -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Polyhedron h = new Polyhedron(faces);
         });
     }
 
     @Test
-    void TestConstructor() throws NotEnoughVertices, NotEnoughFaces {
+    void TestConstructor() {
         List<Polygon3> faces = Arrays.asList(
                 new Polygon3(new Point3(-1,-1,-1),new Point3(-1,-1,1),new Point3(-1,1,1),new Point3(-1,-1,1)),
                 new Polygon3(new Point3(1,-1,-1),new Point3(1,-1,1),new Point3(1,1,1),new Point3(1,-1,1)),
@@ -110,7 +110,7 @@ class PolyhedronTest {
 
     @Test
     void TestIdenticalOK() throws NotEnoughFaces {
-        Polyhedron h1 = StandardPolyhedra.cube;
+        Polyhedron h1 = StandardPolyhedra.CUBE;
         Polyhedron h2 = new Polyhedron(h1);
         Assertions.assertTrue(h1.identical(h2));
     }
@@ -155,7 +155,7 @@ class PolyhedronTest {
 
     @Test
     void TestSymmetriesTetrahedron() {
-        Polyhedron h = StandardPolyhedra.tetrahedron;
+        Polyhedron h = StandardPolyhedra.TETRAHEDRON;
         Assertions.assertFalse(h.inversionSymmetry());
         var reflectionSymmetries = h.reflectionSymmetries();
         Assertions.assertEquals(6,reflectionSymmetries.size());
@@ -173,7 +173,7 @@ class PolyhedronTest {
 
     @Test
     void TestSymmetriesCube() {
-        Polyhedron h = StandardPolyhedra.cube;
+        Polyhedron h = StandardPolyhedra.CUBE;
         Assertions.assertTrue(h.inversionSymmetry());
         var reflectionSymmetries = h.reflectionSymmetries();
         Assertions.assertEquals(9,reflectionSymmetries.size());
@@ -191,7 +191,7 @@ class PolyhedronTest {
 
     @Test
     void TestSymmetriesOctahedron() {
-        Polyhedron h = StandardPolyhedra.octahedron;
+        Polyhedron h = StandardPolyhedra.OCTAHEDRON;
         Assertions.assertTrue(h.inversionSymmetry());
         var reflectionSymmetries = h.reflectionSymmetries();
         Assertions.assertEquals(9,reflectionSymmetries.size());
@@ -209,7 +209,7 @@ class PolyhedronTest {
 
     @Test
     void TestSymmetriesIcosahedron() {
-        Polyhedron h = StandardPolyhedra.icosahedron;
+        Polyhedron h = StandardPolyhedra.ICOSAHEDRON;
         Assertions.assertTrue(h.inversionSymmetry());
         var reflectionSymmetries = h.reflectionSymmetries();
         Assertions.assertEquals(15,reflectionSymmetries.size());
@@ -227,7 +227,7 @@ class PolyhedronTest {
 
     @Test
     void TestSymmetriesDodecahedron() {
-        Polyhedron h = StandardPolyhedra.icosahedron;
+        Polyhedron h = StandardPolyhedra.ICOSAHEDRON;
         Assertions.assertTrue(h.inversionSymmetry());
         var reflectionSymmetries = h.reflectionSymmetries();
         Assertions.assertEquals(15,reflectionSymmetries.size());

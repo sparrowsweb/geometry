@@ -1,20 +1,9 @@
 package com.sparrows.geometry.geometry3;
 
 import com.sparrows.geometry.exception.GeometryException;
+import com.sparrows.geometry.transformation.*;
 import com.sparrows.geometry.transformation.d3.AffineTransformation3;
-import com.sparrows.geometry.transformation.Inversion3;
-import com.sparrows.geometry.transformation.Reflection3;
-import com.sparrows.geometry.transformation.ReflectionOrigin3;
-import com.sparrows.geometry.transformation.Rotation3;
-import com.sparrows.geometry.transformation.Rotoreflection3;
-import com.sparrows.geometry.transformation.RotoreflectionOrigin3;
-import com.sparrows.geometry.transformation.Scale3;
-import com.sparrows.geometry.transformation.Identity3;
-import com.sparrows.geometry.transformation.InversionOrigin3;
 import com.sparrows.geometry.transformation.d3.LinearTransformation3;
-import com.sparrows.geometry.transformation.RotationOrigin3;
-import com.sparrows.geometry.transformation.Stretch3;
-import com.sparrows.geometry.transformation.Translation3;
 
 public interface GeometryObject3<T extends GeometryObject3<T>> {
 
@@ -28,9 +17,14 @@ public interface GeometryObject3<T extends GeometryObject3<T>> {
         return linearTransform(t);
     }
 
-    default T scale(double factor) throws GeometryException {
-        LinearTransformation3 t = new Scale3(factor);
+    default T scaleOrigin(double factor) throws GeometryException {
+        LinearTransformation3 t = new ScaleOrigin3(factor);
         return linearTransform(t);
+    }
+
+    default T scale(Point3 centre, double factor) throws GeometryException {
+        AffineTransformation3 t = new Scale3(centre,factor);
+        return affineTransform(t);
     }
 
     default T stretch(double xFactor, double yFactor, double zFactor) throws GeometryException {

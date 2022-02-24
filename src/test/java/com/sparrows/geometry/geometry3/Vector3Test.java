@@ -283,7 +283,7 @@ class Vector3Test {
     @Test
     void TestScale() throws GeometryException {
         Vector3 v = new Vector3(1, 2,3);
-        Vector3 u = v.scale(-2);
+        Vector3 u = v.scaleOrigin(-2);
         checkVector3(u,-2,-4,-6);
     }
 

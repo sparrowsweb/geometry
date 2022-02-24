@@ -164,7 +164,7 @@ class Plane3Test {
     @Test
     void TestScale() throws GeometryException {
         Plane3 a = new Plane3(Vector3.X_UNIT, 3);
-        Plane3 b = a.scale(2);
+        Plane3 b = a.scaleOrigin(2);
         checkPlane3(b,1,0,0,6);
     }
 

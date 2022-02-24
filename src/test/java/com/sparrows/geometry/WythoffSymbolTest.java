@@ -5,11 +5,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
-import com.sparrows.geometry.exception.DoesNotTileSphere;
-import com.sparrows.geometry.exception.GeometryException;
-import com.sparrows.geometry.exception.InvalidSchwarzTriangle;
-import com.sparrows.geometry.exception.InvalidWythoffSymbol;
-import com.sparrows.geometry.exception.NotAPointSymmetry;
+import com.sparrows.geometry.exception.*;
 import com.sparrows.geometry.geometry3.*;
 import com.sparrows.geometry.graphics.GeoImage;
 import com.sparrows.geometry.maths.Rational;
@@ -344,7 +340,7 @@ class WythoffSymbolTest {
         geoImage.drawPolygon(poly);*/
 
         geoImage.setColour(Color.YELLOW);
-        Polyhedron h = StandardPolyhedra.greatIcosahedron.
+        Polyhedron h = StandardPolyhedra.GREAT_ICOSAHEDRON.
                 rotateOrigin(Vector3.X_UNIT,1).
                 rotateOrigin(Vector3.Y_UNIT,1).
                 rotateOrigin(Vector3.Z_UNIT,1);
@@ -369,6 +365,48 @@ class WythoffSymbolTest {
         geoImage.fillPolygonB(h.getFace(0));
 
         geoImage.write("c:\\Users\\tmhoo\\Documents\\test.png");
+    }
+
+    @Test
+    void stuff3() throws IOException, GeometryException, InvalidRational, ZeroDenominator {
+        var w = new WythoffSymbol("|5/3 5/2 3");
+        SphericalPolyhedron sp = w.uniformPolyhedron();
+        Polyhedron h = new Polyhedron(sp);
+        h.writeObjFile("c:\\users\\tmhoo\\Documents\\test");
+        h = StandardPolyhedra.ICOSAHEDRON;
+        h.writeObjFile("c:\\users\\tmhoo\\Documents\\icosahedron");
+        h = StandardPolyhedra.DODECAHEDRON;
+        h.writeObjFile("c:\\users\\tmhoo\\Documents\\dodecahedron");
+        h = StandardPolyhedra.OCTAHEDRON;
+        h.writeObjFile("c:\\users\\tmhoo\\Documents\\octahedron");
+        h = StandardPolyhedra.TETRAHEDRON;
+        h.writeObjFile("c:\\users\\tmhoo\\Documents\\tetrahedron");
+        h = StandardPolyhedra.CUBE;
+        h.writeObjFile("c:\\users\\tmhoo\\Documents\\cube");
+    }
+
+    @Test
+    void stuff4() throws IOException {
+        Polyhedron h = StandardPolyhedra.TETRAHEDRON;
+        h.writeFaceObjFiles("c:\\users\\tmhoo\\Documents\\face");
+    }
+
+    @Test
+    void stuff5() throws IOException {
+        Polyhedron h = StandardPolyhedra.CUBE;
+        h.writeFacePrismObjFiles("c:\\users\\tmhoo\\Documents\\cubetest");
+    }
+
+    @Test
+    void stuff6() throws IOException {
+        Polyhedron h = StandardPolyhedra.CUBE;
+        h.writeObjFileIndependentFaces("c:\\users\\tmhoo\\Documents\\cubetest");
+    }
+
+    @Test
+    void stuff7() {
+        Polyhedron h = StandardPolyhedra.CUBE;
+        h.unityData();
     }
 
     void tryWythoff(SchwarzTriangle s, WythoffSymbol.Type t) {

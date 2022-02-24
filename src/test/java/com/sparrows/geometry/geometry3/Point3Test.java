@@ -165,7 +165,7 @@ class Point3Test {
     @Test
     void TestScale() throws GeometryException {
         Point3 p = new Point3(1,2,3);
-        Point3 q = p.scale(4);
+        Point3 q = p.scaleOrigin(4);
         checkPoint3(q,4,8,12);
     }
 

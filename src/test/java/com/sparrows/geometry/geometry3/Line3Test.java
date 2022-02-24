@@ -304,7 +304,7 @@ class Line3Test {
     @Test
     void TestScale() throws GeometryException {
         Line3 l = new Line3(new Point3(1,2,3),new Vector3(1,0,0));
-        Line3 m = l.scale(4);
+        Line3 m = l.scaleOrigin(4);
         checkLine3(m, 0, 8,12, 1, 0,0);
     }
 /*

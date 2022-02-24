@@ -81,42 +81,37 @@ public class GeoImage extends BufferedImage {
 
     public void fillPolygonB(Polygon3 polygon) {
         Polygon2 polygon2 = polygon.project2D();
-        boolean first = true;
-        double minX = 0, maxX = 0, minY = 0, maxY = 0;
-        for (var point : polygon2.getVertices()) {
-            if (first) {
-                minX = point.getX();
-                maxX = minX;
-                minY = point.getY();
-                maxY = minY;
-                first = false;
-            } else {
-                if (point.getX() < minX) {
-                    minX = point.getX();
-                } else if (point.getX() > maxX) {
-                    maxX = point.getX();
-                }
-                if (point.getY() < minY) {
-                    minY = point.getY();
-                } else if (point.getY() > maxY) {
-                    maxY = point.getY();
-                }
-            }
-        }
+        Range yRange = yRange(polygon2);
 
         for (int pixelY = 0; pixelY < getWidth(); pixelY++) {
             double y = convertPixelYToY(pixelY);
-            if (y >= minY && y <= maxY) {
-                double x = convertPixelXToX(0);
-                Range r = intersection(polygon2,y);
-                graphics.drawLine(convertXToPixelX(r.getStart()),pixelY,convertXToPixelX(r.getEnd()),pixelY);
+            if (y >= yRange.getStart() && y <= yRange.getEnd()) {
+                Range xRange = convexIntersection(polygon2,y);
+                graphics.drawLine(convertXToPixelX(xRange.getStart()),pixelY,convertXToPixelX(xRange.getEnd()),pixelY);
             }
         }
-
-
     }
 
-    public Range intersection(Polygon2 polygon, double y) {
+    private Range yRange(Polygon2 polygon) {
+        boolean first = true;
+        double minY = 0, maxY = 0;
+        for (var vertex : polygon.getVertices()) {
+            if (first) {
+                minY = vertex.getY();
+                maxY = minY;
+                first = false;
+            } else {
+                if (vertex.getY() < minY) {
+                    minY = vertex.getY();
+                } else if (vertex.getY() > maxY) {
+                    maxY = vertex.getY();
+                }
+            }
+        }
+        return new Range(minY,maxY);
+    }
+
+    public Range convexIntersection(Polygon2 polygon, double y) {
         double lowX = 0, highX = 0;
         for (int v = 0; v < polygon.vertexCount(); v++) {
             Point2 p1 = polygon.getVertex(v);
@@ -132,7 +127,6 @@ public class GeoImage extends BufferedImage {
         }
         return new Range(lowX,highX);
     }
-
 
     public void drawConvexPolyhedron(Polyhedron polyhedron) {
         for (Polygon3 polygon : polyhedron.getFaces()) {
