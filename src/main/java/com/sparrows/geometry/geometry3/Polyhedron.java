@@ -1,7 +1,6 @@
 package com.sparrows.geometry.geometry3;
 
 import com.sparrows.geometry.exception.*;
-import com.sparrows.geometry.spherical.SphericalPolygon;
 import com.sparrows.geometry.spherical.SphericalPolyhedron;
 import com.sparrows.geometry.transformation.d3.AffineTransformation3;
 import com.sparrows.geometry.transformation.Identity3;
@@ -698,7 +697,7 @@ public class Polyhedron implements GeometryObject3<Polyhedron> {
     }
 
     // build a polyhedron given its vertex coordinates
-    public static Polyhedron Coordinates (double[] data, double edgeLength = 1, Point3 centre = null, double xRotation = 0, double yRotation = 0)
+    public static Polyhedron Coordinates (double[] data, double edgeLength, Point3 centre, double xRotation, double yRotation)
     {
         short nVertices, nFaces, faceVertices;
         Point3[] vertex;
@@ -746,15 +745,15 @@ public class Polyhedron implements GeometryObject3<Polyhedron> {
         Polyhedron h = new Polyhedron(faces);
 
         // translate so centre is at required point
-        h = h.translate(new Vector3(h.centroid(), centre);
+        h = h.translate(new Vector3(h.centroid(), centre));
 
         // find the current edge length
         currentEdgeLength = h.getFace(0).getVertex(0).distance(h.getFace(0).getVertex(1));
 
         // expand to required edge length
-        if (!Maths.equal(edgeLength, currentEdgeLength)) {
-            h = h.scale(centre, edgeLength/currentEdgeLength);
-        }
+//        if (!Maths.equal(edgeLength, currentEdgeLength)) {
+  //          h = h.scale(centre, edgeLength/currentEdgeLength);
+    //    }
 
         // validate
        // H.Adjust(centre, xRotation, yRotation);
