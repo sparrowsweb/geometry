@@ -229,7 +229,7 @@ public class Polyhedron implements GeometryObject3<Polyhedron> {
     }
 
     // Validate
-    public void validate() throws GeometryException {
+    public void validate() {
         // at least 4 faces
         // validate each face
         for (var face : faces) {
@@ -695,6 +695,72 @@ public class Polyhedron implements GeometryObject3<Polyhedron> {
 
     public boolean isFaceRegular() {
         return isFaceEquilateral() && isFaceEquiangular();
+    }
+
+    // build a polyhedron given its vertex coordinates
+    public static Polyhedron Coordinates (double[] data, double edgeLength = 1, Point3 centre = null, double xRotation = 0, double yRotation = 0)
+    {
+        short nVertices, nFaces, faceVertices;
+        Point3[] vertex;
+        double x, y, z;
+        short v;
+        List<Polygon3> faces = new ArrayList<Polygon3>();
+        //Polyhedron H =  new Polyhedron();
+        Polygon3 G;
+        double currentEdgeLength;
+        short ptr = 0;
+
+        if (centre == null)
+            centre = Point3.origin;
+
+        // get the number of vertices
+        nVertices = (short)data[ptr++];
+        vertex = new Point3[nVertices];
+
+        // retrieve the vertices into array
+        for (v = 0; v < nVertices; v++)
+        {
+            x = data[ptr++];
+            y = data[ptr++];
+            z = data[ptr++];
+            vertex[v] = new Point3(x,y,z);
+        }
+
+        // get the number of faces
+        nFaces = (short)data[ptr++];
+
+        // build each face and add to polyhedron
+        for (int f = 0; f < nFaces; f++)
+        {
+            faceVertices = (short)data[ptr++];
+            List<Point3> face = new ArrayList<>();
+
+            for (v = 0; v < faceVertices; v++)
+            {
+                face.add (vertex[(short)data[ptr++]]);
+            }
+
+            faces.add(new Polygon3(face));
+        }
+
+        Polyhedron h = new Polyhedron(faces);
+
+        // translate so centre is at required point
+        h = h.translate(new Vector3(h.centroid(), centre);
+
+        // find the current edge length
+        currentEdgeLength = h.getFace(0).getVertex(0).distance(h.getFace(0).getVertex(1));
+
+        // expand to required edge length
+        if (!Maths.equal(edgeLength, currentEdgeLength)) {
+            h = h.scale(centre, edgeLength/currentEdgeLength);
+        }
+
+        // validate
+       // H.Adjust(centre, xRotation, yRotation);
+        h.validate();
+
+        return h;
     }
 
 }

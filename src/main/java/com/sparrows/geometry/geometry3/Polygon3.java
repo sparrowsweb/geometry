@@ -112,7 +112,7 @@ public class Polygon3 extends Polygon implements GeometryObject3<Polygon3> {
         return identical(o) || opposite(o);
     }
 
-    public void validate() throws IdenticalVertices, ZeroExternalAngle, PolygonNotPlanar {
+    public void validate() {
         // check vertices distinct
         for (var i = 0; i < vertexCount(); i++) {
             if (vertices.get(i).identical(vertices.get((i+1)%vertexCount()))) {
