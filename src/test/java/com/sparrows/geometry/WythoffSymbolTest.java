@@ -14,6 +14,7 @@ import com.sparrows.geometry.maths.exceptions.ZeroDenominator;
 import com.sparrows.geometry.spherical.SchwarzTriangle;
 import com.sparrows.geometry.spherical.SphericalPolyhedron;
 
+import com.sparrows.geometry.utils.GeometryUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -407,6 +408,14 @@ class WythoffSymbolTest {
     void stuff7() {
         Polyhedron h = StandardPolyhedra.CUBE;
         h.unityData();
+    }
+
+    @Test
+    void johnson() {
+        for (int i = 1; i <= 76; i++) {
+            System.out.println("JN" + i);
+            Polyhedron h = Johnson.Johnson(i);
+        }
     }
 
     void tryWythoff(SchwarzTriangle s, WythoffSymbol.Type t) {

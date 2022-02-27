@@ -91,18 +91,18 @@ class Vector2Test {
         Assertions.assertTrue(v.identical(new Vector2(1, 2)));
         Assertions.assertTrue(v.identical(new Vector2(1, 2.00000000001)));
         Assertions.assertTrue(v.identical(new Vector2(1.00000000001, 2)));
-        Assertions.assertFalse(v.identical(new Vector2(1, 2.000000001)));
-        Assertions.assertFalse(v.identical(new Vector2(1.000000001, 2)));
+        Assertions.assertFalse(v.identical(new Vector2(1, 2.000001)));
+        Assertions.assertFalse(v.identical(new Vector2(1.00001, 2)));
     }
 
     @Test
     void TestOpposite() {
         Vector2 v = new Vector2(1, 2);
         Assertions.assertTrue(v.opposite(new Vector2(-1, -2)));
-        Assertions.assertTrue(v.opposite(new Vector2(-1, -2.00000000001)));
+        Assertions.assertTrue(v.opposite(new Vector2(-1, -2.0000000001)));
         Assertions.assertTrue(v.opposite(new Vector2(-1.00000000001, -2)));
-        Assertions.assertFalse(v.opposite(new Vector2(-1, -2.000000001)));
-        Assertions.assertFalse(v.opposite(new Vector2(-1.000000001, -2)));
+        Assertions.assertFalse(v.opposite(new Vector2(-1, -2.000001)));
+        Assertions.assertFalse(v.opposite(new Vector2(-1.00001, -2)));
     }
 
     @Test

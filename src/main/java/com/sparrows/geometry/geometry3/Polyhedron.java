@@ -697,7 +697,7 @@ public class Polyhedron implements GeometryObject3<Polyhedron> {
     }
 
     // build a polyhedron given its vertex coordinates
-    public static Polyhedron Coordinates (double[] data, double edgeLength, Point3 centre, double xRotation, double yRotation)
+    public static Polyhedron coordinates(double[] data)
     {
         short nVertices, nFaces, faceVertices;
         Point3[] vertex;
@@ -708,9 +708,6 @@ public class Polyhedron implements GeometryObject3<Polyhedron> {
         Polygon3 G;
         double currentEdgeLength;
         short ptr = 0;
-
-        if (centre == null)
-            centre = Point3.origin;
 
         // get the number of vertices
         nVertices = (short)data[ptr++];
@@ -745,7 +742,7 @@ public class Polyhedron implements GeometryObject3<Polyhedron> {
         Polyhedron h = new Polyhedron(faces);
 
         // translate so centre is at required point
-        h = h.translate(new Vector3(h.centroid(), centre));
+//        h = h.translate(new Vector3(h.centroid(), centre));
 
         // find the current edge length
         currentEdgeLength = h.getFace(0).getVertex(0).distance(h.getFace(0).getVertex(1));
@@ -760,6 +757,45 @@ public class Polyhedron implements GeometryObject3<Polyhedron> {
         h.validate();
 
         return h;
+    }
+
+    // Find a polyhedron given its faces and dihedral angles
+    public static Polyhedron facesAngles (double[] data) {//, double edgeLength, Point3 centre, double xRotation, double yRotation)
+        List<Polygon3> S = new ArrayList<>();
+//        Polygon3 T;
+        int dataFaces;
+        int edges0, density0, fromFace, fromEdge, edges, density, face;
+        double angle;
+        int ptr = 0;
+
+        // read the number of faces
+        dataFaces = (int)data[ptr++];
+
+        // read the number of edges of the first face
+        edges0 = (int)data[ptr++];
+        density0 = (int)data[ptr++];
+
+        // set the first face of the polyhedron
+        S.add(Polygon3.regular (edges0, density0));
+//        H.AddFace (S);
+
+        // generate the remaining faces
+        for (face = 1; face < dataFaces; face++)
+        {
+            fromFace = (int)data[ptr++];
+            fromEdge = (int)data[ptr++];
+            edges = (int)data[ptr++];
+            density = (int)data[ptr++];
+            angle = data[ptr++];
+          //  S = H.GetFace(fromFace);
+            S.add (S.get(fromFace).nextPolyhedronFace(fromEdge, edges, density, angle));
+//            H.AddFace (T);
+        }
+
+//        H.Adjust(centre, xRotation, yRotation);
+        Polyhedron H = new Polyhedron(S);
+        H.validate();
+        return H;
     }
 
 }

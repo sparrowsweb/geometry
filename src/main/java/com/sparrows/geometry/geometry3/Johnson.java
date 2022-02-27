@@ -2,20 +2,46 @@ package com.sparrows.geometry.geometry3;
 
 // The 92 Johnson Solids
 
+import com.sparrows.geometry.maths.Maths;
 import com.sparrows.geometry.utils.GeometryUtils;
 
 public class Johnson {
-    private static final double R4_3_3 = GeometryUtils.trivalentVertexAngle(3, 3, 5);
-    private static final double R1_3_3 = GeometryUtils.trivalentVertexAngle(3, 3, 3);
+    private static final double TV3_3_3 = GeometryUtils.trivalentVertexAngle(3, 3, 3);
+    private static final double TV3_3_4 = GeometryUtils.trivalentVertexAngle(3, 3, 4);
+    private static final double TV3_3_5 = GeometryUtils.trivalentVertexAngle(3, 3, 5);
+    private static final double TV3_4_3 = GeometryUtils.trivalentVertexAngle(3,4,3);
+    private static final double TV3_4_6 = GeometryUtils.trivalentVertexAngle(3,4,6);
+    private static final double TV3_4_8 = GeometryUtils.trivalentVertexAngle(3, 4, 8);
+    private static final double TV3_4_10 = GeometryUtils.trivalentVertexAngle(3, 4, 10);
+    private static final double TV3_5_3 = GeometryUtils.trivalentVertexAngle(3,5,3);
+    private static final double TV3_5_10 = GeometryUtils.trivalentVertexAngle(3,5,10);
+    private static final double TV3_6_4 = GeometryUtils.trivalentVertexAngle(3,6,4);
+    private static final double TV3_8_4 = GeometryUtils.trivalentVertexAngle(3,8,4);
+    private static final double TV3_8_8 = GeometryUtils.trivalentVertexAngle(3,8,8);
+    private static final double TV3_10_4 = GeometryUtils.trivalentVertexAngle(3,10,4);
+    private static final double TV3_10_5 = GeometryUtils.trivalentVertexAngle(3,10,5);
+    private static final double TV3_10_10 = GeometryUtils.trivalentVertexAngle(3,10,10);
+    private static final double TV4_6_3 = GeometryUtils.trivalentVertexAngle(4,6,3);
+    private static final double TV4_8_3 = GeometryUtils.trivalentVertexAngle(4,8,3);
+    private static final double TV4_10_3 = GeometryUtils.trivalentVertexAngle(4,10,3);
+    private static final double TV5_5_5 = GeometryUtils.trivalentVertexAngle(5, 5, 5);
+    private static final double TV5_10_3 = GeometryUtils.trivalentVertexAngle(5,10,3);
+
+    private static final double AP_4_TE = GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(4,1);
+    private static final double AP_5_TE = GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1);
+    private static final double AP_6_TE = GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1);
+    private static final double AP_8_TE = GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1);
+    private static final double AP_10_TE = GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1);
+    private static final double AP_4_TT = GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(4,1);
+    private static final double AP_6_TT = GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(6,1);
+    private static final double AP_8_TT = GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(8,1);
+    private static final double AP_10_TT = GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1);
+    
     private static final double U7_3_4 = Math.acos(-1 / Math.sqrt(3));
-    private static double U10_4_4 = 3 * Math.PI / 4;
-    private static double U27_4_5 = Math.acos(-Math.sqrt(2) / Math.sqrt(5 - Math.sqrt(5)));
+    private static final double U10_4_4 = 3 * Math.PI / 4;
+    private static final double U27_4_5 = Math.acos(-Math.sqrt(2) / Math.sqrt(5 - Math.sqrt(5)));
     private static double U24_3_5 = Math.acos((Math.sqrt(5 - 2 * Math.sqrt(5)) - 2 * Math.sqrt(10 + 2 * Math.sqrt(5))) / (5 * Math.sqrt(3)));
-    private static double U10_3_4 = GeometryUtils.trivalentVertexAngle(3, 4, 8);
-    private static double R2_3_3 = GeometryUtils.trivalentVertexAngle(3, 3, 4);
-    private static double R5_5_5 = GeometryUtils.trivalentVertexAngle(5, 5, 5);
-    private static double R3_4_4 = Math.PI / 2;
-    private static double U27_3_4 = GeometryUtils.trivalentVertexAngle(3, 4, 10);
+    private static double R3_4_4 = Maths.PI2;
     private static double J84_XB = 1.28916854644830996908267745816856738814;
     private static double J84_YB = 1.97898498017164637599616094723905191425;
     private static double J84_YC = 1.15673871675860822368475614743349356277;
@@ -103,10 +129,10 @@ public class Johnson {
                             4, 1,
 
                             // a triangle next to each edge of the squares
-                            0, 0, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,3),
-                            0, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,3),
-                            0, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,3),
-                            0, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,3)
+                            0, 0, 3, 1, TV3_4_3,
+                            0, 1, 3, 1, TV3_4_3,
+                            0, 2, 3, 1, TV3_4_3,
+                            0, 3, 3, 1, TV3_4_3
                     },
 
             new double[] // J2 - pentagonal pyramid
@@ -117,11 +143,11 @@ public class Johnson {
                             5, 1,
 
                             // a triangle next to each edge of the pentagon
-                            0, 0, 3, 1, GeometryUtils.trivalentVertexAngle(3,5,3),
-                            0, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,5,3),
-                            0, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,5,3),
-                            0, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,5,3),
-                            0, 4, 3, 1, GeometryUtils.trivalentVertexAngle(3,5,3)
+                            0, 0, 3, 1, TV3_5_3,// R3_5_3,
+                            0, 1, 3, 1, TV3_5_3,
+                            0, 2, 3, 1, TV3_5_3,
+                            0, 3, 3, 1, TV3_5_3,
+                            0, 4, 3, 1, TV3_5_3
                     },
 
             new double[] // J3 - triangular cupola
@@ -132,15 +158,15 @@ public class Johnson {
                             6, 1,
 
                             // ring of squares and triangles
-                            0, 0, 4, 1, GeometryUtils.trivalentVertexAngle(4,6,3),
-                            0, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,6,4),
-                            0, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,6,3),
-                            0, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,6,4),
-                            0, 4, 4, 1, GeometryUtils.trivalentVertexAngle(4,6,3),
-                            0, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,6,4),
+                            0, 0, 4, 1, TV4_6_3,
+                            0, 1, 3, 1, TV3_6_4,
+                            0, 2, 4, 1, TV4_6_3,
+                            0, 3, 3, 1, TV3_6_4,
+                            0, 4, 4, 1, TV4_6_3,
+                            0, 5, 3, 1, TV3_6_4,
 
                             // triangle opposite the hexagon
-                            1, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,6)
+                            1, 2, 3, 1, TV3_4_6
                     },
 
             new double[]// J4 - square cupola
@@ -151,17 +177,17 @@ public class Johnson {
                             8, 1,
 
                             // ring of squares and triangles
-                            0, 0, 4, 1, GeometryUtils.trivalentVertexAngle(4,8,3),
-                            0, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,4),
-                            0, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,8,3),
-                            0, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,4),
-                            0, 4, 4, 1, GeometryUtils.trivalentVertexAngle(4,8,3),
-                            0, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,4),
-                            0, 6, 4, 1, GeometryUtils.trivalentVertexAngle(4,8,3),
-                            0, 7, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,4),
+                            0, 0, 4, 1, TV4_8_3,
+                            0, 1, 3, 1, TV3_8_4,
+                            0, 2, 4, 1, TV4_8_3,
+                            0, 3, 3, 1, TV3_8_4,
+                            0, 4, 4, 1, TV4_8_3,
+                            0, 5, 3, 1, TV3_8_4,
+                            0, 6, 4, 1, TV4_8_3,
+                            0, 7, 3, 1, TV3_8_4,
 
                             // square opposite the octagon
-                            1, 2, 4, 1, Math.PI-GeometryUtils.trivalentVertexAngle(4,8,3)/*U10_4_4*/
+                            1, 2, 4, 1, Math.PI-TV4_8_3/*U10_4_4*/
                     },
 
             new double[] // J5 - pentagonal cupola
@@ -172,19 +198,19 @@ public class Johnson {
                             10, 1,
 
                             // ring of squares and triangles
-                            0, 0, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3),
-                            0, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4),
-                            0, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3),
-                            0, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4),
-                            0, 4, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3),
-                            0, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4),
-                            0, 6, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3),
-                            0, 7, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4),
-                            0, 8, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3),
-                            0, 9, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4),
+                            0, 0, 4, 1, TV4_10_3,
+                            0, 1, 3, 1, TV3_10_4,
+                            0, 2, 4, 1, TV4_10_3,
+                            0, 3, 3, 1, TV3_10_4,
+                            0, 4, 4, 1, TV4_10_3,
+                            0, 5, 3, 1, TV3_10_4,
+                            0, 6, 4, 1, TV4_10_3,
+                            0, 7, 3, 1, TV3_10_4,
+                            0, 8, 4, 1, TV4_10_3,
+                            0, 9, 3, 1, TV3_10_4,
 
                             // pentagon opposite the base
-                            1, 2, 5, 1, Math.PI-GeometryUtils.trivalentVertexAngle(4,10,3)
+                            1, 2, 5, 1, Math.PI-TV4_10_3
                     },
 
             new double[] // J6 - pentagonal rotunda
@@ -195,26 +221,26 @@ public class Johnson {
                             10, 1,
 
                             // ring of pentagons and triangles
-                            0, 0, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3),
-                            0, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5),
-                            0, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3),
-                            0, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5),
-                            0, 4, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3),
-                            0, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5),
-                            0, 6, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3),
-                            0, 7, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5),
-                            0, 8, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3),
-                            0, 9, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5),
+                            0, 0, 5, 1, TV5_10_3,
+                            0, 1, 3, 1, TV3_10_5,
+                            0, 2, 5, 1, TV5_10_3,
+                            0, 3, 3, 1, TV3_10_5,
+                            0, 4, 5, 1, TV5_10_3,
+                            0, 5, 3, 1, TV3_10_5,
+                            0, 6, 5, 1, TV5_10_3,
+                            0, 7, 3, 1, TV3_10_5,
+                            0, 8, 5, 1, TV5_10_3,
+                            0, 9, 3, 1, TV3_10_5,
 
                             // ring of triangles
-                            1, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,5,10),
-                            3, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,5,10),
-                            5, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,5,10),
-                            7, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,5,10),
-                            9, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,5,10),
+                            1, 2, 3, 1, TV3_5_10,
+                            3, 2, 3, 1, TV3_5_10,
+                            5, 2, 3, 1, TV3_5_10,
+                            7, 2, 3, 1, TV3_5_10,
+                            9, 2, 3, 1, TV3_5_10,
 
                             // pentagon opposite the decagon
-                            11, 2, 5, 1, GeometryUtils.trivalentVertexAngle(3,5,10)
+                            11, 2, 5, 1, TV3_5_10
                     },
 
             new double[] // J7 - elongated triangular pyramid
@@ -225,14 +251,14 @@ public class Johnson {
                             3, 1,
 
                             // elongating squares
-                            0, 0, 4, 1, Math.PI/2,
-                            0, 1, 4, 1, Math.PI/2,
-                            0, 2, 4, 1, Math.PI/2,
+                            0, 0, 4, 1, Maths.PI2,
+                            0, 1, 4, 1, Maths.PI2,
+                            0, 2, 4, 1, Maths.PI2,
 
                             // pyramidal triangles
-                            1, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,3,3)+Math.PI/2,
-                            2, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,3,3)+Math.PI/2,
-                            3, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,3,3)+Math.PI/2,
+                            1, 2, 3, 1, TV3_3_3 + Maths.PI2,
+                            2, 2, 3, 1, TV3_3_3 + Maths.PI2,
+                            3, 2, 3, 1, TV3_3_3 + Maths.PI2,
                     },
 
             new double[] // J8 - elongated square pyramid
@@ -243,16 +269,16 @@ public class Johnson {
                             4, 1,
 
                             // elongating squares
-                            0, 0, 4, 1, Math.PI/2,
-                            0, 1, 4, 1, Math.PI/2,
-                            0, 2, 4, 1, Math.PI/2,
-                            0, 3, 4, 1, Math.PI/2,
+                            0, 0, 4, 1, Maths.PI2,
+                            0, 1, 4, 1, Maths.PI2,
+                            0, 2, 4, 1, Maths.PI2,
+                            0, 3, 4, 1, Maths.PI2,
 
                             // pyramidal triangles
-                            1, 2, 3, 1, Math.PI/2+GeometryUtils.trivalentVertexAngle(3,4,3),
-                            2, 2, 3, 1, Math.PI/2+GeometryUtils.trivalentVertexAngle(3,4,3),
-                            3, 2, 3, 1, Math.PI/2+GeometryUtils.trivalentVertexAngle(3,4,3),
-                            4, 2, 3, 1, Math.PI/2+GeometryUtils.trivalentVertexAngle(3,4,3)
+                            1, 2, 3, 1, Maths.PI2+ TV3_4_3,
+                            2, 2, 3, 1, Maths.PI2+ TV3_4_3,
+                            3, 2, 3, 1, Maths.PI2+ TV3_4_3,
+                            4, 2, 3, 1, Maths.PI2+ TV3_4_3
                     },
 
             new double[] // J9 - elongated pentagonal pyramid
@@ -263,18 +289,18 @@ public class Johnson {
                             5, 1,
 
                             // elongating squares
-                            0, 0, 4, 1, Math.PI/2,
-                            0, 1, 4, 1, Math.PI/2,
-                            0, 2, 4, 1, Math.PI/2,
-                            0, 3, 4, 1, Math.PI/2,
-                            0, 4, 4, 1, Math.PI/2,
+                            0, 0, 4, 1, Maths.PI2,
+                            0, 1, 4, 1, Maths.PI2,
+                            0, 2, 4, 1, Maths.PI2,
+                            0, 3, 4, 1, Maths.PI2,
+                            0, 4, 4, 1, Maths.PI2,
 
                             // pyramidal triangles
-                            1, 2, 3, 1, Math.PI/2+GeometryUtils.trivalentVertexAngle(3,5,3),
-                            2, 2, 3, 1, Math.PI/2+GeometryUtils.trivalentVertexAngle(3,5,3),
-                            3, 2, 3, 1, Math.PI/2+GeometryUtils.trivalentVertexAngle(3,5,3),
-                            4, 2, 3, 1, Math.PI/2+GeometryUtils.trivalentVertexAngle(3,5,3),
-                            5, 2, 3, 1, Math.PI/2+GeometryUtils.trivalentVertexAngle(3,5,3)
+                            1, 2, 3, 1, Maths.PI2+ TV3_5_3,
+                            2, 2, 3, 1, Maths.PI2+ TV3_5_3,
+                            3, 2, 3, 1, Maths.PI2+ TV3_5_3,
+                            4, 2, 3, 1, Maths.PI2+ TV3_5_3,
+                            5, 2, 3, 1, Maths.PI2+ TV3_5_3
                     },
 
             new double[] // J10 - gyroelongated square pyramid
@@ -285,22 +311,22 @@ public class Johnson {
                             4, 1,
 
                             // bottom ring of triangles
-                            0, 0, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(4,1),
-                            0, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(4,1),
-                            0, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(4,1),
-                            0, 3, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(4,1),
+                            0, 0, 3, 1, AP_4_TE,
+                            0, 1, 3, 1, AP_4_TE,
+                            0, 2, 3, 1, AP_4_TE,
+                            0, 3, 3, 1, AP_4_TE,
 
                             // top ring of triangles
-                            1, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(4,1),
-                            2, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(4,1),
-                            3, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(4,1),
-                            4, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(4,1),
+                            1, 1, 3, 1, AP_4_TT,
+                            2, 1, 3, 1, AP_4_TT,
+                            3, 1, 3, 1, AP_4_TT,
+                            4, 1, 3, 1, AP_4_TT,
 
                             // pyramidal triangles
-                            5, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(4,1)+GeometryUtils.trivalentVertexAngle(3,4,3),
-                            6, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(4,1)+GeometryUtils.trivalentVertexAngle(3,4,3),
-                            7, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(4,1)+GeometryUtils.trivalentVertexAngle(3,4,3),
-                            8, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(4,1)+GeometryUtils.trivalentVertexAngle(3,4,3)
+                            5, 2, 3, 1, AP_4_TE + TV3_4_3,
+                            6, 2, 3, 1, AP_4_TE + TV3_4_3,
+                            7, 2, 3, 1, AP_4_TE + TV3_4_3,
+                            8, 2, 3, 1, AP_4_TE + TV3_4_3
                     },
 
             new double[] // J11 - gyroelongated pentagonal pyramid (diminished icosahedron)
@@ -311,25 +337,25 @@ public class Johnson {
                             5, 1,
 
                             // bottom ring of triangles
-                            0, 0, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1),
-                            0, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1),
-                            0, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1),
-                            0, 3, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1),
-                            0, 4, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1),
+                            0, 0, 3, 1, AP_5_TE,
+                            0, 1, 3, 1, AP_5_TE,
+                            0, 2, 3, 1, AP_5_TE,
+                            0, 3, 3, 1, AP_5_TE,
+                            0, 4, 3, 1, AP_5_TE,
 
                             // top ring of triangles
-                            1, 1, 3, 1, R4_3_3,
-                            2, 1, 3, 1, R4_3_3,
-                            3, 1, 3, 1, R4_3_3,
-                            4, 1, 3, 1, R4_3_3,
-                            5, 1, 3, 1, R4_3_3,
+                            1, 1, 3, 1, TV3_3_5,
+                            2, 1, 3, 1, TV3_3_5,
+                            3, 1, 3, 1, TV3_3_5,
+                            4, 1, 3, 1, TV3_3_5,
+                            5, 1, 3, 1, TV3_3_5,
 
                             // pyramidal triangles
-                            6, 2, 3, 1, R4_3_3,
-                            7, 2, 3, 1, R4_3_3,
-                            8, 2, 3, 1, R4_3_3,
-                            9, 2, 3, 1, R4_3_3,
-                            10, 2, 3, 1, R4_3_3
+                            6, 2, 3, 1, TV3_3_5,
+                            7, 2, 3, 1, TV3_3_5,
+                            8, 2, 3, 1, TV3_3_5,
+                            9, 2, 3, 1, TV3_3_5,
+                            10, 2, 3, 1, TV3_3_5
                     },
 
             new double[] // J12 - triangular dipyramid
@@ -338,13 +364,13 @@ public class Johnson {
 
                             // three triangles forming pyramid
                             3, 1,
-                            0, 0, 3, 1, R1_3_3,
-                            1, 1, 3, 1, R1_3_3,
+                            0, 0, 3, 1, TV3_3_3,
+                            1, 1, 3, 1, TV3_3_3,
 
                             // pyramid opposite
-                            0, 1, 3, 1, 2*R1_3_3,
-                            1, 2, 3, 1, 2*R1_3_3,
-                            2, 2, 3, 1, 2*R1_3_3
+                            0, 1, 3, 1, 2* TV3_3_3,
+                            1, 2, 3, 1, 2* TV3_3_3,
+                            2, 2, 3, 1, 2* TV3_3_3
                     },
 
             new double[] // J13 - pentagonal dipyramid
@@ -353,17 +379,17 @@ public class Johnson {
 
                             // five triangles forming pentagonal pyramid
                             3, 1,
-                            0, 1, 3, 1, R4_3_3,
-                            1, 1, 3, 1, R4_3_3,
-                            2, 1, 3, 1, R4_3_3,
-                            3, 1, 3, 1, R4_3_3,
+                            0, 1, 3, 1, TV3_3_5,
+                            1, 1, 3, 1, TV3_3_5,
+                            2, 1, 3, 1, TV3_3_5,
+                            3, 1, 3, 1, TV3_3_5,
 
                             // pyramid opposite
-                            0, 2, 3, 1, 2*GeometryUtils.trivalentVertexAngle(3,5,3),
-                            1, 2, 3, 1, 2*GeometryUtils.trivalentVertexAngle(3,5,3),
-                            2, 2, 3, 1, 2*GeometryUtils.trivalentVertexAngle(3,5,3),
-                            3, 2, 3, 1, 2*GeometryUtils.trivalentVertexAngle(3,5,3),
-                            4, 2, 3, 1, 2*GeometryUtils.trivalentVertexAngle(3,5,3),
+                            0, 2, 3, 1, 2* TV3_5_3,
+                            1, 2, 3, 1, 2* TV3_5_3,
+                            2, 2, 3, 1, 2* TV3_5_3,
+                            3, 2, 3, 1, 2* TV3_5_3,
+                            4, 2, 3, 1, 2* TV3_5_3,
                     },
 
             new double[]// J14 - elongated triangular dipyramid
@@ -372,18 +398,18 @@ public class Johnson {
 
                             // ring of squares
                             4, 1,
-                            0, 2, 4, 1, Math.PI/3,
-                            1, 2, 4, 1, Math.PI/3,
+                            0, 2, 4, 1, Maths.PI3,
+                            1, 2, 4, 1, Maths.PI3,
 
                             // pyramid one end
-                            0, 1, 3, 1, Math.PI/2+R1_3_3,
-                            1, 1, 3, 1, Math.PI/2+R1_3_3,
-                            2, 1, 3, 1, Math.PI/2+R1_3_3,
+                            0, 1, 3, 1, Maths.PI2+ TV3_3_3,
+                            1, 1, 3, 1, Maths.PI2+ TV3_3_3,
+                            2, 1, 3, 1, Maths.PI2+ TV3_3_3,
 
                             // pyramid the other end
-                            0, 3, 3, 1, Math.PI/2+R1_3_3,
-                            1, 3, 3, 1, Math.PI/2+R1_3_3,
-                            2, 3, 3, 1, Math.PI/2+R1_3_3
+                            0, 3, 3, 1, Maths.PI2+ TV3_3_3,
+                            1, 3, 3, 1, Maths.PI2+ TV3_3_3,
+                            2, 3, 3, 1, Maths.PI2+ TV3_3_3
                     },
 
             new double[] // J15 - elongated square dipyramid
@@ -392,21 +418,21 @@ public class Johnson {
                             4, 1,
 
                             // ring of squares
-                            0, 2, 4, 1, Math.PI/2,
-                            1, 2, 4, 1, Math.PI/2,
-                            2, 2, 4, 1, Math.PI/2,
+                            0, 2, 4, 1, Maths.PI2,
+                            1, 2, 4, 1, Maths.PI2,
+                            2, 2, 4, 1, Maths.PI2,
 
                             // pyramid one end
-                            0, 1, 3, 1, Math.PI/2+GeometryUtils.trivalentVertexAngle(3,4,3),
-                            1, 1, 3, 1, Math.PI/2+GeometryUtils.trivalentVertexAngle(3,4,3),
-                            2, 1, 3, 1, Math.PI/2+GeometryUtils.trivalentVertexAngle(3,4,3),
-                            3, 1, 3, 1, Math.PI/2+GeometryUtils.trivalentVertexAngle(3,4,3),
+                            0, 1, 3, 1, Maths.PI2+ TV3_4_3,
+                            1, 1, 3, 1, Maths.PI2+ TV3_4_3,
+                            2, 1, 3, 1, Maths.PI2+ TV3_4_3,
+                            3, 1, 3, 1, Maths.PI2+ TV3_4_3,
 
                             // pyramid the other end
-                            0, 3, 3, 1, Math.PI/2+GeometryUtils.trivalentVertexAngle(3,4,3),
-                            1, 3, 3, 1, Math.PI/2+GeometryUtils.trivalentVertexAngle(3,4,3),
-                            2, 3, 3, 1, Math.PI/2+GeometryUtils.trivalentVertexAngle(3,4,3),
-                            3, 3, 3, 1, Math.PI/2+GeometryUtils.trivalentVertexAngle(3,4,3),
+                            0, 3, 3, 1, Maths.PI2+ TV3_4_3,
+                            1, 3, 3, 1, Maths.PI2+ TV3_4_3,
+                            2, 3, 3, 1, Maths.PI2+ TV3_4_3,
+                            3, 3, 3, 1, Maths.PI2+ TV3_4_3,
                     },
 
             new double[] // J16 - elongated pentagonal dipyramid
@@ -421,18 +447,18 @@ public class Johnson {
                             3, 2, 4, 1, 3*Math.PI/5,
 
                             // pyramid one end
-                            0, 1, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,5,3),
-                            1, 1, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,5,3),
-                            2, 1, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,5,3),
-                            3, 1, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,5,3),
-                            4, 1, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,5,3),
+                            0, 1, 3, 1, Maths.PI2 + TV3_5_3,
+                            1, 1, 3, 1, Maths.PI2 + TV3_5_3,
+                            2, 1, 3, 1, Maths.PI2 + TV3_5_3,
+                            3, 1, 3, 1, Maths.PI2 + TV3_5_3,
+                            4, 1, 3, 1, Maths.PI2 + TV3_5_3,
 
                             // pyramid the other end
-                            0, 3, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,5,3),
-                            1, 3, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,5,3),
-                            2, 3, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,5,3),
-                            3, 3, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,5,3),
-                            4, 3, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,5,3)
+                            0, 3, 3, 1, Maths.PI2 + TV3_5_3,
+                            1, 3, 3, 1, Maths.PI2 + TV3_5_3,
+                            2, 3, 3, 1, Maths.PI2 + TV3_5_3,
+                            3, 3, 3, 1, Maths.PI2 + TV3_5_3,
+                            4, 3, 3, 1, Maths.PI2 + TV3_5_3
                     },
 
             new double[] // J17 - gyroelongated square dipyramid
@@ -441,28 +467,28 @@ public class Johnson {
 
                             // ring of triangles
                             3, 1,
-                            0, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(4,1),
-                            1, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(4,1),
-                            2, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(4,1),
-                            3, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(4,1),
-                            4, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(4,1),
-                            5, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(4,1),
-                            6, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(4,1),
+                            0, 1, 3, 1, AP_4_TT,
+                            1, 2, 3, 1, AP_4_TT,
+                            2, 1, 3, 1, AP_4_TT,
+                            3, 2, 3, 1, AP_4_TT,
+                            4, 1, 3, 1, AP_4_TT,
+                            5, 2, 3, 1, AP_4_TT,
+                            6, 1, 3, 1, AP_4_TT,
 
                             // square pyramid at one end
-                            0, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(4,1) + GeometryUtils.trivalentVertexAngle(3,4,3),
-                            2, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(4,1) + GeometryUtils.trivalentVertexAngle(3,4,3),
-                            4, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(4,1) + GeometryUtils.trivalentVertexAngle(3,4,3),
-                            6, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(4,1) + GeometryUtils.trivalentVertexAngle(3,4,3),
+                            0, 2, 3, 1, AP_4_TE + TV3_4_3,
+                            2, 2, 3, 1, AP_4_TE + TV3_4_3,
+                            4, 2, 3, 1, AP_4_TE + TV3_4_3,
+                            6, 2, 3, 1, AP_4_TE + TV3_4_3,
 
                             // square pyramid at other end
-                            1, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(4,1) + GeometryUtils.trivalentVertexAngle(3,4,3),
-                            3, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(4,1) + GeometryUtils.trivalentVertexAngle(3,4,3),
-                            5, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(4,1) + GeometryUtils.trivalentVertexAngle(3,4,3),
-                            7, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(4,1) + GeometryUtils.trivalentVertexAngle(3,4,3)
+                            1, 1, 3, 1, AP_4_TE + TV3_4_3,
+                            3, 1, 3, 1, AP_4_TE + TV3_4_3,
+                            5, 1, 3, 1, AP_4_TE + TV3_4_3,
+                            7, 1, 3, 1, AP_4_TE + TV3_4_3
                     },
 
-            new double[] // J18 - elongated triangula cupola
+            new double[] // J18 - elongated triangular cupola
                     {
                             14,
 
@@ -470,20 +496,20 @@ public class Johnson {
                             6, 1,
 
                             // ring of squares
-                            0, 0, 4, 1, Math.PI/2,
-                            0, 1, 4, 1, Math.PI/2,
-                            0, 2, 4, 1, Math.PI/2,
-                            0, 3, 4, 1, Math.PI/2,
-                            0, 4, 4, 1, Math.PI/2,
-                            0, 5, 4, 1, Math.PI/2,
+                            0, 0, 4, 1, Maths.PI2,
+                            0, 1, 4, 1, Maths.PI2,
+                            0, 2, 4, 1, Maths.PI2,
+                            0, 3, 4, 1, Maths.PI2,
+                            0, 4, 4, 1, Maths.PI2,
+                            0, 5, 4, 1, Maths.PI2,
 
                             // ring of squares and triangles
-                            1, 2, 4, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(4,6,3),
-                            2, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,6,4),
-                            3, 2, 4, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(4,6,3),
-                            4, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,6,4),
-                            5, 2, 4, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(4,6,3),
-                            6, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,6,4),
+                            1, 2, 4, 1, Maths.PI2 + TV4_6_3,
+                            2, 2, 3, 1, Maths.PI2 + TV3_6_4,
+                            3, 2, 4, 1, Maths.PI2 + TV4_6_3,
+                            4, 2, 3, 1, Maths.PI2 + TV3_6_4,
+                            5, 2, 4, 1, Maths.PI2 + TV4_6_3,
+                            6, 2, 3, 1, Maths.PI2 + TV3_6_4,
 
                             // triangle opposite the base hexagon
                             7, 2, 3, 1, U7_3_4
@@ -497,24 +523,24 @@ public class Johnson {
                             8, 1,
 
                             // ring of squares
-                            0, 0, 4, 1, Math.PI/2,
-                            0, 1, 4, 1, Math.PI/2,
-                            0, 2, 4, 1, Math.PI/2,
-                            0, 3, 4, 1, Math.PI/2,
-                            0, 4, 4, 1, Math.PI/2,
-                            0, 5, 4, 1, Math.PI/2,
-                            0, 6, 4, 1, Math.PI/2,
-                            0, 7, 4, 1, Math.PI/2,
+                            0, 0, 4, 1, Maths.PI2,
+                            0, 1, 4, 1, Maths.PI2,
+                            0, 2, 4, 1, Maths.PI2,
+                            0, 3, 4, 1, Maths.PI2,
+                            0, 4, 4, 1, Maths.PI2,
+                            0, 5, 4, 1, Maths.PI2,
+                            0, 6, 4, 1, Maths.PI2,
+                            0, 7, 4, 1, Maths.PI2,
 
                             // ring of squares and triangles
-                            1, 2, 4, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(4,8,3),
-                            2, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,8,4),
-                            3, 2, 4, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(4,8,3),
-                            4, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,8,4),
-                            5, 2, 4, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(4,8,3),
-                            6, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,8,4),
-                            7, 2, 4, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(4,8,3),
-                            8, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,8,4),
+                            1, 2, 4, 1, Maths.PI2 + TV4_8_3,
+                            2, 2, 3, 1, Maths.PI2 + TV3_8_4,
+                            3, 2, 4, 1, Maths.PI2 + TV4_8_3,
+                            4, 2, 3, 1, Maths.PI2 + TV3_8_4,
+                            5, 2, 4, 1, Maths.PI2 + TV4_8_3,
+                            6, 2, 3, 1, Maths.PI2 + TV3_8_4,
+                            7, 2, 4, 1, Maths.PI2 + TV4_8_3,
+                            8, 2, 3, 1, Maths.PI2 + TV3_8_4,
 
                             // square opposite the base octagon
                             9, 2, 4, 1, U10_4_4
@@ -528,28 +554,28 @@ public class Johnson {
                             10, 1,
 
                             // ring of squares
-                            0, 0, 4, 1, Math.PI/2,
-                            0, 1, 4, 1, Math.PI/2,
-                            0, 2, 4, 1, Math.PI/2,
-                            0, 3, 4, 1, Math.PI/2,
-                            0, 4, 4, 1, Math.PI/2,
-                            0, 5, 4, 1, Math.PI/2,
-                            0, 6, 4, 1, Math.PI/2,
-                            0, 7, 4, 1, Math.PI/2,
-                            0, 8, 4, 1, Math.PI/2,
-                            0, 9, 4, 1, Math.PI/2,
+                            0, 0, 4, 1, Maths.PI2,
+                            0, 1, 4, 1, Maths.PI2,
+                            0, 2, 4, 1, Maths.PI2,
+                            0, 3, 4, 1, Maths.PI2,
+                            0, 4, 4, 1, Maths.PI2,
+                            0, 5, 4, 1, Maths.PI2,
+                            0, 6, 4, 1, Maths.PI2,
+                            0, 7, 4, 1, Maths.PI2,
+                            0, 8, 4, 1, Maths.PI2,
+                            0, 9, 4, 1, Maths.PI2,
 
                             // ring of squares and triangles
-                            1, 2, 4, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(4,10,3),
-                            2, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,10,4),
-                            3, 2, 4, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(4,10,3),
-                            4, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,10,4),
-                            5, 2, 4, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(4,10,3),
-                            6, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,10,4),
-                            7, 2, 4, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(4,10,3),
-                            8, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,10,4),
-                            9, 2, 4, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(4,10,3),
-                            10, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,10,4),
+                            1, 2, 4, 1, Maths.PI2 + TV4_10_3,
+                            2, 2, 3, 1, Maths.PI2 + TV3_10_4,
+                            3, 2, 4, 1, Maths.PI2 + TV4_10_3,
+                            4, 2, 3, 1, Maths.PI2 + TV3_10_4,
+                            5, 2, 4, 1, Maths.PI2 + TV4_10_3,
+                            6, 2, 3, 1, Maths.PI2 + TV3_10_4,
+                            7, 2, 4, 1, Maths.PI2 + TV4_10_3,
+                            8, 2, 3, 1, Maths.PI2 + TV3_10_4,
+                            9, 2, 4, 1, Maths.PI2 + TV4_10_3,
+                            10, 2, 3, 1, Maths.PI2 + TV3_10_4,
 
                             // pentagon opposite the base decagon
                             11, 2, 5, 1, U27_4_5
@@ -563,28 +589,28 @@ public class Johnson {
                             10, 1,
 
                             // elongating squares
-                            0, 0, 4, 1, Math.PI/2,
-                            0, 1, 4, 1, Math.PI/2,
-                            0, 2, 4, 1, Math.PI/2,
-                            0, 3, 4, 1, Math.PI/2,
-                            0, 4, 4, 1, Math.PI/2,
-                            0, 5, 4, 1, Math.PI/2,
-                            0, 6, 4, 1, Math.PI/2,
-                            0, 7, 4, 1, Math.PI/2,
-                            0, 8, 4, 1, Math.PI/2,
-                            0, 9, 4, 1, Math.PI/2,
+                            0, 0, 4, 1, Maths.PI2,
+                            0, 1, 4, 1, Maths.PI2,
+                            0, 2, 4, 1, Maths.PI2,
+                            0, 3, 4, 1, Maths.PI2,
+                            0, 4, 4, 1, Maths.PI2,
+                            0, 5, 4, 1, Maths.PI2,
+                            0, 6, 4, 1, Maths.PI2,
+                            0, 7, 4, 1, Maths.PI2,
+                            0, 8, 4, 1, Maths.PI2,
+                            0, 9, 4, 1, Maths.PI2,
 
                             // ring of pentagons and triangles
-                            1, 2, 5, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            2, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            3, 2, 5, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            4, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            5, 2, 5, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            6, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            7, 2, 5, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            8, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            9, 2, 5, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            10, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,10,5),
+                            1, 2, 5, 1, Maths.PI2 + TV5_10_3,
+                            2, 2, 3, 1, Maths.PI2 + TV3_10_5,
+                            3, 2, 5, 1, Maths.PI2 + TV5_10_3,
+                            4, 2, 3, 1, Maths.PI2 + TV3_10_5,
+                            5, 2, 5, 1, Maths.PI2 + TV5_10_3,
+                            6, 2, 3, 1, Maths.PI2 + TV3_10_5,
+                            7, 2, 5, 1, Maths.PI2 + TV5_10_3,
+                            8, 2, 3, 1, Maths.PI2 + TV3_10_5,
+                            9, 2, 5, 1, Maths.PI2 + TV5_10_3,
+                            10, 2, 3, 1, Maths.PI2 + TV3_10_5,
 
                             // ring of triangles
                             11, 2, 3, 1, U24_3_5,
@@ -605,28 +631,28 @@ public class Johnson {
                             6, 1,
 
                             // bottom ring of triangles
-                            0, 0, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1),
-                            0, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1),
-                            0, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1),
-                            0, 3, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1),
-                            0, 4, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1),
-                            0, 5, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1),
+                            0, 0, 3, 1, AP_6_TE,
+                            0, 1, 3, 1, AP_6_TE,
+                            0, 2, 3, 1, AP_6_TE,
+                            0, 3, 3, 1, AP_6_TE,
+                            0, 4, 3, 1, AP_6_TE,
+                            0, 5, 3, 1, AP_6_TE,
 
                             // second ring of triangles
-                            1, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(6,1),
-                            2, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(6,1),
-                            3, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(6,1),
-                            4, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(6,1),
-                            5, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(6,1),
-                            6, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(6,1),
+                            1, 1, 3, 1, AP_6_TT,
+                            2, 1, 3, 1, AP_6_TT,
+                            3, 1, 3, 1, AP_6_TT,
+                            4, 1, 3, 1, AP_6_TT,
+                            5, 1, 3, 1, AP_6_TT,
+                            6, 1, 3, 1, AP_6_TT,
 
                             // ring of squares and triangles
-                            7, 2, 4, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1) + GeometryUtils.trivalentVertexAngle(4,6,3),
-                            8, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1) + GeometryUtils.trivalentVertexAngle(3,6,4),
-                            9, 2, 4, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1) + GeometryUtils.trivalentVertexAngle(4,6,3),
-                            10, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1) + GeometryUtils.trivalentVertexAngle(3,6,4),
-                            11, 2, 4, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1) + GeometryUtils.trivalentVertexAngle(4,6,3),
-                            12, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1) + GeometryUtils.trivalentVertexAngle(3,6,4),
+                            7, 2, 4, 1, AP_6_TE + TV4_6_3,
+                            8, 2, 3, 1, AP_6_TE + TV3_6_4,
+                            9, 2, 4, 1, AP_6_TE + TV4_6_3,
+                            10, 2, 3, 1, AP_6_TE + TV3_6_4,
+                            11, 2, 4, 1, AP_6_TE + TV4_6_3,
+                            12, 2, 3, 1, AP_6_TE + TV3_6_4,
 
                             // triangle opposite the base hexagon
                             13, 2, 3, 1, U7_3_4
@@ -640,34 +666,34 @@ public class Johnson {
                             8, 1,
 
                             // ring of triangles
-                            0, 0, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1),
-                            0, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1),
-                            0, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1),
-                            0, 3, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1),
-                            0, 4, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1),
-                            0, 5, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1),
-                            0, 6, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1),
-                            0, 7, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1),
+                            0, 0, 3, 1, AP_8_TE,
+                            0, 1, 3, 1, AP_8_TE,
+                            0, 2, 3, 1, AP_8_TE,
+                            0, 3, 3, 1, AP_8_TE,
+                            0, 4, 3, 1, AP_8_TE,
+                            0, 5, 3, 1, AP_8_TE,
+                            0, 6, 3, 1, AP_8_TE,
+                            0, 7, 3, 1, AP_8_TE,
 
                             // second ring of triangles
-                            1, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(8,1),
-                            2, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(8,1),
-                            3, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(8,1),
-                            4, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(8,1),
-                            5, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(8,1),
-                            6, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(8,1),
-                            7, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(8,1),
-                            8, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(8,1),
+                            1, 1, 3, 1, AP_8_TT,
+                            2, 1, 3, 1, AP_8_TT,
+                            3, 1, 3, 1, AP_8_TT,
+                            4, 1, 3, 1, AP_8_TT,
+                            5, 1, 3, 1, AP_8_TT,
+                            6, 1, 3, 1, AP_8_TT,
+                            7, 1, 3, 1, AP_8_TT,
+                            8, 1, 3, 1, AP_8_TT,
 
                             // ring of squares and triangles
-                            9, 2, 4, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1) + GeometryUtils.trivalentVertexAngle(4,8,3),
-                            10, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1) + GeometryUtils.trivalentVertexAngle(3,8,4),
-                            11, 2, 4, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1) + GeometryUtils.trivalentVertexAngle(4,8,3),
-                            12, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1) + GeometryUtils.trivalentVertexAngle(3,8,4),
-                            13, 2, 4, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1) + GeometryUtils.trivalentVertexAngle(4,8,3),
-                            14, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1) + GeometryUtils.trivalentVertexAngle(3,8,4),
-                            15, 2, 4, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1) + GeometryUtils.trivalentVertexAngle(4,8,3),
-                            16, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1) + GeometryUtils.trivalentVertexAngle(3,8,4),
+                            9, 2, 4, 1, AP_8_TE + TV4_8_3,
+                            10, 2, 3, 1, AP_8_TE + TV3_8_4,
+                            11, 2, 4, 1, AP_8_TE + TV4_8_3,
+                            12, 2, 3, 1, AP_8_TE + TV3_8_4,
+                            13, 2, 4, 1, AP_8_TE + TV4_8_3,
+                            14, 2, 3, 1, AP_8_TE + TV3_8_4,
+                            15, 2, 4, 1, AP_8_TE + TV4_8_3,
+                            16, 2, 3, 1, AP_8_TE + TV3_8_4,
 
                             // square opposite the octagon
                             17, 2, 4, 1, U10_4_4
@@ -681,40 +707,40 @@ public class Johnson {
                             10, 1,
 
                             // ring of triangles
-                            0, 0, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            0, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            0, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            0, 3, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            0, 4, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            0, 5, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            0, 6, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            0, 7, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            0, 8, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            0, 9, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
+                            0, 0, 3, 1, AP_10_TE,
+                            0, 1, 3, 1, AP_10_TE,
+                            0, 2, 3, 1, AP_10_TE,
+                            0, 3, 3, 1, AP_10_TE,
+                            0, 4, 3, 1, AP_10_TE,
+                            0, 5, 3, 1, AP_10_TE,
+                            0, 6, 3, 1, AP_10_TE,
+                            0, 7, 3, 1, AP_10_TE,
+                            0, 8, 3, 1, AP_10_TE,
+                            0, 9, 3, 1, AP_10_TE,
 
                             // second ring of triangles
-                            1, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            2, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            3, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            4, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            5, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            6, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            7, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            8, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            9, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            10, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
+                            1, 1, 3, 1, AP_10_TT,
+                            2, 1, 3, 1, AP_10_TT,
+                            3, 1, 3, 1, AP_10_TT,
+                            4, 1, 3, 1, AP_10_TT,
+                            5, 1, 3, 1, AP_10_TT,
+                            6, 1, 3, 1, AP_10_TT,
+                            7, 1, 3, 1, AP_10_TT,
+                            8, 1, 3, 1, AP_10_TT,
+                            9, 1, 3, 1, AP_10_TT,
+                            10, 1, 3, 1, AP_10_TT,
 
                             // ring of squares and triangles
-                            11, 2, 4, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(4,10,3),
-                            12, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,4),
-                            13, 2, 4, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(4,10,3),
-                            14, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,4),
-                            15, 2, 4, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(4,10,3),
-                            16, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,4),
-                            17, 2, 4, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(4,10,3),
-                            18, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,4),
-                            19, 2, 4, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(4,10,3),
-                            20, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,4),
+                            11, 2, 4, 1, AP_10_TE + TV4_10_3,
+                            12, 2, 3, 1, AP_10_TE + TV3_10_4,
+                            13, 2, 4, 1, AP_10_TE + TV4_10_3,
+                            14, 2, 3, 1, AP_10_TE + TV3_10_4,
+                            15, 2, 4, 1, AP_10_TE + TV4_10_3,
+                            16, 2, 3, 1, AP_10_TE + TV3_10_4,
+                            17, 2, 4, 1, AP_10_TE + TV4_10_3,
+                            18, 2, 3, 1, AP_10_TE + TV3_10_4,
+                            19, 2, 4, 1, AP_10_TE + TV4_10_3,
+                            20, 2, 3, 1, AP_10_TE + TV3_10_4,
 
                             // pentagonal opposite the base
                             21, 2, 5, 1, U27_4_5
@@ -728,40 +754,40 @@ public class Johnson {
                             10, 1,
 
                             // ring of triangles
-                            0, 0, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            0, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            0, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            0, 3, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            0, 4, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            0, 5, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            0, 6, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            0, 7, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            0, 8, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            0, 9, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
+                            0, 0, 3, 1, AP_10_TE,
+                            0, 1, 3, 1, AP_10_TE,
+                            0, 2, 3, 1, AP_10_TE,
+                            0, 3, 3, 1, AP_10_TE,
+                            0, 4, 3, 1, AP_10_TE,
+                            0, 5, 3, 1, AP_10_TE,
+                            0, 6, 3, 1, AP_10_TE,
+                            0, 7, 3, 1, AP_10_TE,
+                            0, 8, 3, 1, AP_10_TE,
+                            0, 9, 3, 1, AP_10_TE,
 
                             // second ring of triangles
-                            1, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            2, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            3, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            4, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            5, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            6, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            7, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            8, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            9, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            10, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
+                            1, 1, 3, 1, AP_10_TT,
+                            2, 1, 3, 1, AP_10_TT,
+                            3, 1, 3, 1, AP_10_TT,
+                            4, 1, 3, 1, AP_10_TT,
+                            5, 1, 3, 1, AP_10_TT,
+                            6, 1, 3, 1, AP_10_TT,
+                            7, 1, 3, 1, AP_10_TT,
+                            8, 1, 3, 1, AP_10_TT,
+                            9, 1, 3, 1, AP_10_TT,
+                            10, 1, 3, 1, AP_10_TT,
 
                             // ring of pentagons and triangles
-                            11, 2, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            12, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            13, 2, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            14, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            15, 2, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            16, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            17, 2, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            18, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            19, 2, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            20, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,5),
+                            11, 2, 5, 1, AP_10_TE + TV5_10_3,
+                            12, 2, 3, 1, AP_10_TE + TV3_10_5,
+                            13, 2, 5, 1, AP_10_TE + TV5_10_3,
+                            14, 2, 3, 1, AP_10_TE + TV3_10_5,
+                            15, 2, 5, 1, AP_10_TE + TV5_10_3,
+                            16, 2, 3, 1, AP_10_TE + TV3_10_5,
+                            17, 2, 5, 1, AP_10_TE + TV5_10_3,
+                            18, 2, 3, 1, AP_10_TE + TV3_10_5,
+                            19, 2, 5, 1, AP_10_TE + TV5_10_3,
+                            20, 2, 3, 1, AP_10_TE + TV3_10_5,
 
                             // ring of triangles
                             21, 2, 3, 1, U24_3_5,
@@ -778,13 +804,13 @@ public class Johnson {
                     {
                             8,
                             4, 1,
-                            0, 0, 4, 1, Math.PI/3,
-                            0, 1, 3, 1, Math.PI/2,
-                            0, 2, 3, 1, 5*Math.PI/6,
-                            0, 3, 3, 1, Math.PI/2,
-                            1, 2, 3, 1, 5*Math.PI/6,
-                            2, 2, 4, 1, 5*Math.PI/6,
-                            4, 1, 4, 1, 5*Math.PI/6
+                            0, 0, 4, 1, Maths.PI3,
+                            0, 1, 3, 1, Maths.PI2,
+                            0, 2, 3, 1, 5*Maths.PI6,
+                            0, 3, 3, 1, Maths.PI2,
+                            1, 2, 3, 1, 5*Maths.PI6,
+                            2, 2, 4, 1, 5*Maths.PI6,
+                            4, 1, 4, 1, 5*Maths.PI6
                     },
 
             new double[] // J27 - triangular orthobicupola
@@ -805,9 +831,9 @@ public class Johnson {
                             3, 1, 3, 1, U7_3_4,
 
                             // squares of the second cupola
-                            1, 2, 4, 1, 2*GeometryUtils.trivalentVertexAngle(4,6,3),
-                            2, 2, 4, 1, 2*GeometryUtils.trivalentVertexAngle(4,6,3),
-                            3, 2, 4, 1, 2*GeometryUtils.trivalentVertexAngle(4,6,3),
+                            1, 2, 4, 1, 2* TV4_6_3,
+                            2, 2, 4, 1, 2* TV4_6_3,
+                            3, 2, 4, 1, 2* TV4_6_3,
 
                             // triangles between the squares
                             7, 1, 3, 1, U7_3_4,
@@ -832,22 +858,22 @@ public class Johnson {
                             0, 3, 4, 1, U10_4_4,
 
                             // triangles between the squares
-                            1, 1, 3, 1, U10_3_4,
-                            2, 1, 3, 1, U10_3_4,
-                            3, 1, 3, 1, U10_3_4,
-                            4, 1, 3, 1, U10_3_4,
+                            1, 1, 3, 1, TV3_4_8,
+                            2, 1, 3, 1, TV3_4_8,
+                            3, 1, 3, 1, TV3_4_8,
+                            4, 1, 3, 1, TV3_4_8,
 
                             // squares of the second cupola opposite squares of first cupola
-                            1, 2, 4, 1, 2 * GeometryUtils.trivalentVertexAngle(4,8,3),
-                            2, 2, 4, 1, 2 * GeometryUtils.trivalentVertexAngle(4,8,3),
-                            3, 2, 4, 1, 2 * GeometryUtils.trivalentVertexAngle(4,8,3),
-                            4, 2, 4, 1, 2 * GeometryUtils.trivalentVertexAngle(4,8,3),
+                            1, 2, 4, 1, 2 * TV4_8_3,
+                            2, 2, 4, 1, 2 * TV4_8_3,
+                            3, 2, 4, 1, 2 * TV4_8_3,
+                            4, 2, 4, 1, 2 * TV4_8_3,
 
                             // triangles of the second cupola opposite triangles of the first cupola
-                            5, 2, 3, 1, 2 * GeometryUtils.trivalentVertexAngle(3,8,4),
-                            6, 2, 3, 1, 2 * GeometryUtils.trivalentVertexAngle(3,8,4),
-                            7, 2, 3, 1, 2 * GeometryUtils.trivalentVertexAngle(3,8,4),
-                            8, 2, 3, 1, 2 * GeometryUtils.trivalentVertexAngle(3,8,4),
+                            5, 2, 3, 1, 2 * TV3_8_4,
+                            6, 2, 3, 1, 2 * TV3_8_4,
+                            7, 2, 3, 1, 2 * TV3_8_4,
+                            8, 2, 3, 1, 2 * TV3_8_4,
 
                             // centre square of the second cupola
                             9, 2, 4, 1, U10_4_4
@@ -867,22 +893,22 @@ public class Johnson {
                             0, 3, 4, 1, U10_4_4,
 
                             // triangles between squares
-                            1, 1, 3, 1, U10_3_4,
-                            2, 1, 3, 1, U10_3_4,
-                            3, 1, 3, 1, U10_3_4,
-                            4, 1, 3, 1, U10_3_4,
+                            1, 1, 3, 1, TV3_4_8,
+                            2, 1, 3, 1, TV3_4_8,
+                            3, 1, 3, 1, TV3_4_8,
+                            4, 1, 3, 1, TV3_4_8,
 
                             // squares of second cupola opposite triangles of first cupola
-                            5, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,8,4) + GeometryUtils.trivalentVertexAngle(4,8,3),
-                            6, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,8,4) + GeometryUtils.trivalentVertexAngle(4,8,3),
-                            7, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,8,4) + GeometryUtils.trivalentVertexAngle(4,8,3),
-                            8, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,8,4) + GeometryUtils.trivalentVertexAngle(4,8,3),
+                            5, 2, 4, 1, TV3_8_4 + TV4_8_3,
+                            6, 2, 4, 1, TV3_8_4 + TV4_8_3,
+                            7, 2, 4, 1, TV3_8_4 + TV4_8_3,
+                            8, 2, 4, 1, TV3_8_4 + TV4_8_3,
 
                             // triangles of second cupola opposite squares of first cupola
-                            1, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,8,3) + GeometryUtils.trivalentVertexAngle(3,8,4),
-                            2, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,8,3) + GeometryUtils.trivalentVertexAngle(3,8,4),
-                            3, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,8,3) + GeometryUtils.trivalentVertexAngle(3,8,4),
-                            4, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,8,3) + GeometryUtils.trivalentVertexAngle(3,8,4),
+                            1, 2, 3, 1, TV4_8_3 + TV3_8_4,
+                            2, 2, 3, 1, TV4_8_3 + TV3_8_4,
+                            3, 2, 3, 1, TV4_8_3 + TV3_8_4,
+                            4, 2, 3, 1, TV4_8_3 + TV3_8_4,
 
                             // central square of second cupola
                             9, 2, 4, 1, U10_4_4
@@ -903,25 +929,25 @@ public class Johnson {
                             0, 4, 4, 1, U27_4_5,
 
                             // triangles between squares
-                            1, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            2, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            3, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            4, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            5, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
+                            1, 1, 3, 1, TV3_4_10,
+                            2, 1, 3, 1, TV3_4_10,
+                            3, 1, 3, 1, TV3_4_10,
+                            4, 1, 3, 1, TV3_4_10,
+                            5, 1, 3, 1, TV3_4_10,
 
                             // squares of second cupola opposite squares of first
-                            1, 2, 4, 1, 2 * GeometryUtils.trivalentVertexAngle(4,10,3),
-                            2, 2, 4, 1, 2 * GeometryUtils.trivalentVertexAngle(4,10,3),
-                            3, 2, 4, 1, 2 * GeometryUtils.trivalentVertexAngle(4,10,3),
-                            4, 2, 4, 1, 2 * GeometryUtils.trivalentVertexAngle(4,10,3),
-                            5, 2, 4, 1, 2 * GeometryUtils.trivalentVertexAngle(4,10,3),
+                            1, 2, 4, 1, 2 * TV4_10_3,
+                            2, 2, 4, 1, 2 * TV4_10_3,
+                            3, 2, 4, 1, 2 * TV4_10_3,
+                            4, 2, 4, 1, 2 * TV4_10_3,
+                            5, 2, 4, 1, 2 * TV4_10_3,
 
                             // triangles of second cupola
-                            11, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            12, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            13, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            14, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            15, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
+                            11, 1, 3, 1, TV3_4_10,
+                            12, 1, 3, 1, TV3_4_10,
+                            13, 1, 3, 1, TV3_4_10,
+                            14, 1, 3, 1, TV3_4_10,
+                            15, 1, 3, 1, TV3_4_10,
 
                             // central pentagon of second cupola
                             11, 2, 5, 1, U27_4_5
@@ -942,31 +968,31 @@ public class Johnson {
                             0, 4, 4, 1, U27_4_5,
 
                             // triangles between squares
-                            1, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            2, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            3, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            4, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            5, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
+                            1, 1, 3, 1, TV3_4_10,
+                            2, 1, 3, 1, TV3_4_10,
+                            3, 1, 3, 1, TV3_4_10,
+                            4, 1, 3, 1, TV3_4_10,
+                            5, 1, 3, 1, TV3_4_10,
 
                             // squares of second cupola opposite triangles of first
-                            6, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.trivalentVertexAngle(4,10,3),
-                            7, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.trivalentVertexAngle(4,10,3),
-                            8, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.trivalentVertexAngle(4,10,3),
-                            9, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.trivalentVertexAngle(4,10,3),
-                            10, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.trivalentVertexAngle(4,10,3),
+                            6, 2, 4, 1, TV3_10_4 + TV4_10_3,
+                            7, 2, 4, 1, TV3_10_4 + TV4_10_3,
+                            8, 2, 4, 1, TV3_10_4 + TV4_10_3,
+                            9, 2, 4, 1, TV3_10_4 + TV4_10_3,
+                            10, 2, 4, 1, TV3_10_4 + TV4_10_3,
 
                             // triangles of second cupola
-                            11, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            12, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            13, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            14, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            15, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
+                            11, 1, 3, 1, TV3_4_10,
+                            12, 1, 3, 1, TV3_4_10,
+                            13, 1, 3, 1, TV3_4_10,
+                            14, 1, 3, 1, TV3_4_10,
+                            15, 1, 3, 1, TV3_4_10,
 
                             // central pentagon of second cupola
                             11, 2, 5, 1, U27_4_5
                     },
 
-            new double[] // J32 - pentagonal orthocupolarontunda
+            new double[] // J32 - pentagonal orthocupolarotunda
                     {
                             27,
 
@@ -981,25 +1007,25 @@ public class Johnson {
                             0, 4, 4, 1, U27_4_5,
 
                             // triangles between squares
-                            1, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            2, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            3, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            4, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            5, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
+                            1, 1, 3, 1, TV3_4_10,
+                            2, 1, 3, 1, TV3_4_10,
+                            3, 1, 3, 1, TV3_4_10,
+                            4, 1, 3, 1, TV3_4_10,
+                            5, 1, 3, 1, TV3_4_10,
 
                             // outer pentagons of rotunda opposite triangles of cupola
-                            6, 2, 5, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            7, 2, 5, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            8, 2, 5, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            9, 2, 5, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            10, 2, 5, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.trivalentVertexAngle(5,10,3),
+                            6, 2, 5, 1, TV3_10_4 + TV5_10_3,
+                            7, 2, 5, 1, TV3_10_4 + TV5_10_3,
+                            8, 2, 5, 1, TV3_10_4 + TV5_10_3,
+                            9, 2, 5, 1, TV3_10_4 + TV5_10_3,
+                            10, 2, 5, 1, TV3_10_4 + TV5_10_3,
 
                             // outer triangles of rotunda opposite squares of cupola
-                            1, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            2, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            3, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            4, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            5, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.trivalentVertexAngle(3,10,5),
+                            1, 2, 3, 1, TV4_10_3 + TV3_10_5,
+                            2, 2, 3, 1, TV4_10_3 + TV3_10_5,
+                            3, 2, 3, 1, TV4_10_3 + TV3_10_5,
+                            4, 2, 3, 1, TV4_10_3 + TV3_10_5,
+                            5, 2, 3, 1, TV4_10_3 + TV3_10_5,
 
                             // inner triangles of rotunda
                             11, 2, 3, 1, U24_3_5,
@@ -1012,7 +1038,7 @@ public class Johnson {
                             25, 2, 5, 1, U24_3_5
                     },
 
-            new double[] // J33 - pentagonal gyrocupolarontunda
+            new double[] // J33 - pentagonal gyrocupolarotunda
                     {
                             27,
 
@@ -1027,25 +1053,25 @@ public class Johnson {
                             0, 4, 4, 1, U27_4_5,
 
                             // triangles between squares
-                            1, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            2, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            3, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            4, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            5, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
+                            1, 1, 3, 1, TV3_4_10,
+                            2, 1, 3, 1, TV3_4_10,
+                            3, 1, 3, 1, TV3_4_10,
+                            4, 1, 3, 1, TV3_4_10,
+                            5, 1, 3, 1, TV3_4_10,
 
                             // outer pentagons of rotunda opposite squares of cupola
-                            1, 2, 5, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            2, 2, 5, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            3, 2, 5, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            4, 2, 5, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            5, 2, 5, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.trivalentVertexAngle(5,10,3),
+                            1, 2, 5, 1, TV4_10_3 + TV5_10_3,
+                            2, 2, 5, 1, TV4_10_3 + TV5_10_3,
+                            3, 2, 5, 1, TV4_10_3 + TV5_10_3,
+                            4, 2, 5, 1, TV4_10_3 + TV5_10_3,
+                            5, 2, 5, 1, TV4_10_3 + TV5_10_3,
 
                             // outer triangles of rotunda opposite triangles of cupola
-                            6, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            7, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            8, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            9, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            10, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.trivalentVertexAngle(3,10,5),
+                            6, 2, 3, 1, TV3_10_4 + TV3_10_5,
+                            7, 2, 3, 1, TV3_10_4 + TV3_10_5,
+                            8, 2, 3, 1, TV3_10_4 + TV3_10_5,
+                            9, 2, 3, 1, TV3_10_4 + TV3_10_5,
+                            10, 2, 3, 1, TV3_10_4 + TV3_10_5,
 
                             // inner triangles of rotunda
                             11, 2, 3, 1, U24_3_5,
@@ -1087,11 +1113,11 @@ public class Johnson {
                             10, 2, 3, 1, U24_3_5,
 
                             // pentagons of second rotunda opposite pentagon of first rotunda
-                            6, 3, 5, 1, 2 * GeometryUtils.trivalentVertexAngle(5,10,3),
-                            7, 3, 5, 1, 2 * GeometryUtils.trivalentVertexAngle(5,10,3),
-                            8, 3, 5, 1, 2 * GeometryUtils.trivalentVertexAngle(5,10,3),
-                            9, 3, 5, 1, 2 * GeometryUtils.trivalentVertexAngle(5,10,3),
-                            10, 3, 5, 1, 2 * GeometryUtils.trivalentVertexAngle(5,10,3),
+                            6, 3, 5, 1, 2 * TV5_10_3,
+                            7, 3, 5, 1, 2 * TV5_10_3,
+                            8, 3, 5, 1, 2 * TV5_10_3,
+                            9, 3, 5, 1, 2 * TV5_10_3,
+                            10, 3, 5, 1, 2 * TV5_10_3,
 
                             // outer ring of triangles amongst pentagons
                             16, 1, 3, 1, U24_3_5,
@@ -1129,19 +1155,19 @@ public class Johnson {
                             3, 1, 3, 1, U7_3_4,
 
                             // elongating squares adjacent to cupola squares
-                            1, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,6,3) + Math.PI/2,
-                            2, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,6,3) + Math.PI/2,
-                            3, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,6,3) + Math.PI/2,
+                            1, 2, 4, 1, TV4_6_3 + Maths.PI2,
+                            2, 2, 4, 1, TV4_6_3 + Maths.PI2,
+                            3, 2, 4, 1, TV4_6_3 + Maths.PI2,
 
                             // elongating squares adjacent to cupola triangles
-                            4, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,6,4) + Math.PI/2,
-                            5, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,6,4) + Math.PI/2,
-                            6, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,6,4) + Math.PI/2,
+                            4, 2, 4, 1, TV3_6_4 + Maths.PI2,
+                            5, 2, 4, 1, TV3_6_4 + Maths.PI2,
+                            6, 2, 4, 1, TV3_6_4 + Maths.PI2,
 
                             // squares of second cupola
-                            7, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,6,3) + Math.PI/2,
-                            8, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,6,3) + Math.PI/2,
-                            9, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,6,3) + Math.PI/2,
+                            7, 2, 4, 1, TV4_6_3 + Maths.PI2,
+                            8, 2, 4, 1, TV4_6_3 + Maths.PI2,
+                            9, 2, 4, 1, TV4_6_3 + Maths.PI2,
 
                             // triangles between squares
                             13, 1, 3, 1, U7_3_4,
@@ -1170,19 +1196,19 @@ public class Johnson {
                             3, 1, 3, 1, U7_3_4,
 
                             // elongating squares next to cupola squares
-                            1, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,6,3) + Math.PI/2,
-                            2, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,6,3) + Math.PI/2,
-                            3, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,6,3) + Math.PI/2,
+                            1, 2, 4, 1, TV4_6_3 + Maths.PI2,
+                            2, 2, 4, 1, TV4_6_3 + Maths.PI2,
+                            3, 2, 4, 1, TV4_6_3 + Maths.PI2,
 
                             // elongating squares next to cupola triangles
-                            4, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,6,4) + Math.PI/2,
-                            5, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,6,4) + Math.PI/2,
-                            6, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,6,4) + Math.PI/2,
+                            4, 2, 4, 1, TV3_6_4 + Maths.PI2,
+                            5, 2, 4, 1, TV3_6_4 + Maths.PI2,
+                            6, 2, 4, 1, TV3_6_4 + Maths.PI2,
 
                             // squares of second cupola
-                            10, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,6,3) + Math.PI/2,
-                            11, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,6,3) + Math.PI/2,
-                            12, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,6,3) + Math.PI/2,
+                            10, 2, 4, 1, TV4_6_3 + Maths.PI2,
+                            11, 2, 4, 1, TV4_6_3 + Maths.PI2,
+                            12, 2, 4, 1, TV4_6_3 + Maths.PI2,
 
                             // triangles between the squares
                             13, 1, 3, 1, U7_3_4,
@@ -1207,34 +1233,34 @@ public class Johnson {
                             0, 3, 4, 1, U10_4_4,
 
                             // triangles between the squares
-                            1, 1, 3, 1, U10_3_4,
-                            2, 1, 3, 1, U10_3_4,
-                            3, 1, 3, 1, U10_3_4,
-                            4, 1, 3, 1, U10_3_4,
+                            1, 1, 3, 1, TV3_4_8,
+                            2, 1, 3, 1, TV3_4_8,
+                            3, 1, 3, 1, TV3_4_8,
+                            4, 1, 3, 1, TV3_4_8,
 
                             // elongating squares next to the squares
-                            1, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,8,3) + Math.PI/2,
-                            2, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,8,3) + Math.PI/2,
-                            3, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,8,3) + Math.PI/2,
-                            4, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,8,3) + Math.PI/2,
+                            1, 2, 4, 1, TV4_8_3 + Maths.PI2,
+                            2, 2, 4, 1, TV4_8_3 + Maths.PI2,
+                            3, 2, 4, 1, TV4_8_3 + Maths.PI2,
+                            4, 2, 4, 1, TV4_8_3 + Maths.PI2,
 
                             // elongating squares next to the triangles
-                            5, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,8,4) + Math.PI/2,
-                            6, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,8,4) + Math.PI/2,
-                            7, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,8,4) + Math.PI/2,
-                            8, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,8,4) + Math.PI/2,
+                            5, 2, 4, 1, TV3_8_4 + Maths.PI2,
+                            6, 2, 4, 1, TV3_8_4 + Maths.PI2,
+                            7, 2, 4, 1, TV3_8_4 + Maths.PI2,
+                            8, 2, 4, 1, TV3_8_4 + Maths.PI2,
 
                             // squares of the second cupola next to the elongating squares opposite the triangles of the first cupola
-                            13, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,8,3) + Math.PI/2,
-                            14, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,8,3) + Math.PI/2,
-                            15, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,8,3) + Math.PI/2,
-                            16, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,8,3) + Math.PI/2,
+                            13, 2, 4, 1, TV4_8_3 + Maths.PI2,
+                            14, 2, 4, 1, TV4_8_3 + Maths.PI2,
+                            15, 2, 4, 1, TV4_8_3 + Maths.PI2,
+                            16, 2, 4, 1, TV4_8_3 + Maths.PI2,
 
                             // triangles of the second cupola next to the elongating squares opposite the squares of the first cupola
-                            9, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,4) + Math.PI/2,
-                            10, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,4) + Math.PI/2,
-                            11, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,4) + Math.PI/2,
-                            12, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,4) + Math.PI/2,
+                            9, 2, 3, 1, TV3_8_4 + Maths.PI2,
+                            10, 2, 3, 1, TV3_8_4 + Maths.PI2,
+                            11, 2, 3, 1, TV3_8_4 + Maths.PI2,
+                            12, 2, 3, 1, TV3_8_4 + Maths.PI2,
 
                             // central square of the second cupola
                             20, 2, 4, 1, U10_4_4
@@ -1255,39 +1281,39 @@ public class Johnson {
                             0, 4, 4, 1, U27_4_5,
 
                             // triangles between the squares
-                            1, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            2, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            3, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            4, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            5, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
+                            1, 1, 3, 1, TV3_4_10,
+                            2, 1, 3, 1, TV3_4_10,
+                            3, 1, 3, 1, TV3_4_10,
+                            4, 1, 3, 1, TV3_4_10,
+                            5, 1, 3, 1, TV3_4_10,
 
                             // elongating squares next to the squares
-                            1, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            2, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            3, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            4, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            5, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
+                            1, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            2, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            3, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            4, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            5, 2, 4, 1, TV4_10_3 + Maths.PI2,
 
                             // elongating squares next to the triangles
-                            6, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            7, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            8, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            9, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            10, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
+                            6, 2, 4, 1, TV3_10_4 + Maths.PI2,
+                            7, 2, 4, 1, TV3_10_4 + Maths.PI2,
+                            8, 2, 4, 1, TV3_10_4 + Maths.PI2,
+                            9, 2, 4, 1, TV3_10_4 + Maths.PI2,
+                            10, 2, 4, 1, TV3_10_4 + Maths.PI2,
 
                             // squares of second cupola opposite squares of first cupola
-                            11, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            12, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            13, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            14, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            15, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
+                            11, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            12, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            13, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            14, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            15, 2, 4, 1, TV4_10_3 + Maths.PI2,
 
                             // triangles of second cupola opposite triangles of first cupola
-                            16, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            17, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            18, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            19, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            20, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
+                            16, 2, 3, 1, TV3_10_4 + Maths.PI2,
+                            17, 2, 3, 1, TV3_10_4 + Maths.PI2,
+                            18, 2, 3, 1, TV3_10_4 + Maths.PI2,
+                            19, 2, 3, 1, TV3_10_4 + Maths.PI2,
+                            20, 2, 3, 1, TV3_10_4 + Maths.PI2,
 
                             // central pentagon of second cupola
                             21, 2, 5, 1, U27_4_5
@@ -1308,39 +1334,39 @@ public class Johnson {
                             0, 4, 4, 1, U27_4_5,
 
                             // triangles between the squares
-                            1, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            2, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            3, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            4, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            5, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
+                            1, 1, 3, 1, TV3_4_10,
+                            2, 1, 3, 1, TV3_4_10,
+                            3, 1, 3, 1, TV3_4_10,
+                            4, 1, 3, 1, TV3_4_10,
+                            5, 1, 3, 1, TV3_4_10,
 
                             // elongating squares next to the squares
-                            1, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            2, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            3, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            4, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            5, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
+                            1, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            2, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            3, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            4, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            5, 2, 4, 1, TV4_10_3 + Maths.PI2,
 
                             // elongating squares next to the triangles
-                            6, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            7, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            8, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            9, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            10, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
+                            6, 2, 4, 1, TV3_10_4 + Maths.PI2,
+                            7, 2, 4, 1, TV3_10_4 + Maths.PI2,
+                            8, 2, 4, 1, TV3_10_4 + Maths.PI2,
+                            9, 2, 4, 1, TV3_10_4 + Maths.PI2,
+                            10, 2, 4, 1, TV3_10_4 + Maths.PI2,
 
                             // squares of second cupola opposite triangles of first cupola
-                            16, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            17, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            18, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            19, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            20, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
+                            16, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            17, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            18, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            19, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            20, 2, 4, 1, TV4_10_3 + Maths.PI2,
 
                             // triangles of second cupola opposite squares of first cupola
-                            11, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            12, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            13, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            14, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            15, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
+                            11, 2, 3, 1, TV3_10_4 + Maths.PI2,
+                            12, 2, 3, 1, TV3_10_4 + Maths.PI2,
+                            13, 2, 3, 1, TV3_10_4 + Maths.PI2,
+                            14, 2, 3, 1, TV3_10_4 + Maths.PI2,
+                            15, 2, 3, 1, TV3_10_4 + Maths.PI2,
 
                             // central pentagon of second cupola
 
@@ -1362,39 +1388,39 @@ public class Johnson {
                             0, 4, 4, 1, U27_4_5,
 
                             // triangles between squares
-                            1, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            2, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            3, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            4, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            5, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
+                            1, 1, 3, 1, TV3_4_10,
+                            2, 1, 3, 1, TV3_4_10,
+                            3, 1, 3, 1, TV3_4_10,
+                            4, 1, 3, 1, TV3_4_10,
+                            5, 1, 3, 1, TV3_4_10,
 
                             // elongating squares next to squares of cupola
-                            1, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            2, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            3, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            4, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            5, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
+                            1, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            2, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            3, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            4, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            5, 2, 4, 1, TV4_10_3 + Maths.PI2,
 
                             // elongating squares next to triangles of cupola
-                            6, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            7, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            8, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            9, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            10, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
+                            6, 2, 4, 1, TV3_10_4 + Maths.PI2,
+                            7, 2, 4, 1, TV3_10_4 + Maths.PI2,
+                            8, 2, 4, 1, TV3_10_4 + Maths.PI2,
+                            9, 2, 4, 1, TV3_10_4 + Maths.PI2,
+                            10, 2, 4, 1, TV3_10_4 + Maths.PI2,
 
                             // outer pentagons of rotunda opposite triangles of cupola
-                            16, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            17, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            18, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            19, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            20, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
+                            16, 2, 5, 1, TV5_10_3 + Maths.PI2,
+                            17, 2, 5, 1, TV5_10_3 + Maths.PI2,
+                            18, 2, 5, 1, TV5_10_3 + Maths.PI2,
+                            19, 2, 5, 1, TV5_10_3 + Maths.PI2,
+                            20, 2, 5, 1, TV5_10_3 + Maths.PI2,
 
                             // outer triangles of rotunda opposite squares of cupola
-                            11, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            12, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            13, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            14, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            15, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
+                            11, 2, 3, 1, TV3_10_5 + Maths.PI2,
+                            12, 2, 3, 1, TV3_10_5 + Maths.PI2,
+                            13, 2, 3, 1, TV3_10_5 + Maths.PI2,
+                            14, 2, 3, 1, TV3_10_5 + Maths.PI2,
+                            15, 2, 3, 1, TV3_10_5 + Maths.PI2,
 
                             // inner triangles of rotunda
                             21, 2, 3, 1, U24_3_5,
@@ -1422,39 +1448,39 @@ public class Johnson {
                             0, 4, 4, 1, U27_4_5,
 
                             // triangles between squares
-                            1, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            2, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            3, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            4, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            5, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
+                            1, 1, 3, 1, TV3_4_10,
+                            2, 1, 3, 1, TV3_4_10,
+                            3, 1, 3, 1, TV3_4_10,
+                            4, 1, 3, 1, TV3_4_10,
+                            5, 1, 3, 1, TV3_4_10,
 
                             // elongating squares next to squares of cupola
-                            1, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            2, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            3, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            4, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
-                            5, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + Math.PI/2,
+                            1, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            2, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            3, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            4, 2, 4, 1, TV4_10_3 + Maths.PI2,
+                            5, 2, 4, 1, TV4_10_3 + Maths.PI2,
 
                             // elongating squares next to triangles of cupola
-                            6, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            7, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            8, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            9, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
-                            10, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + Math.PI/2,
+                            6, 2, 4, 1, TV3_10_4 + Maths.PI2,
+                            7, 2, 4, 1, TV3_10_4 + Maths.PI2,
+                            8, 2, 4, 1, TV3_10_4 + Maths.PI2,
+                            9, 2, 4, 1, TV3_10_4 + Maths.PI2,
+                            10, 2, 4, 1, TV3_10_4 + Maths.PI2,
 
                             // outer pentagons of rotunda
-                            11, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            12, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            13, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            14, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            15, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
+                            11, 2, 5, 1, TV5_10_3 + Maths.PI2,
+                            12, 2, 5, 1, TV5_10_3 + Maths.PI2,
+                            13, 2, 5, 1, TV5_10_3 + Maths.PI2,
+                            14, 2, 5, 1, TV5_10_3 + Maths.PI2,
+                            15, 2, 5, 1, TV5_10_3 + Maths.PI2,
 
                             // outer triangles of rotunda
-                            16, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            17, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            18, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            19, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            20, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
+                            16, 2, 3, 1, TV3_10_5 + Maths.PI2,
+                            17, 2, 3, 1, TV3_10_5 + Maths.PI2,
+                            18, 2, 3, 1, TV3_10_5 + Maths.PI2,
+                            19, 2, 3, 1, TV3_10_5 + Maths.PI2,
+                            20, 2, 3, 1, TV3_10_5 + Maths.PI2,
 
                             // inner triangles of rotunda
                             21, 2, 3, 1, U24_3_5,
@@ -1496,32 +1522,32 @@ public class Johnson {
                             10, 2, 3, 1, U24_3_5,
 
                             // elongating squares next to pentagons
-                            6, 3, 4, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            7, 3, 4, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            8, 3, 4, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            9, 3, 4, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            10, 3, 4, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
+                            6, 3, 4, 1, TV5_10_3 + Maths.PI2,
+                            7, 3, 4, 1, TV5_10_3 + Maths.PI2,
+                            8, 3, 4, 1, TV5_10_3 + Maths.PI2,
+                            9, 3, 4, 1, TV5_10_3 + Maths.PI2,
+                            10, 3, 4, 1, TV5_10_3 + Maths.PI2,
 
                             // elongating squares next to triangles
-                            11, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            12, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            13, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            14, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            15, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
+                            11, 2, 4, 1, TV3_10_5 + Maths.PI2,
+                            12, 2, 4, 1, TV3_10_5 + Maths.PI2,
+                            13, 2, 4, 1, TV3_10_5 + Maths.PI2,
+                            14, 2, 4, 1, TV3_10_5 + Maths.PI2,
+                            15, 2, 4, 1, TV3_10_5 + Maths.PI2,
 
                             // outer pentagons of second rotunda opposite pentagons of first rotunda
-                            16, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            17, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            18, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            19, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            20, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
+                            16, 2, 5, 1, TV5_10_3 + Maths.PI2,
+                            17, 2, 5, 1, TV5_10_3 + Maths.PI2,
+                            18, 2, 5, 1, TV5_10_3 + Maths.PI2,
+                            19, 2, 5, 1, TV5_10_3 + Maths.PI2,
+                            20, 2, 5, 1, TV5_10_3 + Maths.PI2,
 
                             // outer triangles of second rotunda opposite triangles of first rotunda
-                            21, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            22, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            23, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            24, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            25, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
+                            21, 2, 3, 1, TV3_10_5 + Maths.PI2,
+                            22, 2, 3, 1, TV3_10_5 + Maths.PI2,
+                            23, 2, 3, 1, TV3_10_5 + Maths.PI2,
+                            24, 2, 3, 1, TV3_10_5 + Maths.PI2,
+                            25, 2, 3, 1, TV3_10_5 + Maths.PI2,
 
                             // inner triangles of second rotunda
                             26, 2, 3, 1, U24_3_5,
@@ -1563,32 +1589,32 @@ public class Johnson {
                             10, 2, 3, 1, U24_3_5,
 
                             // elongating squares next to pentagons
-                            6, 3, 4, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            7, 3, 4, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            8, 3, 4, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            9, 3, 4, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            10, 3, 4, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
+                            6, 3, 4, 1, TV5_10_3 + Maths.PI2,
+                            7, 3, 4, 1, TV5_10_3 + Maths.PI2,
+                            8, 3, 4, 1, TV5_10_3 + Maths.PI2,
+                            9, 3, 4, 1, TV5_10_3 + Maths.PI2,
+                            10, 3, 4, 1, TV5_10_3 + Maths.PI2,
 
                             // elongating squares next to triangles
-                            11, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            12, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            13, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            14, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            15, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
+                            11, 2, 4, 1, TV3_10_5 + Maths.PI2,
+                            12, 2, 4, 1, TV3_10_5 + Maths.PI2,
+                            13, 2, 4, 1, TV3_10_5 + Maths.PI2,
+                            14, 2, 4, 1, TV3_10_5 + Maths.PI2,
+                            15, 2, 4, 1, TV3_10_5 + Maths.PI2,
 
                             // outer pentagons of second rotunda opposite triangles of first rotunda
-                            21, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            22, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            23, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            24, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
-                            25, 2, 5, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + Math.PI/2,
+                            21, 2, 5, 1, TV5_10_3 + Maths.PI2,
+                            22, 2, 5, 1, TV5_10_3 + Maths.PI2,
+                            23, 2, 5, 1, TV5_10_3 + Maths.PI2,
+                            24, 2, 5, 1, TV5_10_3 + Maths.PI2,
+                            25, 2, 5, 1, TV5_10_3 + Maths.PI2,
 
                             // outer triangles of second rotunda opposite pentagons of first rotunda
-                            16, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            17, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            18, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            19, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
-                            20, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + Math.PI/2,
+                            16, 2, 3, 1, TV3_10_5 + Maths.PI2,
+                            17, 2, 3, 1, TV3_10_5 + Maths.PI2,
+                            18, 2, 3, 1, TV3_10_5 + Maths.PI2,
+                            19, 2, 3, 1, TV3_10_5 + Maths.PI2,
+                            20, 2, 3, 1, TV3_10_5 + Maths.PI2,
 
                             // inner triangles of second rotunda
                             26, 2, 3, 1, U24_3_5,
@@ -1619,30 +1645,30 @@ public class Johnson {
                             3, 1, 3, 1, U7_3_4,
 
                             // ring of gyroelongating triangles next to cupola squares and triangles
-                            1, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,6,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1),
-                            4, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,6,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1),
-                            2, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,6,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1),
-                            5, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,6,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1),
-                            3, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,6,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1),
-                            6, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,6,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1),
+                            1, 2, 3, 1, TV4_6_3 + AP_6_TE,
+                            4, 2, 3, 1, TV3_6_4 + AP_6_TE,
+                            2, 2, 3, 1, TV4_6_3 + AP_6_TE,
+                            5, 2, 3, 1, TV3_6_4 + AP_6_TE,
+                            3, 2, 3, 1, TV4_6_3 + AP_6_TE,
+                            6, 2, 3, 1, TV3_6_4 + AP_6_TE,
 
                             // second ring of gyroelongating triangles
-                            7, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(6,1),
-                            8, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(6,1),
-                            9, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(6,1),
-                            10, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(6,1),
-                            11, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(6,1),
-                            12, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(6,1),
+                            7, 1, 3, 1, AP_6_TT,
+                            8, 1, 3, 1, AP_6_TT,
+                            9, 1, 3, 1, AP_6_TT,
+                            10, 1, 3, 1, AP_6_TT,
+                            11, 1, 3, 1, AP_6_TT,
+                            12, 1, 3, 1, AP_6_TT,
 
                             // squares of second cupola opposite squares of first cupola
-                            13, 2, 4, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1) + GeometryUtils.trivalentVertexAngle(4,6,3),
-                            15, 2, 4, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1) + GeometryUtils.trivalentVertexAngle(4,6,3),
-                            17, 2, 4, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1) + GeometryUtils.trivalentVertexAngle(4,6,3),
+                            13, 2, 4, 1, AP_6_TE + TV4_6_3,
+                            15, 2, 4, 1, AP_6_TE + TV4_6_3,
+                            17, 2, 4, 1, AP_6_TE + TV4_6_3,
 
                             // triangles of second cupola opposite triangles of first cupola
-                            14, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1) + GeometryUtils.trivalentVertexAngle(3,6,4),
-                            16, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1) + GeometryUtils.trivalentVertexAngle(3,6,4),
-                            18, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(6,1) + GeometryUtils.trivalentVertexAngle(3,6,4),
+                            14, 2, 3, 1, AP_6_TE + TV3_6_4,
+                            16, 2, 3, 1, AP_6_TE + TV3_6_4,
+                            18, 2, 3, 1, AP_6_TE + TV3_6_4,
 
                             // central triangle of second cupola
                             19, 2, 3, 1, U7_3_4
@@ -1662,42 +1688,42 @@ public class Johnson {
                             0, 3, 4, 1, U10_4_4,
 
                             // triangles between the squares
-                            1, 1, 3, 1, U10_3_4,
-                            2, 1, 3, 1, U10_3_4,
-                            3, 1, 3, 1, U10_3_4,
-                            4, 1, 3, 1, U10_3_4,
+                            1, 1, 3, 1, TV3_4_8,
+                            2, 1, 3, 1, TV3_4_8,
+                            3, 1, 3, 1, TV3_4_8,
+                            4, 1, 3, 1, TV3_4_8,
 
                             // gyroelongating triangles next to squares and triangles of first cupola
-                            1, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,8,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1),
-                            5, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1),
-                            2, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,8,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1),
-                            6, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1),
-                            3, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,8,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1),
-                            7, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1),
-                            4, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,8,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1),
-                            8, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1),
+                            1, 2, 3, 1, TV4_8_3 + AP_8_TE,
+                            5, 2, 3, 1, TV3_8_4 + AP_8_TE,
+                            2, 2, 3, 1, TV4_8_3 + AP_8_TE,
+                            6, 2, 3, 1, TV3_8_4 + AP_8_TE,
+                            3, 2, 3, 1, TV4_8_3 + AP_8_TE,
+                            7, 2, 3, 1, TV3_8_4 + AP_8_TE,
+                            4, 2, 3, 1, TV4_8_3 + AP_8_TE,
+                            8, 2, 3, 1, TV3_8_4 + AP_8_TE,
 
                             // second ring of gyroelongating triangles
-                            9, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(8,1),
-                            10, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(8,1),
-                            11, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(8,1),
-                            12, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(8,1),
-                            13, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(8,1),
-                            14, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(8,1),
-                            15, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(8,1),
-                            16, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(8,1),
+                            9, 2, 3, 1, AP_8_TT,
+                            10, 2, 3, 1, AP_8_TT,
+                            11, 2, 3, 1, AP_8_TT,
+                            12, 2, 3, 1, AP_8_TT,
+                            13, 2, 3, 1, AP_8_TT,
+                            14, 2, 3, 1, AP_8_TT,
+                            15, 2, 3, 1, AP_8_TT,
+                            16, 2, 3, 1, AP_8_TT,
 
                             // squares of second cupola next to alternate gyroelongating triangles
-                            17, 1, 4, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1) + GeometryUtils.trivalentVertexAngle(4,8,3),
-                            19, 1, 4, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1) + GeometryUtils.trivalentVertexAngle(4,8,3),
-                            21, 1, 4, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1) + GeometryUtils.trivalentVertexAngle(4,8,3),
-                            23, 1, 4, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1) + GeometryUtils.trivalentVertexAngle(4,8,3),
+                            17, 1, 4, 1, AP_8_TE + TV4_8_3,
+                            19, 1, 4, 1, AP_8_TE + TV4_8_3,
+                            21, 1, 4, 1, AP_8_TE + TV4_8_3,
+                            23, 1, 4, 1, AP_8_TE + TV4_8_3,
 
                             // triangles of second cupola next to alternate gyroelongating triangles
-                            18, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1) + GeometryUtils.trivalentVertexAngle(3,8,4),
-                            20, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1) + GeometryUtils.trivalentVertexAngle(3,8,4),
-                            22, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1) + GeometryUtils.trivalentVertexAngle(3,8,4),
-                            24, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(8,1) + GeometryUtils.trivalentVertexAngle(3,8,4),
+                            18, 1, 3, 1, AP_8_TE + TV3_8_4,
+                            20, 1, 3, 1, AP_8_TE + TV3_8_4,
+                            22, 1, 3, 1, AP_8_TE + TV3_8_4,
+                            24, 1, 3, 1, AP_8_TE + TV3_8_4,
 
                             // central square of second cupola
                             25, 2, 4, 1, U10_4_4
@@ -1718,49 +1744,49 @@ public class Johnson {
                             0, 4, 4, 1, U27_4_5,
 
                             // triangles between squares
-                            1, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            2, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            3, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            4, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            5, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
+                            1, 1, 3, 1, TV3_4_10,
+                            2, 1, 3, 1, TV3_4_10,
+                            3, 1, 3, 1, TV3_4_10,
+                            4, 1, 3, 1, TV3_4_10,
+                            5, 1, 3, 1, TV3_4_10,
 
                             // first ring of gyroelongating triangles next to squares and triangles of first cupola
-                            1, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            6, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            2, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            7, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            3, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            8, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            4, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            9, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            5, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            10, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
+                            1, 2, 3, 1, TV4_10_3 + AP_10_TE,
+                            6, 2, 3, 1, TV3_10_4 + AP_10_TE,
+                            2, 2, 3, 1, TV4_10_3 + AP_10_TE,
+                            7, 2, 3, 1, TV3_10_4 + AP_10_TE,
+                            3, 2, 3, 1, TV4_10_3 + AP_10_TE,
+                            8, 2, 3, 1, TV3_10_4 + AP_10_TE,
+                            4, 2, 3, 1, TV4_10_3 + AP_10_TE,
+                            9, 2, 3, 1, TV3_10_4 + AP_10_TE,
+                            5, 2, 3, 1, TV4_10_3 + AP_10_TE,
+                            10, 2, 3, 1, TV3_10_4 + AP_10_TE,
 
                             // second ring of gyroelongating triangles
-                            11, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            12, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            13, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            14, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            15, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            16, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            17, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            18, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            19, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            20, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
+                            11, 1, 3, 1, AP_10_TT,
+                            12, 1, 3, 1, AP_10_TT,
+                            13, 1, 3, 1, AP_10_TT,
+                            14, 1, 3, 1, AP_10_TT,
+                            15, 1, 3, 1, AP_10_TT,
+                            16, 1, 3, 1, AP_10_TT,
+                            17, 1, 3, 1, AP_10_TT,
+                            18, 1, 3, 1, AP_10_TT,
+                            19, 1, 3, 1, AP_10_TT,
+                            20, 1, 3, 1, AP_10_TT,
 
                             // squares of second cupola next to alternate gyroelongating triangles
-                            21, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            23, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            25, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            27, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            29, 2, 4, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
+                            21, 2, 4, 1, TV4_10_3 + AP_10_TE,
+                            23, 2, 4, 1, TV4_10_3 + AP_10_TE,
+                            25, 2, 4, 1, TV4_10_3 + AP_10_TE,
+                            27, 2, 4, 1, TV4_10_3 + AP_10_TE,
+                            29, 2, 4, 1, TV4_10_3 + AP_10_TE,
 
                             // triangles of second cupola next to alternate gyroelongating triangles
-                            22, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            24, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            26, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            28, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            30, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
+                            22, 2, 3, 1, TV3_10_4 + AP_10_TE,
+                            24, 2, 3, 1, TV3_10_4 + AP_10_TE,
+                            26, 2, 3, 1, TV3_10_4 + AP_10_TE,
+                            28, 2, 3, 1, TV3_10_4 + AP_10_TE,
+                            30, 2, 3, 1, TV3_10_4 + AP_10_TE,
 
                             // central pentagon of second cupola
                             31, 2, 5, 1, U27_4_5
@@ -1781,49 +1807,49 @@ public class Johnson {
                             0, 4, 4, 1, U27_4_5,
 
                             // triangles between squares
-                            1, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            2, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            3, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            4, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            5, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
+                            1, 1, 3, 1, TV3_4_10,
+                            2, 1, 3, 1, TV3_4_10,
+                            3, 1, 3, 1, TV3_4_10,
+                            4, 1, 3, 1, TV3_4_10,
+                            5, 1, 3, 1, TV3_4_10,
 
                             // first ring of gyroelongating triangles next to squares and triangles of first cupola
-                            1, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            6, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            2, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            7, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            3, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            8, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            4, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            9, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            5, 2, 3, 1, GeometryUtils.trivalentVertexAngle(4,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            10, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,4) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
+                            1, 2, 3, 1, TV4_10_3 + AP_10_TE,
+                            6, 2, 3, 1, TV3_10_4 + AP_10_TE,
+                            2, 2, 3, 1, TV4_10_3 + AP_10_TE,
+                            7, 2, 3, 1, TV3_10_4 + AP_10_TE,
+                            3, 2, 3, 1, TV4_10_3 + AP_10_TE,
+                            8, 2, 3, 1, TV3_10_4 + AP_10_TE,
+                            4, 2, 3, 1, TV4_10_3 + AP_10_TE,
+                            9, 2, 3, 1, TV3_10_4 + AP_10_TE,
+                            5, 2, 3, 1, TV4_10_3 + AP_10_TE,
+                            10, 2, 3, 1, TV3_10_4 + AP_10_TE,
 
                             // second ring of gyroelongating triangles
-                            11, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            12, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            13, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            14, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            15, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            16, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            17, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            18, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            19, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            20, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
+                            11, 1, 3, 1, AP_10_TT,
+                            12, 1, 3, 1, AP_10_TT,
+                            13, 1, 3, 1, AP_10_TT,
+                            14, 1, 3, 1, AP_10_TT,
+                            15, 1, 3, 1, AP_10_TT,
+                            16, 1, 3, 1, AP_10_TT,
+                            17, 1, 3, 1, AP_10_TT,
+                            18, 1, 3, 1, AP_10_TT,
+                            19, 1, 3, 1, AP_10_TT,
+                            20, 1, 3, 1, AP_10_TT,
 
                             // pentagons of rotunda next to alternate gyroelongating triangles
-                            21, 2, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            23, 2, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            25, 2, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            27, 2, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            29, 2, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(5,10,3),
+                            21, 2, 5, 1, AP_10_TE + TV5_10_3,
+                            23, 2, 5, 1, AP_10_TE + TV5_10_3,
+                            25, 2, 5, 1, AP_10_TE + TV5_10_3,
+                            27, 2, 5, 1, AP_10_TE + TV5_10_3,
+                            29, 2, 5, 1, AP_10_TE + TV5_10_3,
 
                             // triangles of rotunda next to remaining alternate gyroelongating triangles
-                            22, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            24, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            26, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            28, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            30, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,5),
+                            22, 2, 3, 1, AP_10_TE + TV3_10_5,
+                            24, 2, 3, 1, AP_10_TE + TV3_10_5,
+                            26, 2, 3, 1, AP_10_TE + TV3_10_5,
+                            28, 2, 3, 1, AP_10_TE + TV3_10_5,
+                            30, 2, 3, 1, AP_10_TE + TV3_10_5,
 
                             // inner triangles of rotunda
                             31, 2, 3, 1, U24_3_5,
@@ -1865,42 +1891,42 @@ public class Johnson {
                             10, 2, 3, 1, U24_3_5,
 
                             // first ring of gyroelongating triangles next to pentagons and triangles of first rotunda
-                            6, 3, 3, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            11, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            7, 3, 3, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            12, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            8, 3, 3, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            13, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            9, 3, 3, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            14, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            10, 3, 3, 1, GeometryUtils.trivalentVertexAngle(5,10,3) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
-                            15, 2, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,5) + GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1),
+                            6, 3, 3, 1, TV5_10_3 + AP_10_TE,
+                            11, 2, 3, 1, TV3_10_5 + AP_10_TE,
+                            7, 3, 3, 1, TV5_10_3 + AP_10_TE,
+                            12, 2, 3, 1, TV3_10_5 + AP_10_TE,
+                            8, 3, 3, 1, TV5_10_3 + AP_10_TE,
+                            13, 2, 3, 1, TV3_10_5 + AP_10_TE,
+                            9, 3, 3, 1, TV5_10_3 + AP_10_TE,
+                            14, 2, 3, 1, TV3_10_5 + AP_10_TE,
+                            10, 3, 3, 1, TV5_10_3 + AP_10_TE,
+                            15, 2, 3, 1, TV3_10_5 + AP_10_TE,
 
                             // second ring of gyroelongating triangles
-                            16, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            17, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            18, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            19, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            20, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            21, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            22, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            23, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            24, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
-                            25, 1, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(10,1),
+                            16, 1, 3, 1, AP_10_TT,
+                            17, 1, 3, 1, AP_10_TT,
+                            18, 1, 3, 1, AP_10_TT,
+                            19, 1, 3, 1, AP_10_TT,
+                            20, 1, 3, 1, AP_10_TT,
+                            21, 1, 3, 1, AP_10_TT,
+                            22, 1, 3, 1, AP_10_TT,
+                            23, 1, 3, 1, AP_10_TT,
+                            24, 1, 3, 1, AP_10_TT,
+                            25, 1, 3, 1, AP_10_TT,
 
                             // pentagons of second rotunda next to alternate gyroelongating triangles
-                            26, 2, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            28, 2, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            30, 2, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            32, 2, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(5,10,3),
-                            34, 2, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(5,10,3),
+                            26, 2, 5, 1, AP_10_TE + TV5_10_3,
+                            28, 2, 5, 1, AP_10_TE + TV5_10_3,
+                            30, 2, 5, 1, AP_10_TE + TV5_10_3,
+                            32, 2, 5, 1, AP_10_TE + TV5_10_3,
+                            34, 2, 5, 1, AP_10_TE + TV5_10_3,
 
                             // triangles of second rotunda next to remaining alternate gyroelongating triangles
-                            27, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            29, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            31, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            33, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,5),
-                            35, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(10,1) + GeometryUtils.trivalentVertexAngle(3,10,5),
+                            27, 2, 3, 1, AP_10_TE + TV3_10_5,
+                            29, 2, 3, 1, AP_10_TE + TV3_10_5,
+                            31, 2, 3, 1, AP_10_TE + TV3_10_5,
+                            33, 2, 3, 1, AP_10_TE + TV3_10_5,
+                            35, 2, 3, 1, AP_10_TE + TV3_10_5,
 
                             // inner ring of triangles of second rotunda
                             36, 2, 3, 1, U24_3_5,
@@ -1921,19 +1947,19 @@ public class Johnson {
                             4, 1,
 
                             // the two ends of the prism
-                            0, 0, 3, 1, Math.PI/2,
-                            0, 2, 3, 1, Math.PI/2,
+                            0, 0, 3, 1, Maths.PI2,
+                            0, 2, 3, 1, Maths.PI2,
 
                             // the other square on one side
-                            0, 1, 4, 1, Math.PI/3,
+                            0, 1, 4, 1, Maths.PI3,
 
                             // one triangle of a square pyramid opposite the second square
-                            0, 3, 3, 1, Math.PI/3 + GeometryUtils.trivalentVertexAngle(3,4,3),
+                            0, 3, 3, 1, Maths.PI3 + TV3_4_3,
 
                             // the remaining sides of the square pyramid
-                            4, 1, 3, 1, R2_3_3,
-                            5, 2, 3, 1, R2_3_3,
-                            6, 2, 3, 1, R2_3_3
+                            4, 1, 3, 1, TV3_3_4,
+                            5, 2, 3, 1, TV3_3_4,
+                            6, 2, 3, 1, TV3_3_4
                     },
 
             new double[] // J50 - biaugmented triangular prism
@@ -1944,22 +1970,22 @@ public class Johnson {
                             4, 1,
 
                             // the two ends of the prism
-                            0, 0, 3, 1, Math.PI/2,
-                            0, 2, 3, 1, Math.PI/2,
+                            0, 0, 3, 1, Maths.PI2,
+                            0, 2, 3, 1, Maths.PI2,
 
                             // triangles of two square pyramids at the other two sides
-                            0, 1, 3, 1, Math.PI/3 + GeometryUtils.trivalentVertexAngle(3,4,3),
-                            0, 3, 3, 1, Math.PI/3 + GeometryUtils.trivalentVertexAngle(3,4,3),
+                            0, 1, 3, 1, Maths.PI3 + TV3_4_3,
+                            0, 3, 3, 1, Maths.PI3 + TV3_4_3,
 
                             // the remaining sides of the first square pyramid
-                            3, 1, 3, 1, R2_3_3,
-                            5, 2, 3, 1, R2_3_3,
-                            6, 2, 3, 1, R2_3_3,
+                            3, 1, 3, 1, TV3_3_4,
+                            5, 2, 3, 1, TV3_3_4,
+                            6, 2, 3, 1, TV3_3_4,
 
                             // the remaining sides of the first square pyramid
-                            4, 1, 3, 1, R2_3_3,
-                            8, 2, 3, 1, R2_3_3,
-                            9, 2, 3, 1, R2_3_3
+                            4, 1, 3, 1, TV3_3_4,
+                            8, 2, 3, 1, TV3_3_4,
+                            9, 2, 3, 1, TV3_3_4
                     },
 
             new double[] // J51 - triaugmented triangular prism
@@ -1970,25 +1996,25 @@ public class Johnson {
                             3, 1,
 
                             // a pyramid on the first side of the prism
-                            0, 0, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,4,3),
-                            1, 1, 3, 1, R2_3_3,
-                            2, 2, 3, 1, R2_3_3,
-                            3, 2, 3, 1, R2_3_3,
+                            0, 0, 3, 1, Maths.PI2 + TV3_4_3,
+                            1, 1, 3, 1, TV3_3_4,
+                            2, 2, 3, 1, TV3_3_4,
+                            3, 2, 3, 1, TV3_3_4,
 
                             // a pyramid on the second side of the prism
-                            0, 1, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,4,3),
-                            5, 1, 3, 1, R2_3_3,
-                            6, 2, 3, 1, R2_3_3,
-                            7, 2, 3, 1, R2_3_3,
+                            0, 1, 3, 1, Maths.PI2 + TV3_4_3,
+                            5, 1, 3, 1, TV3_3_4,
+                            6, 2, 3, 1, TV3_3_4,
+                            7, 2, 3, 1, TV3_3_4,
 
                             // a pyramid on the second side of the prism
-                            0, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,4,3),
-                            9, 1, 3, 1, R2_3_3,
-                            10, 2, 3, 1, R2_3_3,
-                            11, 2, 3, 1, R2_3_3,
+                            0, 2, 3, 1, Maths.PI2 + TV3_4_3,
+                            9, 1, 3, 1, TV3_3_4,
+                            10, 2, 3, 1, TV3_3_4,
+                            11, 2, 3, 1, TV3_3_4,
 
                             // the other end of the prism
-                            3, 1, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,4,3)
+                            3, 1, 3, 1, Maths.PI2 + TV3_4_3
                     },
 
             new double[] // J52 - augmented pentagonal prism
@@ -1999,21 +2025,21 @@ public class Johnson {
                             5, 1,
 
                             // four square edges
-                            0, 0, 4, 1, Math.PI/2,
-                            0, 1, 4, 1, Math.PI/2,
-                            0, 2, 4, 1, Math.PI/2,
-                            0, 3, 4, 1, Math.PI/2,
+                            0, 0, 4, 1, Maths.PI2,
+                            0, 1, 4, 1, Maths.PI2,
+                            0, 2, 4, 1, Maths.PI2,
+                            0, 3, 4, 1, Maths.PI2,
 
                             // first triangle of square pyramid on fifth edge
-                            0, 4, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,4,3),
+                            0, 4, 3, 1, Maths.PI2 + TV3_4_3,
 
                             // other three triangles of square pyramid
-                            5, 1, 3, 1, R2_3_3,
-                            6, 2, 3, 1, R2_3_3,
-                            7, 2, 3, 1, R2_3_3,
+                            5, 1, 3, 1, TV3_3_4,
+                            6, 2, 3, 1, TV3_3_4,
+                            7, 2, 3, 1, TV3_3_4,
 
                             // other end
-                            1, 2, 5, 1, Math.PI/2
+                            1, 2, 5, 1, Maths.PI2
                     },
 
             new double[] // J53 - biaugmented pentagonal prism
@@ -2024,30 +2050,30 @@ public class Johnson {
                             5, 1,
 
                             // two square edges
-                            0, 0, 4, 1, Math.PI/2,
-                            0, 1, 4, 1, Math.PI/2,
+                            0, 0, 4, 1, Maths.PI2,
+                            0, 1, 4, 1, Maths.PI2,
 
                             // first triangle of square pyramid on third edge of end
-                            0, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,4,3),
+                            0, 2, 3, 1, Maths.PI2 + TV3_4_3,
 
                             // other three triangles of square pyramid
-                            3, 1, 3, 1, R2_3_3,
-                            4, 2, 3, 1, R2_3_3,
-                            5, 2, 3, 1, R2_3_3,
+                            3, 1, 3, 1, TV3_3_4,
+                            4, 2, 3, 1, TV3_3_4,
+                            5, 2, 3, 1, TV3_3_4,
 
                             // square edge on fourth edge of end
-                            0, 3, 4, 1, Math.PI/2,
+                            0, 3, 4, 1, Maths.PI2,
 
                             // first triangle of square pyramid on fifth edge of end
-                            0, 4, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,4,3),
+                            0, 4, 3, 1, Maths.PI2 + TV3_4_3,
 
                             // other three triangles of square pyramid
-                            8, 1, 3, 1, R2_3_3,
-                            9, 2, 3, 1, R2_3_3,
-                            10, 2, 3, 1, R2_3_3,
+                            8, 1, 3, 1, TV3_3_4,
+                            9, 2, 3, 1, TV3_3_4,
+                            10, 2, 3, 1, TV3_3_4,
 
                             // other end of prism
-                            1, 2, 5, 1, Math.PI/2
+                            1, 2, 5, 1, Maths.PI2
                     },
 
             new double[] // J54 - augmented hexagonal prism
@@ -2058,22 +2084,22 @@ public class Johnson {
                             6, 1,
 
                             // five square sides of prism
-                            0, 0, 4, 1, Math.PI/2,
-                            0, 1, 4, 1, Math.PI/2,
-                            0, 2, 4, 1, Math.PI/2,
-                            0, 3, 4, 1, Math.PI/2,
-                            0, 4, 4, 1, Math.PI/2,
+                            0, 0, 4, 1, Maths.PI2,
+                            0, 1, 4, 1, Maths.PI2,
+                            0, 2, 4, 1, Maths.PI2,
+                            0, 3, 4, 1, Maths.PI2,
+                            0, 4, 4, 1, Maths.PI2,
 
                             // first triangle of square pyramid on sixth side of prism
-                            0, 5, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,4,3),
+                            0, 5, 3, 1, Maths.PI2 + TV3_4_3,
 
                             // remaining three sides of square pyramid
-                            6, 1, 3, 1, R2_3_3,
-                            7, 2, 3, 1, R2_3_3,
-                            8, 2, 3, 1, R2_3_3,
+                            6, 1, 3, 1, TV3_3_4,
+                            7, 2, 3, 1, TV3_3_4,
+                            8, 2, 3, 1, TV3_3_4,
 
                             // other end of prism
-                            1, 2, 6, 1, Math.PI/2
+                            1, 2, 6, 1, Maths.PI2
                     },
 
             new double[] // J55 - parabiaugmented hexagonal prism
@@ -2084,31 +2110,31 @@ public class Johnson {
                             6, 1,
 
                             // two square sides of prism
-                            0, 0, 4, 1, Math.PI/2,
-                            0, 1, 4, 1, Math.PI/2,
+                            0, 0, 4, 1, Maths.PI2,
+                            0, 1, 4, 1, Maths.PI2,
 
                             // first triangle of square pyramid on third side of prism
-                            0, 2, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,4,3),
+                            0, 2, 3, 1, Maths.PI2 + TV3_4_3,
 
                             // remaining three sides of square pyramid
-                            3, 1, 3, 1, R2_3_3,
-                            4, 2, 3, 1, R2_3_3,
-                            5, 2, 3, 1, R2_3_3,
+                            3, 1, 3, 1, TV3_3_4,
+                            4, 2, 3, 1, TV3_3_4,
+                            5, 2, 3, 1, TV3_3_4,
 
                             // squares on fourth and fifth sides of prism
-                            0, 3, 4, 1, Math.PI/2,
-                            0, 4, 4, 1, Math.PI/2,
+                            0, 3, 4, 1, Maths.PI2,
+                            0, 4, 4, 1, Maths.PI2,
 
                             // first triangle of square pyramid on sixth side of prism
-                            0, 5, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,4,3),
+                            0, 5, 3, 1, Maths.PI2 + TV3_4_3,
 
                             // remaining three sides of square pyramid
-                            9, 1, 3, 1, R2_3_3,
-                            10, 2, 3, 1, R2_3_3,
-                            11, 2, 3, 1, R2_3_3,
+                            9, 1, 3, 1, TV3_3_4,
+                            10, 2, 3, 1, TV3_3_4,
+                            11, 2, 3, 1, TV3_3_4,
 
                             // other end of prism
-                            1, 2, 6, 1, Math.PI/2
+                            1, 2, 6, 1, Maths.PI2
                     },
 
             new double[] // J56 - metabiaugmented hexagonal prism
@@ -2119,31 +2145,31 @@ public class Johnson {
                             6, 1,
 
                             // three square sides of prism
-                            0, 0, 4, 1, Math.PI/2,
-                            0, 1, 4, 1, Math.PI/2,
-                            0, 2, 4, 1, Math.PI/2,
+                            0, 0, 4, 1, Maths.PI2,
+                            0, 1, 4, 1, Maths.PI2,
+                            0, 2, 4, 1, Maths.PI2,
 
                             // first triangle of square pyramid on fourth side of prism
-                            0, 3, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,4,3),
+                            0, 3, 3, 1, Maths.PI2 + TV3_4_3,
 
                             // remaining three sides of square pyramid
-                            4, 1, 3, 1, R2_3_3,
-                            5, 2, 3, 1, R2_3_3,
-                            6, 2, 3, 1, R2_3_3,
+                            4, 1, 3, 1, TV3_3_4,
+                            5, 2, 3, 1, TV3_3_4,
+                            6, 2, 3, 1, TV3_3_4,
 
                             // square on fifth side of prism
-                            0, 4, 4, 1, Math.PI/2,
+                            0, 4, 4, 1, Maths.PI2,
 
                             // first triangle of square pyramid on sixth side of prism
-                            0, 5, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,4,3),
+                            0, 5, 3, 1, Maths.PI2 + TV3_4_3,
 
                             // remaining three sides of square pyramid
-                            9, 1, 3, 1, R2_3_3,
-                            10, 2, 3, 1, R2_3_3,
-                            11, 2, 3, 1, R2_3_3,
+                            9, 1, 3, 1, TV3_3_4,
+                            10, 2, 3, 1, TV3_3_4,
+                            11, 2, 3, 1, TV3_3_4,
 
                             // other end of prism
-                            1, 2, 6, 1, Math.PI/2
+                            1, 2, 6, 1, Maths.PI2
                     },
 
             new double[] // J57 - triaugmented hexagonal prism
@@ -2154,40 +2180,40 @@ public class Johnson {
                             6, 1,
 
                             // square on first side of prism
-                            0, 0, 4, 1, Math.PI/2,
+                            0, 0, 4, 1, Maths.PI2,
 
                             // first triangle of square pyramid on second side of prism
-                            0, 1, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,4,3),
+                            0, 1, 3, 1, Maths.PI2 + TV3_4_3,
 
                             // remaining three sides of square pyramid
-                            2, 1, 3, 1, R2_3_3,
-                            3, 2, 3, 1, R2_3_3,
-                            4, 2, 3, 1, R2_3_3,
+                            2, 1, 3, 1, TV3_3_4,
+                            3, 2, 3, 1, TV3_3_4,
+                            4, 2, 3, 1, TV3_3_4,
 
                             // square on third side of prism
-                            0, 2, 4, 1, Math.PI/2,
+                            0, 2, 4, 1, Maths.PI2,
 
                             // first triangle of square pyramid on fourth side of prism
-                            0, 3, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,4,3),
+                            0, 3, 3, 1, Maths.PI2 + TV3_4_3,
 
                             // remaining three sides of square pyramid
-                            7, 1, 3, 1, R2_3_3,
-                            8, 2, 3, 1, R2_3_3,
-                            9, 2, 3, 1, R2_3_3,
+                            7, 1, 3, 1, TV3_3_4,
+                            8, 2, 3, 1, TV3_3_4,
+                            9, 2, 3, 1, TV3_3_4,
 
                             // square on fifth side of prism
-                            0, 4, 4, 1, Math.PI/2,
+                            0, 4, 4, 1, Maths.PI2,
 
                             // first triangle of square pyramid on sixth side of prism
-                            0, 5, 3, 1, Math.PI/2 + GeometryUtils.trivalentVertexAngle(3,4,3),
+                            0, 5, 3, 1, Maths.PI2 + TV3_4_3,
 
                             // remaining three sides of square pyramid
-                            12, 1, 3, 1, R2_3_3,
-                            13, 2, 3, 1, R2_3_3,
-                            14, 2, 3, 1, R2_3_3,
+                            12, 1, 3, 1, TV3_3_4,
+                            13, 2, 3, 1, TV3_3_4,
+                            14, 2, 3, 1, TV3_3_4,
 
                             // other end of prism
-                            1, 2, 6, 1, Math.PI/2
+                            1, 2, 6, 1, Maths.PI2
                     },
 
             new double[] // J58 - augmented dodecahedron
@@ -2198,27 +2224,27 @@ public class Johnson {
                             5, 1,
 
                             // ring of pentagons around the first
-                            0, 0, 5, 1, R5_5_5,
-                            0, 1, 5, 1, R5_5_5,
-                            0, 2, 5, 1, R5_5_5,
-                            0, 3, 5, 1, R5_5_5,
-                            0, 4, 5, 1, R5_5_5,
+                            0, 0, 5, 1, TV5_5_5,
+                            0, 1, 5, 1, TV5_5_5,
+                            0, 2, 5, 1, TV5_5_5,
+                            0, 3, 5, 1, TV5_5_5,
+                            0, 4, 5, 1, TV5_5_5,
 
                             // second ring of pentagons
-                            1, 2, 5, 1, R5_5_5,
-                            2, 2, 5, 1, R5_5_5,
-                            3, 2, 5, 1, R5_5_5,
-                            4, 2, 5, 1, R5_5_5,
-                            5, 2, 5, 1, R5_5_5,
+                            1, 2, 5, 1, TV5_5_5,
+                            2, 2, 5, 1, TV5_5_5,
+                            3, 2, 5, 1, TV5_5_5,
+                            4, 2, 5, 1, TV5_5_5,
+                            5, 2, 5, 1, TV5_5_5,
 
                             // first triangle of pentagonal pyramid on last side of dodecahedron
-                            6, 3, 3, 1, R5_5_5 + GeometryUtils.trivalentVertexAngle(3,5,3),
+                            6, 3, 3, 1, TV5_5_5 + TV3_5_3,
 
                             // the remaining four sides of the pentagonal pyramid
-                            11, 1, 3, 1, R4_3_3,
-                            12, 2, 3, 1, R4_3_3,
-                            13, 2, 3, 1, R4_3_3,
-                            14, 2, 3, 1, R4_3_3
+                            11, 1, 3, 1, TV3_3_5,
+                            12, 2, 3, 1, TV3_3_5,
+                            13, 2, 3, 1, TV3_3_5,
+                            14, 2, 3, 1, TV3_3_5
                     },
 
             new double[] // J59 - parabiaugmented dodecahedron
@@ -2229,39 +2255,39 @@ public class Johnson {
                             5, 1,
 
                             // four pentagons adjacent to first pentagon
-                            0, 0, 5, 1, R5_5_5,
-                            0, 1, 5, 1, R5_5_5,
-                            0, 2, 5, 1, R5_5_5,
-                            0, 3, 5, 1, R5_5_5,
+                            0, 0, 5, 1, TV5_5_5,
+                            0, 1, 5, 1, TV5_5_5,
+                            0, 2, 5, 1, TV5_5_5,
+                            0, 3, 5, 1, TV5_5_5,
 
                             // first triangle of a pentagonal pyramid on the fifth side of the first pentagon
-                            0, 4, 3, 1, R5_5_5 + GeometryUtils.trivalentVertexAngle(3,5,3),
+                            0, 4, 3, 1, TV5_5_5 + TV3_5_3,
 
                             // remaining four triangles in pentagonal pyramid
-                            5, 1, 3, 1, R4_3_3,
-                            6, 2, 3, 1, R4_3_3,
-                            7, 2, 3, 1, R4_3_3,
-                            8, 2, 3, 1, R4_3_3,
+                            5, 1, 3, 1, TV3_3_5,
+                            6, 2, 3, 1, TV3_3_5,
+                            7, 2, 3, 1, TV3_3_5,
+                            8, 2, 3, 1, TV3_3_5,
 
                             // first two pentagons of second ring of pentagons
-                            1, 2, 5, 1, R5_5_5,
-                            2, 2, 5, 1, R5_5_5,
+                            1, 2, 5, 1, TV5_5_5,
+                            2, 2, 5, 1, TV5_5_5,
 
                             // first triangle of a pentagonal pyramid on the third pentagon of the second ring of pentagons
-                            3, 2, 3, 1, R5_5_5 + GeometryUtils.trivalentVertexAngle(3,5,3),
+                            3, 2, 3, 1, TV5_5_5 + TV3_5_3,
 
                             // remaining four triangles in pentagonal pyramid
-                            12, 1, 3, 1, R4_3_3,
-                            13, 2, 3, 1, R4_3_3,
-                            14, 2, 3, 1, R4_3_3,
-                            15, 2, 3, 1, R4_3_3,
+                            12, 1, 3, 1, TV3_3_5,
+                            13, 2, 3, 1, TV3_3_5,
+                            14, 2, 3, 1, TV3_3_5,
+                            15, 2, 3, 1, TV3_3_5,
 
                             // pentagons four and five of second ring of pentagons
-                            4, 2, 5, 1, R5_5_5,
-                            4, 3, 5, 1, R5_5_5,
+                            4, 2, 5, 1, TV5_5_5,
+                            4, 3, 5, 1, TV5_5_5,
 
                             // final pentagon opposite the first
-                            10, 3, 5, 1, R5_5_5
+                            10, 3, 5, 1, TV5_5_5
                     },
 
             new double[] // J60 - metabiaugmented dodecahedron
@@ -2272,39 +2298,39 @@ public class Johnson {
                             5, 1,
 
                             // ring of pentagons around the first
-                            0, 0, 5, 1, R5_5_5,
-                            0, 1, 5, 1, R5_5_5,
-                            0, 2, 5, 1, R5_5_5,
-                            0, 3, 5, 1, R5_5_5,
-                            0, 4, 5, 1, R5_5_5,
+                            0, 0, 5, 1, TV5_5_5,
+                            0, 1, 5, 1, TV5_5_5,
+                            0, 2, 5, 1, TV5_5_5,
+                            0, 3, 5, 1, TV5_5_5,
+                            0, 4, 5, 1, TV5_5_5,
 
                             // first two pentagons of second ring of pentagons
-                            1, 2, 5, 1, R5_5_5,
-                            2, 2, 5, 1, R5_5_5,
+                            1, 2, 5, 1, TV5_5_5,
+                            2, 2, 5, 1, TV5_5_5,
 
                             // first triangle of pentagonal pyramid on third pentagon of second ring of pentagons
-                            3, 2, 3, 1, R5_5_5 + GeometryUtils.trivalentVertexAngle(3,5,3),
+                            3, 2, 3, 1, TV5_5_5 + TV3_5_3,
 
                             // the remaining four sides of the pentagonal pyramid
-                            8, 1, 3, 1, R4_3_3,
-                            9, 2, 3, 1, R4_3_3,
-                            10, 2, 3, 1, R4_3_3,
-                            11, 2, 3, 1, R4_3_3,
+                            8, 1, 3, 1, TV3_3_5,
+                            9, 2, 3, 1, TV3_3_5,
+                            10, 2, 3, 1, TV3_3_5,
+                            11, 2, 3, 1, TV3_3_5,
 
                             // fourth pentagon of second ring of pentagons
-                            4, 2, 5, 1, R5_5_5,
+                            4, 2, 5, 1, TV5_5_5,
 
                             // first triangle of pentagonal pyramid on fifth pentagon of second ring of pentagons
-                            5, 2, 3, 1, R5_5_5 + GeometryUtils.trivalentVertexAngle(3,5,3),
+                            5, 2, 3, 1, TV5_5_5 + TV3_5_3,
 
                             // the remaining four sides of the pentagonal pyramid
-                            14, 1, 3, 1, R4_3_3,
-                            15, 2, 3, 1, R4_3_3,
-                            16, 2, 3, 1, R4_3_3,
-                            17, 2, 3, 1, R4_3_3,
+                            14, 1, 3, 1, TV3_3_5,
+                            15, 2, 3, 1, TV3_3_5,
+                            16, 2, 3, 1, TV3_3_5,
+                            17, 2, 3, 1, TV3_3_5,
 
                             // final pentagon opposite the first
-                            6, 3, 5, 1, R5_5_5
+                            6, 3, 5, 1, TV5_5_5
                     },
 
             new double[] // J61 - triaugmented dodecahedron
@@ -2315,49 +2341,49 @@ public class Johnson {
                             5, 1,
 
                             // four pentagons adjacent to first pentagon
-                            0, 0, 5, 1, R5_5_5,
-                            0, 1, 5, 1, R5_5_5,
-                            0, 2, 5, 1, R5_5_5,
-                            0, 3, 5, 1, R5_5_5,
+                            0, 0, 5, 1, TV5_5_5,
+                            0, 1, 5, 1, TV5_5_5,
+                            0, 2, 5, 1, TV5_5_5,
+                            0, 3, 5, 1, TV5_5_5,
 
                             // first triangle of a pentagonal pyramid on the fifth side of the first pentagon
-                            0, 4, 3, 1, R5_5_5 + GeometryUtils.trivalentVertexAngle(3,5,3),
+                            0, 4, 3, 1, TV5_5_5 + TV3_5_3,
 
                             // remaining four triangles in pentagonal pyramid
-                            5, 1, 3, 1, R4_3_3,
-                            6, 2, 3, 1, R4_3_3,
-                            7, 2, 3, 1, R4_3_3,
-                            8, 2, 3, 1, R4_3_3,
+                            5, 1, 3, 1, TV3_3_5,
+                            6, 2, 3, 1, TV3_3_5,
+                            7, 2, 3, 1, TV3_3_5,
+                            8, 2, 3, 1, TV3_3_5,
 
                             // first pentagon of second ring of pentagons
-                            1, 2, 5, 1, R5_5_5,
+                            1, 2, 5, 1, TV5_5_5,
 
                             // first triangle of a pentagonal pyramid on the second pentagon of the second ring of pentagons
-                            2, 2, 3, 1, R5_5_5 + GeometryUtils.trivalentVertexAngle(3,5,3),
+                            2, 2, 3, 1, TV5_5_5 + TV3_5_3,
 
                             // remaining four triangles in pentagonal pyramid
-                            11, 1, 3, 1, R4_3_3,
-                            12, 2, 3, 1, R4_3_3,
-                            13, 2, 3, 1, R4_3_3,
-                            14, 2, 3, 1, R4_3_3,
+                            11, 1, 3, 1, TV3_3_5,
+                            12, 2, 3, 1, TV3_3_5,
+                            13, 2, 3, 1, TV3_3_5,
+                            14, 2, 3, 1, TV3_3_5,
 
                             // third pentagon of second ring of pentagons
-                            3, 2, 5, 1, R5_5_5,
+                            3, 2, 5, 1, TV5_5_5,
 
                             // first triangle of a pentagonal pyramid on the fourth pentagon of the second ring of pentagons
-                            4, 2, 3, 1, R5_5_5 + GeometryUtils.trivalentVertexAngle(3,5,3),
+                            4, 2, 3, 1, TV5_5_5 + TV3_5_3,
 
                             // remaining four triangles in pentagonal pyramid
-                            17, 1, 3, 1, R4_3_3,
-                            18, 2, 3, 1, R4_3_3,
-                            19, 2, 3, 1, R4_3_3,
-                            20, 2, 3, 1, R4_3_3,
+                            17, 1, 3, 1, TV3_3_5,
+                            18, 2, 3, 1, TV3_3_5,
+                            19, 2, 3, 1, TV3_3_5,
+                            20, 2, 3, 1, TV3_3_5,
 
                             // fifth pentagon of second ring of pentagons
-                            4, 3, 5, 1, R5_5_5,
+                            4, 3, 5, 1, TV5_5_5,
 
                             // final pentagon opposite the first
-                            10, 3, 5, 1, R5_5_5
+                            10, 3, 5, 1, TV5_5_5
                     },
 
             new double[] // J62 - metabidiminished icosahedron
@@ -2366,27 +2392,27 @@ public class Johnson {
 
                             // ring of five triangles
                             3, 1,
-                            0, 0, 3, 1, R4_3_3,
-                            1, 1, 3, 1, R4_3_3,
-                            2, 1, 3, 1, R4_3_3,
-                            3, 1, 3, 1, R4_3_3,
+                            0, 0, 3, 1, TV3_3_5,
+                            1, 1, 3, 1, TV3_3_5,
+                            2, 1, 3, 1, TV3_3_5,
+                            3, 1, 3, 1, TV3_3_5,
 
                             // triangles next to first and second triangles in ring
-                            1, 2, 3, 1, R4_3_3,
-                            2, 2, 3, 1, R4_3_3,
+                            1, 2, 3, 1, TV3_3_5,
+                            2, 2, 3, 1, TV3_3_5,
 
                             // pentagon next to third triangle in ring
-                            3, 2, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1),
+                            3, 2, 5, 1, AP_5_TE,
 
                             // triangle next to fourth triangle in ring
-                            4, 2, 3, 1, R4_3_3,
+                            4, 2, 3, 1, TV3_3_5,
 
                             // pentagon next to fifth triangle in ring
-                            5, 2, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1),
+                            5, 2, 5, 1, AP_5_TE,
 
                             // remaining two triangles
-                            5, 1, 3, 1, R4_3_3,
-                            10, 2, 3, 1, R4_3_3
+                            5, 1, 3, 1, TV3_3_5,
+                            10, 2, 3, 1, TV3_3_5
                     },
 
             new double[] // J63 - tridiminished icosahedron
@@ -2397,17 +2423,17 @@ public class Johnson {
                             3, 1,
 
                             // a triangle on each side
-                            0, 0, 3, 1, R4_3_3,
-                            0, 1, 3, 1, R4_3_3,
-                            0, 2, 3, 1, R4_3_3,
+                            0, 0, 3, 1, TV3_3_5,
+                            0, 1, 3, 1, TV3_3_5,
+                            0, 2, 3, 1, TV3_3_5,
 
                             // a pentagon between each pair of triangles
-                            1, 1, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1),
-                            2, 1, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1),
-                            3, 1, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1),
+                            1, 1, 5, 1, AP_5_TE,
+                            2, 1, 5, 1, AP_5_TE,
+                            3, 1, 5, 1, AP_5_TE,
 
                             // a triangle between the three pentagons
-                            4, 3, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1)
+                            4, 3, 3, 1, AP_5_TE
                     },
 
             new double[] // J64 - augmented tridiminished icosahedron
@@ -2418,19 +2444,19 @@ public class Johnson {
                             3, 1,
 
                             // a triangle on each side
-                            0, 0, 3, 1, R4_3_3,
-                            0, 1, 3, 1, R4_3_3,
-                            0, 2, 3, 1, R4_3_3,
+                            0, 0, 3, 1, TV3_3_5,
+                            0, 1, 3, 1, TV3_3_5,
+                            0, 2, 3, 1, TV3_3_5,
 
                             // a pentagon between each pair of triangles
-                            1, 1, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1),
-                            2, 1, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1),
-                            3, 1, 5, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1),
+                            1, 1, 5, 1, AP_5_TE,
+                            2, 1, 5, 1, AP_5_TE,
+                            3, 1, 5, 1, AP_5_TE,
 
                             // a triangle at the end of pentagon, forming a triangular pyramid
-                            4, 3, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1) + R1_3_3,
-                            5, 3, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1) + R1_3_3,
-                            6, 3, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1) + R1_3_3
+                            4, 3, 3, 1, AP_5_TE + TV3_3_3,
+                            5, 3, 3, 1, AP_5_TE + TV3_3_3,
+                            6, 3, 3, 1, AP_5_TE + TV3_3_3
                     },
 
             new double[] // J65 - augmented truncated tetrahedron
@@ -2441,16 +2467,16 @@ public class Johnson {
                             6, 1,
 
                             // triangles of truncated tetrahedron at sides one, three and five of the base hexagon
-                            0, 0, 3, 1, R2_3_3,
-                            0, 2, 3, 1, R2_3_3,
-                            0, 4, 3, 1, R2_3_3,
+                            0, 0, 3, 1, TV3_3_4,
+                            0, 2, 3, 1, TV3_3_4,
+                            0, 4, 3, 1, TV3_3_4,
 
                             // hexagons at sides two and four of the base hexagon
-                            0, 1, 6, 1, R1_3_3,
-                            0, 3, 6, 1, R1_3_3,
+                            0, 1, 6, 1, TV3_3_3,
+                            0, 3, 6, 1, TV3_3_3,
 
                             // first triangle of triangular cupola at side six of the base hexagon
-                            0, 5, 3, 1, R1_3_3 + GeometryUtils.trivalentVertexAngle(3,6,4),
+                            0, 5, 3, 1, TV3_3_3 + TV3_6_4,
 
                             // remaining ring of squares and triangles of triangular cupola
                             6, 1, 4, 1, U7_3_4,
@@ -2463,7 +2489,7 @@ public class Johnson {
                             7, 3, 3, 1, U7_3_4,
 
                             // top triangle of truncated tetrahedron
-                            4, 3, 3, 1, R2_3_3
+                            4, 3, 3, 1, TV3_3_4
                     },
 
             new double[] // J66 - augmented truncated cube
@@ -2475,31 +2501,31 @@ public class Johnson {
 
                             // base octagon surrounded by alternate octagons and triangles
                             0, 0, 8, 1, R3_4_4,
-                            0, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,8),
+                            0, 1, 3, 1, TV3_8_8,
                             0, 2, 8, 1, R3_4_4,
-                            0, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,8),
+                            0, 3, 3, 1, TV3_8_8,
                             0, 4, 8, 1, R3_4_4,
-                            0, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,8),
+                            0, 5, 3, 1, TV3_8_8,
                             0, 6, 8, 1, R3_4_4,
-                            0, 7, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,8),
+                            0, 7, 3, 1, TV3_8_8,
 
                             // triangles at top four corners
-                            1, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,8),
-                            3, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,8),
-                            5, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,8),
-                            7, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,8),
+                            1, 3, 3, 1, TV3_8_8,
+                            3, 3, 3, 1, TV3_8_8,
+                            5, 3, 3, 1, TV3_8_8,
+                            7, 3, 3, 1, TV3_8_8,
 
                             // first square of square cupola on top
-                            9, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,8,8) + GeometryUtils.trivalentVertexAngle(4,8,3),
+                            9, 2, 4, 1, TV3_8_8 + TV4_8_3,
 
                             // remaining edge triangles and squares of square cupola
-                            13, 1, 3, 1, U10_3_4,
-                            14, 2, 4, 1, U10_3_4,
-                            15, 2, 3, 1, U10_3_4,
-                            16, 2, 4, 1, U10_3_4,
-                            17, 2, 3, 1, U10_3_4,
-                            18, 2, 4, 1, U10_3_4,
-                            19, 2, 3, 1, U10_3_4,
+                            13, 1, 3, 1, TV3_4_8,
+                            14, 2, 4, 1, TV3_4_8,
+                            15, 2, 3, 1, TV3_4_8,
+                            16, 2, 4, 1, TV3_4_8,
+                            17, 2, 3, 1, TV3_4_8,
+                            18, 2, 4, 1, TV3_4_8,
+                            19, 2, 3, 1, TV3_4_8,
 
                             // top square of square cupola
                             13, 2, 4, 1, U10_4_4
@@ -2514,54 +2540,54 @@ public class Johnson {
 
                             // sides one and two of base octagon adjoin an octagon and a triangle
                             0, 0, 8, 1, R3_4_4,
-                            0, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,8),
+                            0, 1, 3, 1, TV3_8_8,
 
                             // side three of base octagon adjoins the first triangle of a square cupola
-                            0, 2, 3, 1, R3_4_4 + GeometryUtils.trivalentVertexAngle(3,8,4),
+                            0, 2, 3, 1, R3_4_4 + TV3_8_4,
 
                             // remaining edge squares and triangles of square cupola
-                            3, 1, 4, 1, U10_3_4,
-                            4, 2, 3, 1, U10_3_4,
-                            5, 2, 4, 1, U10_3_4,
-                            6, 2, 3, 1, U10_3_4,
-                            7, 2, 4, 1, U10_3_4,
-                            8, 2, 3, 1, U10_3_4,
-                            9, 2, 4, 1, U10_3_4,
+                            3, 1, 4, 1, TV3_4_8,
+                            4, 2, 3, 1, TV3_4_8,
+                            5, 2, 4, 1, TV3_4_8,
+                            6, 2, 3, 1, TV3_4_8,
+                            7, 2, 4, 1, TV3_4_8,
+                            8, 2, 3, 1, TV3_4_8,
+                            9, 2, 4, 1, TV3_4_8,
 
                             // top square of square cupola
                             4, 3, 4, 1, U10_4_4,
 
                             // sides four, five and six of base octagon adjoin a triangle, an octagon and a triangle respectively
-                            0, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,8),
+                            0, 3, 3, 1, TV3_8_8,
                             0, 4, 8, 1, R3_4_4,
-                            0, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,8),
+                            0, 5, 3, 1, TV3_8_8,
 
                             // side seven of base octagon adjoins the first triangle of a square cupola
-                            0, 6, 3, 1, R3_4_4 + GeometryUtils.trivalentVertexAngle(3,8,4),
+                            0, 6, 3, 1, R3_4_4 + TV3_8_4,
 
                             // remaining edge squares and triangles of square cupola
-                            15, 1, 4, 1, U10_3_4,
-                            16, 2, 3, 1, U10_3_4,
-                            17, 2, 4, 1, U10_3_4,
-                            18, 2, 3, 1, U10_3_4,
-                            19, 2, 4, 1, U10_3_4,
-                            20, 2, 3, 1, U10_3_4,
-                            21, 2, 4, 1, U10_3_4,
+                            15, 1, 4, 1, TV3_4_8,
+                            16, 2, 3, 1, TV3_4_8,
+                            17, 2, 4, 1, TV3_4_8,
+                            18, 2, 3, 1, TV3_4_8,
+                            19, 2, 4, 1, TV3_4_8,
+                            20, 2, 3, 1, TV3_4_8,
+                            21, 2, 4, 1, TV3_4_8,
 
                             // top square of square cupola
                             16, 3, 4, 1, U10_4_4,
 
                             // side eight of base octagon adjoins a triangle
-                            0, 7, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,8),
+                            0, 7, 3, 1, TV3_8_8,
 
                             // the top octagon
                             1, 4, 8, 1, R3_4_4,
 
                             // the four top triangles
-                            25, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,8),
-                            25, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,8),
-                            25, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,8),
-                            25, 7, 3, 1, GeometryUtils.trivalentVertexAngle(3,8,8)
+                            25, 1, 3, 1, TV3_8_8,
+                            25, 3, 3, 1, TV3_8_8,
+                            25, 5, 3, 1, TV3_8_8,
+                            25, 7, 3, 1, TV3_8_8
                     },
 
             new double[] // J68 - augmented truncated dodecahedron
@@ -2572,62 +2598,62 @@ public class Johnson {
                             10, 1,
 
                             // a ring of decagons and triangles around the base decagon
-                            0, 0, 10, 1, R5_5_5,
-                            0, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            0, 2, 10, 1, R5_5_5,
-                            0, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            0, 4, 10, 1, R5_5_5,
-                            0, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            0, 6, 10, 1, R5_5_5,
-                            0, 7, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            0, 8, 10, 1, R5_5_5,
-                            0, 9, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            0, 0, 10, 1, TV5_5_5,
+                            0, 1, 3, 1, TV3_10_10,
+                            0, 2, 10, 1, TV5_5_5,
+                            0, 3, 3, 1, TV3_10_10,
+                            0, 4, 10, 1, TV5_5_5,
+                            0, 5, 3, 1, TV3_10_10,
+                            0, 6, 10, 1, TV5_5_5,
+                            0, 7, 3, 1, TV3_10_10,
+                            0, 8, 10, 1, TV5_5_5,
+                            0, 9, 3, 1, TV3_10_10,
 
                             // a further triangle, decagon and triangle around the first decagon in the ring of decagons
-                            1, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            1, 4, 10, 1, R5_5_5,
-                            1, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            1, 3, 3, 1, TV3_10_10,
+                            1, 4, 10, 1, TV5_5_5,
+                            1, 5, 3, 1, TV3_10_10,
 
                             // a further triangle, decagon and triangle around the second decagon in the ring of decagons
-                            3, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            3, 4, 10, 1, R5_5_5,
-                            3, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            3, 3, 3, 1, TV3_10_10,
+                            3, 4, 10, 1, TV5_5_5,
+                            3, 5, 3, 1, TV3_10_10,
 
                             // a further triangle, decagon and triangle around the third decagon in the ring of decagons
-                            5, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            5, 4, 10, 1, R5_5_5,
-                            5, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            5, 3, 3, 1, TV3_10_10,
+                            5, 4, 10, 1, TV5_5_5,
+                            5, 5, 3, 1, TV3_10_10,
 
                             // a further triangle, decagon and triangle around the fourth decagon in the ring of decagons
-                            7, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            7, 4, 10, 1, R5_5_5,
-                            7, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            7, 3, 3, 1, TV3_10_10,
+                            7, 4, 10, 1, TV5_5_5,
+                            7, 5, 3, 1, TV3_10_10,
 
                             // a further triangle, decagon and triangle around the fifth decagon in the ring of decagons
-                            9, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            9, 4, 10, 1, R5_5_5,
-                            9, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            9, 3, 3, 1, TV3_10_10,
+                            9, 4, 10, 1, TV5_5_5,
+                            9, 5, 3, 1, TV3_10_10,
 
                             // the top five triangles of the truncated dodecahedron
-                            12, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            15, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            18, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            21, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            24, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            12, 5, 3, 1, TV3_10_10,
+                            15, 5, 3, 1, TV3_10_10,
+                            18, 5, 3, 1, TV3_10_10,
+                            21, 5, 3, 1, TV3_10_10,
+                            24, 5, 3, 1, TV3_10_10,
 
                             // the first square of a pentagonal cupola on top
-                            26, 2, 4, 1, GeometryUtils.trivalentVertexAngle(3,10,10) + GeometryUtils.trivalentVertexAngle(4,10,3),
+                            26, 2, 4, 1, TV3_10_10 + TV4_10_3,
 
                             // the remaining triangles and squares around the pentagonal cupola
-                            31, 1, 3, 1, U27_3_4,
-                            32, 2, 4, 1, U27_3_4,
-                            33, 2, 3, 1, U27_3_4,
-                            34, 2, 4, 1, U27_3_4,
-                            35, 2, 3, 1, U27_3_4,
-                            36, 2, 4, 1, U27_3_4,
-                            37, 2, 3, 1, U27_3_4,
-                            38, 2, 4, 1, U27_3_4,
-                            39, 2, 3, 1, U27_3_4,
+                            31, 1, 3, 1, TV3_4_10,
+                            32, 2, 4, 1, TV3_4_10,
+                            33, 2, 3, 1, TV3_4_10,
+                            34, 2, 4, 1, TV3_4_10,
+                            35, 2, 3, 1, TV3_4_10,
+                            36, 2, 4, 1, TV3_4_10,
+                            37, 2, 3, 1, TV3_4_10,
+                            38, 2, 4, 1, TV3_4_10,
+                            39, 2, 3, 1, TV3_4_10,
 
                             // the top pentagon of the pentagonal cupola
                             31, 2, 5, 1, U27_4_5
@@ -2641,87 +2667,87 @@ public class Johnson {
                             10, 1,
 
                             // a ring of four decagons and four triangles around the base decagon
-                            0, 0, 10, 1, R5_5_5,
-                            0, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            0, 2, 10, 1, R5_5_5,
-                            0, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            0, 4, 10, 1, R5_5_5,
-                            0, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            0, 6, 10, 1, R5_5_5,
-                            0, 7, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            0, 0, 10, 1, TV5_5_5,
+                            0, 1, 3, 1, TV3_10_10,
+                            0, 2, 10, 1, TV5_5_5,
+                            0, 3, 3, 1, TV3_10_10,
+                            0, 4, 10, 1, TV5_5_5,
+                            0, 5, 3, 1, TV3_10_10,
+                            0, 6, 10, 1, TV5_5_5,
+                            0, 7, 3, 1, TV3_10_10,
 
                             // the first triangle of a pentagonal cupola where the fifth decagon would be
-                            0, 8, 3, 1, R5_5_5 + GeometryUtils.trivalentVertexAngle(3,10,4),
+                            0, 8, 3, 1, TV5_5_5 + TV3_10_4,
 
                             // the remaining squares and triangles around the pentagonal cupola
-                            9, 1, 4, 1, U27_3_4,
-                            10, 2, 3, 1, U27_3_4,
-                            11, 2, 4, 1, U27_3_4,
-                            12, 2, 3, 1, U27_3_4,
-                            13, 2, 4, 1, U27_3_4,
-                            14, 2, 3, 1, U27_3_4,
-                            15, 2, 4, 1, U27_3_4,
-                            16, 2, 3, 1, U27_3_4,
-                            17, 2, 4, 1, U27_3_4,
+                            9, 1, 4, 1, TV3_4_10,
+                            10, 2, 3, 1, TV3_4_10,
+                            11, 2, 4, 1, TV3_4_10,
+                            12, 2, 3, 1, TV3_4_10,
+                            13, 2, 4, 1, TV3_4_10,
+                            14, 2, 3, 1, TV3_4_10,
+                            15, 2, 4, 1, TV3_4_10,
+                            16, 2, 3, 1, TV3_4_10,
+                            17, 2, 4, 1, TV3_4_10,
 
                             // the top pentagon of the pentagonal cupola
                             10, 3, 5, 1, U27_4_5,
 
                             // the final triangle in the ring around the base decagon
-                            0, 9, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            0, 9, 3, 1, TV3_10_10,
 
                             // a further triangle, decagon and triangle around the first decagon in the ring of decagons
-                            1, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            1, 4, 10, 1, R5_5_5,
-                            1, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            1, 3, 3, 1, TV3_10_10,
+                            1, 4, 10, 1, TV5_5_5,
+                            1, 5, 3, 1, TV3_10_10,
 
                             // a further triangle, decagon and triangle around the second decagon in the ring of decagons
-                            3, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            3, 4, 10, 1, R5_5_5,
-                            3, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            3, 3, 3, 1, TV3_10_10,
+                            3, 4, 10, 1, TV5_5_5,
+                            3, 5, 3, 1, TV3_10_10,
 
                             // two triangles around the third decagon in the ring of decagons
-                            5, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            5, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            5, 3, 3, 1, TV3_10_10,
+                            5, 5, 3, 1, TV3_10_10,
 
                             // the first triangle of a pentagonal cupola where the third decagon in the outer ring would be
-                            5, 4, 3, 1, R5_5_5 + GeometryUtils.trivalentVertexAngle(3,10,4),
+                            5, 4, 3, 1, TV5_5_5 + TV3_10_4,
 
                             // the remaining squares and triangles around the pentagonal cupola
-                            29, 1, 4, 1, U27_3_4,
-                            30, 2, 3, 1, U27_3_4,
-                            31, 2, 4, 1, U27_3_4,
-                            32, 2, 3, 1, U27_3_4,
-                            33, 2, 4, 1, U27_3_4,
-                            34, 2, 3, 1, U27_3_4,
-                            35, 2, 4, 1, U27_3_4,
-                            36, 2, 3, 1, U27_3_4,
-                            37, 2, 4, 1, U27_3_4,
+                            29, 1, 4, 1, TV3_4_10,
+                            30, 2, 3, 1, TV3_4_10,
+                            31, 2, 4, 1, TV3_4_10,
+                            32, 2, 3, 1, TV3_4_10,
+                            33, 2, 4, 1, TV3_4_10,
+                            34, 2, 3, 1, TV3_4_10,
+                            35, 2, 4, 1, TV3_4_10,
+                            36, 2, 3, 1, TV3_4_10,
+                            37, 2, 4, 1, TV3_4_10,
 
                             // the top pentagon of the pentagonal cupola
                             30, 3, 5, 1, U27_4_5,
 
                             // a further triangle, decagon and triangle around the fourth decagon in the ring of decagons
-                            7, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            7, 4, 10, 1, R5_5_5,
-                            7, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            7, 3, 3, 1, TV3_10_10,
+                            7, 4, 10, 1, TV5_5_5,
+                            7, 5, 3, 1, TV3_10_10,
 
                             // a further decagon and triangle around the fifth decagon (which is replaced by a pentagonal cupola) in the ring of decagons
-                            7, 6, 10, 1, R5_5_5,
-                            7, 7, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            7, 6, 10, 1, TV5_5_5,
+                            7, 7, 3, 1, TV3_10_10,
 
                             // a further triangle around the fifth decagon (which is replaced by a pentagonal cupola) in the ring of decagons
-                            22, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            22, 3, 3, 1, TV3_10_10,
 
                             // the top decagon
-                            22, 6, 10, 1, R5_5_5,
+                            22, 6, 10, 1, TV5_5_5,
 
                             // the top five triangles
-                            46, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            46, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            46, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            46, 7, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            46, 9, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10)
+                            46, 1, 3, 1, TV3_10_10,
+                            46, 3, 3, 1, TV3_10_10,
+                            46, 5, 3, 1, TV3_10_10,
+                            46, 7, 3, 1, TV3_10_10,
+                            46, 9, 3, 1, TV3_10_10
                     },
 
             new double[] // J70 - metabiaugmented truncated dodecahedron
@@ -2732,85 +2758,85 @@ public class Johnson {
                             10, 1,
 
                             // a ring of four decagons and four triangles around the base decagon
-                            0, 0, 10, 1, R5_5_5,
-                            0, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            0, 2, 10, 1, R5_5_5,
-                            0, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            0, 4, 10, 1, R5_5_5,
-                            0, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            0, 6, 10, 1, R5_5_5,
-                            0, 7, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            0, 0, 10, 1, TV5_5_5,
+                            0, 1, 3, 1, TV3_10_10,
+                            0, 2, 10, 1, TV5_5_5,
+                            0, 3, 3, 1, TV3_10_10,
+                            0, 4, 10, 1, TV5_5_5,
+                            0, 5, 3, 1, TV3_10_10,
+                            0, 6, 10, 1, TV5_5_5,
+                            0, 7, 3, 1, TV3_10_10,
 
                             // the first triangle of a pentagonal cupola where the fifth decagon would be
-                            0, 8, 3, 1, R5_5_5 + GeometryUtils.trivalentVertexAngle(3,10,4),
+                            0, 8, 3, 1, TV5_5_5 + TV3_10_4,
 
                             // the remaining squares and triangles around the pentagonal cupola
-                            9, 1, 4, 1, U27_3_4,
-                            10, 2, 3, 1, U27_3_4,
-                            11, 2, 4, 1, U27_3_4,
-                            12, 2, 3, 1, U27_3_4,
-                            13, 2, 4, 1, U27_3_4,
-                            14, 2, 3, 1, U27_3_4,
-                            15, 2, 4, 1, U27_3_4,
-                            16, 2, 3, 1, U27_3_4,
-                            17, 2, 4, 1, U27_3_4,
+                            9, 1, 4, 1, TV3_4_10,
+                            10, 2, 3, 1, TV3_4_10,
+                            11, 2, 4, 1, TV3_4_10,
+                            12, 2, 3, 1, TV3_4_10,
+                            13, 2, 4, 1, TV3_4_10,
+                            14, 2, 3, 1, TV3_4_10,
+                            15, 2, 4, 1, TV3_4_10,
+                            16, 2, 3, 1, TV3_4_10,
+                            17, 2, 4, 1, TV3_4_10,
 
                             // the top pentagon of the pentagonal cupola
                             10, 3, 5, 1, U27_4_5,
 
                             // the final triangle in the ring around the base decagon
-                            0, 9, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            0, 9, 3, 1, TV3_10_10,
 
                             // a further triangle, decagon and triangle around the first decagon in the ring of decagons
-                            1, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            1, 4, 10, 1, R5_5_5,
-                            1, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            1, 3, 3, 1, TV3_10_10,
+                            1, 4, 10, 1, TV5_5_5,
+                            1, 5, 3, 1, TV3_10_10,
 
                             // a further triangle, decagon and triangle around the second decagon in the ring of decagons
-                            3, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            3, 4, 10, 1, R5_5_5,
-                            3, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            3, 3, 3, 1, TV3_10_10,
+                            3, 4, 10, 1, TV5_5_5,
+                            3, 5, 3, 1, TV3_10_10,
 
                             // a further triangle, decagon and triangle around the third decagon in the ring of decagons
-                            5, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            5, 4, 10, 1, R5_5_5,
-                            5, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            5, 3, 3, 1, TV3_10_10,
+                            5, 4, 10, 1, TV5_5_5,
+                            5, 5, 3, 1, TV3_10_10,
 
                             // a further triangle, decagon and triangle around the fourth decagon in the ring of decagons
-                            7, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            7, 4, 10, 1, R5_5_5,
-                            7, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            7, 3, 3, 1, TV3_10_10,
+                            7, 4, 10, 1, TV5_5_5,
+                            7, 5, 3, 1, TV3_10_10,
 
                             // a further decagon and triangle around the fifth decagon (which is replaced by a pentagonal cupola) in the ring of decagons
-                            7, 6, 10, 1, R5_5_5,
-                            7, 7, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            7, 6, 10, 1, TV5_5_5,
+                            7, 7, 3, 1, TV3_10_10,
 
                             // a further triangle around the fifth decagon (which is replaced by a pentagonal cupola) in the ring of decagons
-                            22, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            22, 3, 3, 1, TV3_10_10,
 
                             // the first triangle of a pentagonal cupola where the top decagon would be
-                            22, 6, 3, 1, R5_5_5 + GeometryUtils.trivalentVertexAngle(3,10,4),
+                            22, 6, 3, 1, TV5_5_5 + TV3_10_4,
 
                             // the remaining squares and triangles around the pentagonal cupola
-                            36, 1, 4, 1, U27_3_4,
-                            37, 2, 3, 1, U27_3_4,
-                            38, 2, 4, 1, U27_3_4,
-                            39, 2, 3, 1, U27_3_4,
-                            40, 2, 4, 1, U27_3_4,
-                            41, 2, 3, 1, U27_3_4,
-                            42, 2, 4, 1, U27_3_4,
-                            43, 2, 3, 1, U27_3_4,
-                            44, 2, 4, 1, U27_3_4,
+                            36, 1, 4, 1, TV3_4_10,
+                            37, 2, 3, 1, TV3_4_10,
+                            38, 2, 4, 1, TV3_4_10,
+                            39, 2, 3, 1, TV3_4_10,
+                            40, 2, 4, 1, TV3_4_10,
+                            41, 2, 3, 1, TV3_4_10,
+                            42, 2, 4, 1, TV3_4_10,
+                            43, 2, 3, 1, TV3_4_10,
+                            44, 2, 4, 1, TV3_4_10,
 
                             // the top pentagon of the pentagonal cupola
                             37, 3, 5, 1, U27_4_5,
 
                             // the top five triangles
-                            22, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            25, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            28, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            31, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            33, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10)
+                            22, 5, 3, 1, TV3_10_10,
+                            25, 5, 3, 1, TV3_10_10,
+                            28, 5, 3, 1, TV3_10_10,
+                            31, 5, 3, 1, TV3_10_10,
+                            33, 3, 3, 1, TV3_10_10
                     },
 
             new double[] // J71 - triaugmented truncated dodecahedron
@@ -2821,103 +2847,103 @@ public class Johnson {
                             10, 1,
 
                             // a ring of four decagons and four triangles around the base decagon
-                            0, 0, 10, 1, R5_5_5,
-                            0, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            0, 2, 10, 1, R5_5_5,
-                            0, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            0, 4, 10, 1, R5_5_5,
-                            0, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            0, 6, 10, 1, R5_5_5,
-                            0, 7, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            0, 0, 10, 1, TV5_5_5,
+                            0, 1, 3, 1, TV3_10_10,
+                            0, 2, 10, 1, TV5_5_5,
+                            0, 3, 3, 1, TV3_10_10,
+                            0, 4, 10, 1, TV5_5_5,
+                            0, 5, 3, 1, TV3_10_10,
+                            0, 6, 10, 1, TV5_5_5,
+                            0, 7, 3, 1, TV3_10_10,
 
                             // the first triangle of a pentagonal cupola where the fifth decagon would be
-                            0, 8, 3, 1, R5_5_5 + GeometryUtils.trivalentVertexAngle(3,10,4),
+                            0, 8, 3, 1, TV5_5_5 + TV3_10_4,
 
                             // the remaining squares and triangles around the pentagonal cupola
-                            9, 1, 4, 1, U27_3_4,
-                            10, 2, 3, 1, U27_3_4,
-                            11, 2, 4, 1, U27_3_4,
-                            12, 2, 3, 1, U27_3_4,
-                            13, 2, 4, 1, U27_3_4,
-                            14, 2, 3, 1, U27_3_4,
-                            15, 2, 4, 1, U27_3_4,
-                            16, 2, 3, 1, U27_3_4,
-                            17, 2, 4, 1, U27_3_4,
+                            9, 1, 4, 1, TV3_4_10,
+                            10, 2, 3, 1, TV3_4_10,
+                            11, 2, 4, 1, TV3_4_10,
+                            12, 2, 3, 1, TV3_4_10,
+                            13, 2, 4, 1, TV3_4_10,
+                            14, 2, 3, 1, TV3_4_10,
+                            15, 2, 4, 1, TV3_4_10,
+                            16, 2, 3, 1, TV3_4_10,
+                            17, 2, 4, 1, TV3_4_10,
 
                             // the top pentagon of the pentagonal cupola
                             10, 3, 5, 1, U27_4_5,
 
                             // the final triangle in the ring around the base decagon
-                            0, 9, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            0, 9, 3, 1, TV3_10_10,
 
                             // a further triangle, decagon and triangle around the first decagon in the ring of decagons
-                            1, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            1, 4, 10, 1, R5_5_5,
-                            1, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            1, 3, 3, 1, TV3_10_10,
+                            1, 4, 10, 1, TV5_5_5,
+                            1, 5, 3, 1, TV3_10_10,
 
                             // two further triangles around the second decagon in the ring of decagons
-                            3, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            3, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            3, 3, 3, 1, TV3_10_10,
+                            3, 5, 3, 1, TV3_10_10,
 
                             // the first triangle of a pentagonal cupola where the second decagon in the outer ring would be
-                            3, 4, 3, 1, R5_5_5 + GeometryUtils.trivalentVertexAngle(3,10,4),
+                            3, 4, 3, 1, TV5_5_5 + TV3_10_4,
 
                             // the remaining squares and triangles around the pentagonal cupola
-                            26, 1, 4, 1, U27_3_4,
-                            27, 2, 3, 1, U27_3_4,
-                            28, 2, 4, 1, U27_3_4,
-                            29, 2, 3, 1, U27_3_4,
-                            30, 2, 4, 1, U27_3_4,
-                            31, 2, 3, 1, U27_3_4,
-                            32, 2, 4, 1, U27_3_4,
-                            33, 2, 3, 1, U27_3_4,
-                            34, 2, 4, 1, U27_3_4,
+                            26, 1, 4, 1, TV3_4_10,
+                            27, 2, 3, 1, TV3_4_10,
+                            28, 2, 4, 1, TV3_4_10,
+                            29, 2, 3, 1, TV3_4_10,
+                            30, 2, 4, 1, TV3_4_10,
+                            31, 2, 3, 1, TV3_4_10,
+                            32, 2, 4, 1, TV3_4_10,
+                            33, 2, 3, 1, TV3_4_10,
+                            34, 2, 4, 1, TV3_4_10,
 
                             // the top pentagon of the pentagonal cupola
                             27, 3, 5, 1, U27_4_5,
 
                             // a further triangle, decagon and triangle around the third decagon in the ring of decagons
-                            5, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            5, 4, 10, 1, R5_5_5,
-                            5, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            5, 3, 3, 1, TV3_10_10,
+                            5, 4, 10, 1, TV5_5_5,
+                            5, 5, 3, 1, TV3_10_10,
 
                             // two further triangles around the fourth decagon in the ring of decagons
-                            7, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            7, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            7, 3, 3, 1, TV3_10_10,
+                            7, 5, 3, 1, TV3_10_10,
 
                             // the first triangle of a pentagonal cupola where the fourth decagon in the outer ring would be
-                            7, 4, 3, 1, R5_5_5 + GeometryUtils.trivalentVertexAngle(3,10,4),
+                            7, 4, 3, 1, TV5_5_5 + TV3_10_4,
 
                             // the remaining squares and triangles around the pentagonal cupola
-                            42, 1, 4, 1, U27_3_4,
-                            43, 2, 3, 1, U27_3_4,
-                            44, 2, 4, 1, U27_3_4,
-                            45, 2, 3, 1, U27_3_4,
-                            46, 2, 4, 1, U27_3_4,
-                            47, 2, 3, 1, U27_3_4,
-                            48, 2, 4, 1, U27_3_4,
-                            49, 2, 3, 1, U27_3_4,
-                            50, 2, 4, 1, U27_3_4,
+                            42, 1, 4, 1, TV3_4_10,
+                            43, 2, 3, 1, TV3_4_10,
+                            44, 2, 4, 1, TV3_4_10,
+                            45, 2, 3, 1, TV3_4_10,
+                            46, 2, 4, 1, TV3_4_10,
+                            47, 2, 3, 1, TV3_4_10,
+                            48, 2, 4, 1, TV3_4_10,
+                            49, 2, 3, 1, TV3_4_10,
+                            50, 2, 4, 1, TV3_4_10,
 
                             // the top pentagon of the pentagonal cupola
                             43, 3, 5, 1, U27_4_5,
 
                             // a further decagon and triangle around the fifth decagon (which is replaced by a pentagonal cupola) in the ring of decagons
-                            7, 6, 10, 1, R5_5_5,
-                            7, 7, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            7, 6, 10, 1, TV5_5_5,
+                            7, 7, 3, 1, TV3_10_10,
 
                             // a further triangle around the fifth decagon (which is replaced by a pentagonal cupola) in the ring of decagons
-                            22, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
+                            22, 3, 3, 1, TV3_10_10,
 
                             // the top decagon
-                            22, 6, 10, 1, R5_5_5,
+                            22, 6, 10, 1, TV5_5_5,
 
                             // the top five triangles
-                            56, 1, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            56, 3, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            56, 5, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            56, 7, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10),
-                            56, 9, 3, 1, GeometryUtils.trivalentVertexAngle(3,10,10)
+                            56, 1, 3, 1, TV3_10_10,
+                            56, 3, 3, 1, TV3_10_10,
+                            56, 5, 3, 1, TV3_10_10,
+                            56, 7, 3, 1, TV3_10_10,
+                            56, 9, 3, 1, TV3_10_10
                     },
 
             new double[] // J72 - gyrate rhombicosidodecahedron
@@ -2931,75 +2957,75 @@ public class Johnson {
                             0, 2, 4, 1, U27_4_5,
                             0, 3, 4, 1, U27_4_5,
                             0, 4, 4, 1, U27_4_5,
-                            1, 1, 3, 1, U27_3_4,
-                            2, 1, 3, 1, U27_3_4,
-                            3, 1, 3, 1, U27_3_4,
-                            4, 1, 3, 1, U27_3_4,
-                            5, 1, 3, 1, U27_3_4,
+                            1, 1, 3, 1, TV3_4_10,
+                            2, 1, 3, 1, TV3_4_10,
+                            3, 1, 3, 1, TV3_4_10,
+                            4, 1, 3, 1, TV3_4_10,
+                            5, 1, 3, 1, TV3_4_10,
 
                             // each adjacent pentagon and rings around them
                             1, 2, 5, 1, U27_4_5,
-                            6, 2, 4, 1, U27_3_4,
-                            12, 2, 3, 1, U27_3_4,
-                            13, 2, 4, 1, U27_3_4,
-                            14, 2, 3, 1, U27_3_4,
-                            15, 2, 4, 1, U27_3_4,
+                            6, 2, 4, 1, TV3_4_10,
+                            12, 2, 3, 1, TV3_4_10,
+                            13, 2, 4, 1, TV3_4_10,
+                            14, 2, 3, 1, TV3_4_10,
+                            15, 2, 4, 1, TV3_4_10,
 
                             2, 2, 5, 1, U27_4_5,
-                            7, 2, 4, 1, U27_3_4,
-                            18, 2, 3, 1, U27_3_4,
-                            19, 2, 4, 1, U27_3_4,
-                            20, 2, 3, 1, U27_3_4,
-                            21, 2, 4, 1, U27_3_4,
+                            7, 2, 4, 1, TV3_4_10,
+                            18, 2, 3, 1, TV3_4_10,
+                            19, 2, 4, 1, TV3_4_10,
+                            20, 2, 3, 1, TV3_4_10,
+                            21, 2, 4, 1, TV3_4_10,
 
                             4, 2, 5, 1, U27_4_5,
-                            9, 2, 4, 1, U27_3_4,
-                            24, 2, 3, 1, U27_3_4,
-                            25, 2, 4, 1, U27_3_4,
-                            26, 2, 3, 1, U27_3_4,
-                            27, 2, 4, 1, U27_3_4,
+                            9, 2, 4, 1, TV3_4_10,
+                            24, 2, 3, 1, TV3_4_10,
+                            25, 2, 4, 1, TV3_4_10,
+                            26, 2, 3, 1, TV3_4_10,
+                            27, 2, 4, 1, TV3_4_10,
 
                             3, 2, 5, 1, U27_4_5,
-                            8, 2, 4, 1, U27_3_4,
-                            30, 2, 3, 1, U27_3_4,
-                            31, 2, 4, 1, U27_3_4,
-                            32, 2, 3, 1, U27_3_4,
-                            33, 2, 4, 1, U27_3_4,
+                            8, 2, 4, 1, TV3_4_10,
+                            30, 2, 3, 1, TV3_4_10,
+                            31, 2, 4, 1, TV3_4_10,
+                            32, 2, 3, 1, TV3_4_10,
+                            33, 2, 4, 1, TV3_4_10,
 
                             5, 2, 5, 1, U27_4_5,
-                            10, 2, 4, 1, U27_3_4,
-                            36, 2, 3, 1, U27_3_4,
-                            37, 2, 4, 1, U27_3_4,
-                            38, 2, 3, 1, U27_3_4,
-                            39, 2, 4, 1, U27_3_4,
+                            10, 2, 4, 1, TV3_4_10,
+                            36, 2, 3, 1, TV3_4_10,
+                            37, 2, 4, 1, TV3_4_10,
+                            38, 2, 3, 1, TV3_4_10,
+                            39, 2, 4, 1, TV3_4_10,
 
                             // next surrounding ring of pentagons and squares between them
                             16, 1, 5, 1, U27_4_5,
-                            15, 1, 4, 1, U27_3_4,
+                            15, 1, 4, 1, TV3_4_10,
 
                             22, 1, 5, 1, U27_4_5,
-                            21, 1, 4, 1, U27_3_4,
+                            21, 1, 4, 1, TV3_4_10,
 
                             28, 1, 5, 1, U27_4_5,
-                            27, 1, 4, 1, U27_3_4,
+                            27, 1, 4, 1, TV3_4_10,
 
                             34, 1, 5, 1, U27_4_5,
-                            33, 1, 4, 1, U27_3_4,
+                            33, 1, 4, 1, TV3_4_10,
 
                             40, 1, 5, 1, U27_4_5,
-                            39, 1, 4, 1, U27_3_4,
+                            39, 1, 4, 1, TV3_4_10,
 
                             // the gyrated pentagonal cupola
-                            41, 2, 3, 1, U27_4_5 + GeometryUtils.trivalentVertexAngle(3,10,4) - GeometryUtils.trivalentVertexAngle(4,10,3),
-                            51, 1, 4, 1, U27_3_4,
-                            52, 2, 3, 1, U27_3_4,
-                            53, 2, 4, 1, U27_3_4,
-                            54, 2, 3, 1, U27_3_4,
-                            55, 2, 4, 1, U27_3_4,
-                            56, 2, 3, 1, U27_3_4,
-                            57, 2, 4, 1, U27_3_4,
-                            58, 2, 3, 1, U27_3_4,
-                            59, 2, 4, 1, U27_3_4,
+                            41, 2, 3, 1, U27_4_5 + TV3_10_4 - TV4_10_3,
+                            51, 1, 4, 1, TV3_4_10,
+                            52, 2, 3, 1, TV3_4_10,
+                            53, 2, 4, 1, TV3_4_10,
+                            54, 2, 3, 1, TV3_4_10,
+                            55, 2, 4, 1, TV3_4_10,
+                            56, 2, 3, 1, TV3_4_10,
+                            57, 2, 4, 1, TV3_4_10,
+                            58, 2, 3, 1, TV3_4_10,
+                            59, 2, 4, 1, TV3_4_10,
                             60, 3, 5, 1, U27_4_5
                     },
 
@@ -3014,10 +3040,10 @@ public class Johnson {
 
                             // a 'strip' of square-triangle-square-triangle-square between the two gyrated caps
                             0, 3, 4, 1, U27_4_5,
-                            3, 1, 3, 1, U27_3_4,
-                            4, 1, 4, 1, U27_3_4,
-                            5, 2, 3, 1, U27_3_4,
-                            6, 2, 4, 1, U27_3_4,
+                            3, 1, 3, 1, TV3_4_10,
+                            4, 1, 4, 1, TV3_4_10,
+                            5, 2, 3, 1, TV3_4_10,
+                            6, 2, 4, 1, TV3_4_10,
 
                             // eight further strips
                             3, 2, 5, 1, U27_4_5,
@@ -3025,65 +3051,65 @@ public class Johnson {
                             9, 2, 5, 1, U27_4_5,
 
                             8, 3, 4, 1, U27_4_5,
-                            11, 1, 3, 1, U27_3_4,
-                            12, 1, 4, 1, U27_3_4,
-                            13, 2, 3, 1, U27_3_4,
-                            14, 2, 4, 1, U27_3_4,
+                            11, 1, 3, 1, TV3_4_10,
+                            12, 1, 4, 1, TV3_4_10,
+                            13, 2, 3, 1, TV3_4_10,
+                            14, 2, 4, 1, TV3_4_10,
 
                             11, 2, 5, 1, U27_4_5,
                             16, 1, 4, 1, U27_4_5,
                             17, 2, 5, 1, U27_4_5,
 
                             16, 3, 4, 1, U27_4_5,
-                            19, 1, 3, 1, U27_3_4,
-                            20, 1, 4, 1, U27_3_4,
-                            21, 2, 3, 1, U27_3_4,
-                            22, 2, 4, 1, U27_3_4,
+                            19, 1, 3, 1, TV3_4_10,
+                            20, 1, 4, 1, TV3_4_10,
+                            21, 2, 3, 1, TV3_4_10,
+                            22, 2, 4, 1, TV3_4_10,
 
                             19, 2, 5, 1, U27_4_5,
                             24, 1, 4, 1, U27_4_5,
                             25, 2, 5, 1, U27_4_5,
 
                             24, 3, 4, 1, U27_4_5,
-                            27, 1, 3, 1, U27_3_4,
-                            28, 1, 4, 1, U27_3_4,
-                            29, 2, 3, 1, U27_3_4,
-                            30, 2, 4, 1, U27_3_4,
+                            27, 1, 3, 1, TV3_4_10,
+                            28, 1, 4, 1, TV3_4_10,
+                            29, 2, 3, 1, TV3_4_10,
+                            30, 2, 4, 1, TV3_4_10,
 
                             27, 2, 5, 1, U27_4_5,
                             32, 1, 4, 1, U27_4_5,
                             33, 2, 5, 1, U27_4_5,
 
                             32, 3, 4, 1, U27_4_5,
-                            35, 1, 3, 1, U27_3_4,
-                            36, 1, 4, 1, U27_3_4,
-                            37, 2, 3, 1, U27_3_4,
-                            38, 2, 4, 1, U27_3_4,
+                            35, 1, 3, 1, TV3_4_10,
+                            36, 1, 4, 1, TV3_4_10,
+                            37, 2, 3, 1, TV3_4_10,
+                            38, 2, 4, 1, TV3_4_10,
 
                             // one gyrated pentagonal cupola
-                            0, 4, 3, 1, U27_4_5 + GeometryUtils.trivalentVertexAngle(3,10,4) - GeometryUtils.trivalentVertexAngle(4,10,3),
-                            40, 1, 4, 1, U27_3_4,
-                            41, 2, 3, 1, U27_3_4,
-                            42, 2, 4, 1, U27_3_4,
-                            43, 2, 3, 1, U27_3_4,
-                            44, 2, 4, 1, U27_3_4,
-                            45, 2, 3, 1, U27_3_4,
-                            46, 2, 4, 1, U27_3_4,
-                            47, 2, 3, 1, U27_3_4,
-                            48, 2, 4, 1, U27_3_4,
+                            0, 4, 3, 1, U27_4_5 + TV3_10_4 - TV4_10_3,
+                            40, 1, 4, 1, TV3_4_10,
+                            41, 2, 3, 1, TV3_4_10,
+                            42, 2, 4, 1, TV3_4_10,
+                            43, 2, 3, 1, TV3_4_10,
+                            44, 2, 4, 1, TV3_4_10,
+                            45, 2, 3, 1, TV3_4_10,
+                            46, 2, 4, 1, TV3_4_10,
+                            47, 2, 3, 1, TV3_4_10,
+                            48, 2, 4, 1, TV3_4_10,
                             49, 3, 5, 1, U27_4_5,
 
                             // the other gyrated pentagonal cupola
-                            2, 3, 3, 1, U27_4_5 + GeometryUtils.trivalentVertexAngle(3,10,4) - GeometryUtils.trivalentVertexAngle(4,10,3),
-                            51, 1, 4, 1, U27_3_4,
-                            52, 2, 3, 1, U27_3_4,
-                            53, 2, 4, 1, U27_3_4,
-                            54, 2, 3, 1, U27_3_4,
-                            55, 2, 4, 1, U27_3_4,
-                            56, 2, 3, 1, U27_3_4,
-                            57, 2, 4, 1, U27_3_4,
-                            58, 2, 3, 1, U27_3_4,
-                            59, 2, 4, 1, U27_3_4,
+                            2, 3, 3, 1, U27_4_5 + TV3_10_4 - TV4_10_3,
+                            51, 1, 4, 1, TV3_4_10,
+                            52, 2, 3, 1, TV3_4_10,
+                            53, 2, 4, 1, TV3_4_10,
+                            54, 2, 3, 1, TV3_4_10,
+                            55, 2, 4, 1, TV3_4_10,
+                            56, 2, 3, 1, TV3_4_10,
+                            57, 2, 4, 1, TV3_4_10,
+                            58, 2, 3, 1, TV3_4_10,
+                            59, 2, 4, 1, TV3_4_10,
                             60, 3, 5, 1, U27_4_5
                     },
 
@@ -3098,8 +3124,8 @@ public class Johnson {
 
                             // square-triangle-square strip from cap to cap
                             2, 3, 4, 1, U27_4_5,
-                            3, 1, 3, 1, U27_3_4,
-                            4, 1, 4, 1, U27_3_4,
+                            3, 1, 3, 1, TV3_4_10,
+                            4, 1, 4, 1, TV3_4_10,
 
                             // pentagon-square-pentagon strip from cap to cap
                             3, 2, 5, 1, U27_4_5,
@@ -3108,12 +3134,12 @@ public class Johnson {
 
                             // square-triangle-square-triangle-square-triangle-square strip from cap to cap
                             6, 3, 4, 1, U27_4_5,
-                            9, 1, 3, 1, U27_3_4,
-                            10, 1, 4, 1, U27_3_4,
-                            11, 2, 3, 1, U27_3_4,
-                            12, 2, 4, 1, U27_3_4,
-                            13, 2, 3, 1, U27_3_4,
-                            14, 1, 4, 1, U27_3_4,
+                            9, 1, 3, 1, TV3_4_10,
+                            10, 1, 4, 1, TV3_4_10,
+                            11, 2, 3, 1, TV3_4_10,
+                            12, 2, 4, 1, TV3_4_10,
+                            13, 2, 3, 1, TV3_4_10,
+                            14, 1, 4, 1, TV3_4_10,
 
                             // pentagon-square-pentagon-square-pentagon strip from cap to cap
                             9, 2, 5, 1, U27_4_5,
@@ -3124,22 +3150,22 @@ public class Johnson {
 
                             // square-triangle-square-triangle-square between the end pentagons of the previous strip
                             16, 2, 4, 1, U27_4_5,
-                            21, 1, 3, 1, U27_3_4,
-                            22, 2, 4, 1, U27_3_4,
-                            23, 2, 3, 1, U27_3_4,
-                            24, 2, 4, 1, U27_3_4,
+                            21, 1, 3, 1, TV3_4_10,
+                            22, 2, 4, 1, TV3_4_10,
+                            23, 2, 3, 1, TV3_4_10,
+                            24, 2, 4, 1, TV3_4_10,
 
                             // pentagon between the end squares of the previous strip
                             21, 2, 5, 1, U27_4_5,
 
                             // square-triangle-square-triangle-square-triangle-square strip from cap to cap
                             16, 3, 4, 1, U27_4_5,
-                            27, 1, 3, 1, U27_3_4,
-                            28, 2, 4, 1, U27_3_4,
-                            29, 2, 3, 1, U27_3_4,
-                            30, 1, 4, 1, U27_3_4,
-                            31, 2, 3, 1, U27_3_4,
-                            32, 2, 4, 1, U27_3_4,
+                            27, 1, 3, 1, TV3_4_10,
+                            28, 2, 4, 1, TV3_4_10,
+                            29, 2, 3, 1, TV3_4_10,
+                            30, 1, 4, 1, TV3_4_10,
+                            31, 2, 3, 1, TV3_4_10,
+                            32, 2, 4, 1, TV3_4_10,
 
                             // pentagon-square-pentagon strip from cap to cap
                             27, 2, 5, 1, U27_4_5,
@@ -3148,33 +3174,33 @@ public class Johnson {
 
                             // square-triangle-square strip from cap to cap
                             34, 3, 4, 1, U27_4_5,
-                            37, 1, 3, 1, U27_3_4,
-                            38, 2, 4, 1, U27_3_4,
+                            37, 1, 3, 1, TV3_4_10,
+                            38, 2, 4, 1, TV3_4_10,
 
                             // one gyrated pentagonal cupola
-                            0, 1, 3, 1, U27_4_5 + GeometryUtils.trivalentVertexAngle(3,10,4) - GeometryUtils.trivalentVertexAngle(4,10,3),
-                            40, 1, 4, 1, U27_3_4,
-                            41, 2, 3, 1, U27_3_4,
-                            42, 2, 4, 1, U27_3_4,
-                            43, 2, 3, 1, U27_3_4,
-                            44, 2, 4, 1, U27_3_4,
-                            45, 2, 3, 1, U27_3_4,
-                            46, 2, 4, 1, U27_3_4,
-                            47, 2, 3, 1, U27_3_4,
-                            48, 2, 4, 1, U27_3_4,
+                            0, 1, 3, 1, U27_4_5 + TV3_10_4 - TV4_10_3,
+                            40, 1, 4, 1, TV3_4_10,
+                            41, 2, 3, 1, TV3_4_10,
+                            42, 2, 4, 1, TV3_4_10,
+                            43, 2, 3, 1, TV3_4_10,
+                            44, 2, 4, 1, TV3_4_10,
+                            45, 2, 3, 1, TV3_4_10,
+                            46, 2, 4, 1, TV3_4_10,
+                            47, 2, 3, 1, TV3_4_10,
+                            48, 2, 4, 1, TV3_4_10,
                             49, 3, 5, 1, U27_4_5,
 
                             // the other gyrated pentagonal cupola
-                            0, 4, 3, 1, U27_4_5 + GeometryUtils.trivalentVertexAngle(3,10,4) - GeometryUtils.trivalentVertexAngle(4,10,3),
-                            51, 1, 4, 1, U27_3_4,
-                            52, 2, 3, 1, U27_3_4,
-                            53, 2, 4, 1, U27_3_4,
-                            54, 2, 3, 1, U27_3_4,
-                            55, 2, 4, 1, U27_3_4,
-                            56, 2, 3, 1, U27_3_4,
-                            57, 2, 4, 1, U27_3_4,
-                            58, 2, 3, 1, U27_3_4,
-                            59, 2, 4, 1, U27_3_4,
+                            0, 4, 3, 1, U27_4_5 + TV3_10_4 - TV4_10_3,
+                            51, 1, 4, 1, TV3_4_10,
+                            52, 2, 3, 1, TV3_4_10,
+                            53, 2, 4, 1, TV3_4_10,
+                            54, 2, 3, 1, TV3_4_10,
+                            55, 2, 4, 1, TV3_4_10,
+                            56, 2, 3, 1, TV3_4_10,
+                            57, 2, 4, 1, TV3_4_10,
+                            58, 2, 3, 1, TV3_4_10,
+                            59, 2, 4, 1, TV3_4_10,
                             60, 3, 5, 1, U27_4_5
                     },
 
@@ -3209,55 +3235,55 @@ public class Johnson {
                             18, 3, 4, 1, U27_4_5,
 
                             // triangle and square in small space between three gyrate caps
-                            1, 3, 3, 1, U27_3_4,
-                            20, 1, 4, 1, U27_3_4,
+                            1, 3, 3, 1, TV3_4_10,
+                            20, 1, 4, 1, TV3_4_10,
 
                             // triangles and squares in larger Y-shaped space between three gyrate caps
-                            5, 3, 3, 1, U27_3_4,
-                            22, 1, 4, 1, U27_3_4,
-                            23, 2, 3, 1, U27_3_4,
-                            24, 1, 4, 1, U27_3_4,
-                            25, 2, 3, 1, U27_3_4,
-                            24, 2, 4, 1, U27_3_4,
-                            27, 2, 3, 1, U27_3_4,
+                            5, 3, 3, 1, TV3_4_10,
+                            22, 1, 4, 1, TV3_4_10,
+                            23, 2, 3, 1, TV3_4_10,
+                            24, 1, 4, 1, TV3_4_10,
+                            25, 2, 3, 1, TV3_4_10,
+                            24, 2, 4, 1, TV3_4_10,
+                            27, 2, 3, 1, TV3_4_10,
 
                             // first gyrate cap
-                            0, 1, 3, 1, U27_4_5 + GeometryUtils.trivalentVertexAngle(3,10,4) - GeometryUtils.trivalentVertexAngle(4,10,3),
-                            29, 1, 4, 1, U27_3_4,
-                            30, 2, 3, 1, U27_3_4,
-                            31, 2, 4, 1, U27_3_4,
-                            32, 2, 3, 1, U27_3_4,
-                            33, 2, 4, 1, U27_3_4,
-                            34, 2, 3, 1, U27_3_4,
-                            35, 2, 4, 1, U27_3_4,
-                            36, 2, 3, 1, U27_3_4,
-                            37, 2, 4, 1, U27_3_4,
+                            0, 1, 3, 1, U27_4_5 + TV3_10_4 - TV4_10_3,
+                            29, 1, 4, 1, TV3_4_10,
+                            30, 2, 3, 1, TV3_4_10,
+                            31, 2, 4, 1, TV3_4_10,
+                            32, 2, 3, 1, TV3_4_10,
+                            33, 2, 4, 1, TV3_4_10,
+                            34, 2, 3, 1, TV3_4_10,
+                            35, 2, 4, 1, TV3_4_10,
+                            36, 2, 3, 1, TV3_4_10,
+                            37, 2, 4, 1, TV3_4_10,
                             38, 3, 5, 1, U27_4_5,
 
                             // second gyrate cap
-                            0, 4, 3, 1, U27_4_5 + GeometryUtils.trivalentVertexAngle(3,10,4) - GeometryUtils.trivalentVertexAngle(4,10,3),
-                            40, 1, 4, 1, U27_3_4,
-                            41, 2, 3, 1, U27_3_4,
-                            42, 2, 4, 1, U27_3_4,
-                            43, 2, 3, 1, U27_3_4,
-                            44, 2, 4, 1, U27_3_4,
-                            45, 2, 3, 1, U27_3_4,
-                            46, 2, 4, 1, U27_3_4,
-                            47, 2, 3, 1, U27_3_4,
-                            48, 2, 4, 1, U27_3_4,
+                            0, 4, 3, 1, U27_4_5 + TV3_10_4 - TV4_10_3,
+                            40, 1, 4, 1, TV3_4_10,
+                            41, 2, 3, 1, TV3_4_10,
+                            42, 2, 4, 1, TV3_4_10,
+                            43, 2, 3, 1, TV3_4_10,
+                            44, 2, 4, 1, TV3_4_10,
+                            45, 2, 3, 1, TV3_4_10,
+                            46, 2, 4, 1, TV3_4_10,
+                            47, 2, 3, 1, TV3_4_10,
+                            48, 2, 4, 1, TV3_4_10,
                             49, 3, 5, 1, U27_4_5,
 
                             // third gyrate cap
-                            2, 3, 3, 1, U27_4_5 + GeometryUtils.trivalentVertexAngle(3,10,4) - GeometryUtils.trivalentVertexAngle(4,10,3),
-                            51, 1, 4, 1, U27_3_4,
-                            52, 2, 3, 1, U27_3_4,
-                            53, 2, 4, 1, U27_3_4,
-                            54, 2, 3, 1, U27_3_4,
-                            55, 2, 4, 1, U27_3_4,
-                            56, 2, 3, 1, U27_3_4,
-                            57, 2, 4, 1, U27_3_4,
-                            58, 2, 3, 1, U27_3_4,
-                            59, 2, 4, 1, U27_3_4,
+                            2, 3, 3, 1, U27_4_5 + TV3_10_4 - TV4_10_3,
+                            51, 1, 4, 1, TV3_4_10,
+                            52, 2, 3, 1, TV3_4_10,
+                            53, 2, 4, 1, TV3_4_10,
+                            54, 2, 3, 1, TV3_4_10,
+                            55, 2, 4, 1, TV3_4_10,
+                            56, 2, 3, 1, TV3_4_10,
+                            57, 2, 4, 1, TV3_4_10,
+                            58, 2, 3, 1, TV3_4_10,
+                            59, 2, 4, 1, TV3_4_10,
                             60, 3, 5, 1, U27_4_5
                     },
 
@@ -3272,68 +3298,68 @@ public class Johnson {
                             0, 2, 4, 1, U27_4_5,
                             0, 3, 4, 1, U27_4_5,
                             0, 4, 4, 1, U27_4_5,
-                            1, 1, 3, 1, U27_3_4,
-                            2, 1, 3, 1, U27_3_4,
-                            3, 1, 3, 1, U27_3_4,
-                            4, 1, 3, 1, U27_3_4,
-                            5, 1, 3, 1, U27_3_4,
+                            1, 1, 3, 1, TV3_4_10,
+                            2, 1, 3, 1, TV3_4_10,
+                            3, 1, 3, 1, TV3_4_10,
+                            4, 1, 3, 1, TV3_4_10,
+                            5, 1, 3, 1, TV3_4_10,
 
                             // each adjacent pentagon and rings around them
                             1, 2, 5, 1, U27_4_5,
-                            6, 2, 4, 1, U27_3_4,
-                            12, 2, 3, 1, U27_3_4,
-                            13, 2, 4, 1, U27_3_4,
-                            14, 2, 3, 1, U27_3_4,
-                            15, 2, 4, 1, U27_3_4,
+                            6, 2, 4, 1, TV3_4_10,
+                            12, 2, 3, 1, TV3_4_10,
+                            13, 2, 4, 1, TV3_4_10,
+                            14, 2, 3, 1, TV3_4_10,
+                            15, 2, 4, 1, TV3_4_10,
 
                             2, 2, 5, 1, U27_4_5,
-                            7, 2, 4, 1, U27_3_4,
-                            18, 2, 3, 1, U27_3_4,
-                            19, 2, 4, 1, U27_3_4,
-                            20, 2, 3, 1, U27_3_4,
-                            21, 2, 4, 1, U27_3_4,
+                            7, 2, 4, 1, TV3_4_10,
+                            18, 2, 3, 1, TV3_4_10,
+                            19, 2, 4, 1, TV3_4_10,
+                            20, 2, 3, 1, TV3_4_10,
+                            21, 2, 4, 1, TV3_4_10,
 
                             4, 2, 5, 1, U27_4_5,
-                            9, 2, 4, 1, U27_3_4,
-                            24, 2, 3, 1, U27_3_4,
-                            25, 2, 4, 1, U27_3_4,
-                            26, 2, 3, 1, U27_3_4,
-                            27, 2, 4, 1, U27_3_4,
+                            9, 2, 4, 1, TV3_4_10,
+                            24, 2, 3, 1, TV3_4_10,
+                            25, 2, 4, 1, TV3_4_10,
+                            26, 2, 3, 1, TV3_4_10,
+                            27, 2, 4, 1, TV3_4_10,
 
                             3, 2, 5, 1, U27_4_5,
-                            8, 2, 4, 1, U27_3_4,
-                            30, 2, 3, 1, U27_3_4,
-                            31, 2, 4, 1, U27_3_4,
-                            32, 2, 3, 1, U27_3_4,
-                            33, 2, 4, 1, U27_3_4,
+                            8, 2, 4, 1, TV3_4_10,
+                            30, 2, 3, 1, TV3_4_10,
+                            31, 2, 4, 1, TV3_4_10,
+                            32, 2, 3, 1, TV3_4_10,
+                            33, 2, 4, 1, TV3_4_10,
 
                             5, 2, 5, 1, U27_4_5,
-                            10, 2, 4, 1, U27_3_4,
-                            36, 2, 3, 1, U27_3_4,
-                            37, 2, 4, 1, U27_3_4,
-                            38, 2, 3, 1, U27_3_4,
-                            39, 2, 4, 1, U27_3_4,
+                            10, 2, 4, 1, TV3_4_10,
+                            36, 2, 3, 1, TV3_4_10,
+                            37, 2, 4, 1, TV3_4_10,
+                            38, 2, 3, 1, TV3_4_10,
+                            39, 2, 4, 1, TV3_4_10,
 
                             // next surrounding ring of pentagons and squares between them
                             16, 1, 5, 1, U27_4_5,
-                            15, 1, 4, 1, U27_3_4,
+                            15, 1, 4, 1, TV3_4_10,
 
                             22, 1, 5, 1, U27_4_5,
-                            21, 1, 4, 1, U27_3_4,
+                            21, 1, 4, 1, TV3_4_10,
 
                             28, 1, 5, 1, U27_4_5,
-                            27, 1, 4, 1, U27_3_4,
+                            27, 1, 4, 1, TV3_4_10,
 
                             34, 1, 5, 1, U27_4_5,
-                            33, 1, 4, 1, U27_3_4,
+                            33, 1, 4, 1, TV3_4_10,
 
                             40, 1, 5, 1, U27_4_5,
-                            39, 1, 4, 1, U27_3_4,
+                            39, 1, 4, 1, TV3_4_10,
 
                             // the diminished pentagonal cupola
-                            41, 2, 10, 1, U27_4_5 - GeometryUtils.trivalentVertexAngle(4,10,3)
+                            41, 2, 10, 1, U27_4_5 - TV4_10_3
                     },
-
+/*
             new double[] // J77 - paragyrate diminished rhombicosidodecahedron
                     {
                             52,
@@ -3345,10 +3371,10 @@ public class Johnson {
 
                             // a 'strip' of square-triangle-square-triangle-square between the gyrated cap and the diminished cap
                             0, 3, 4, 1, U27_4_5,
-                            3, 1, 3, 1, U27_3_4,
-                            4, 1, 4, 1, U27_3_4,
-                            5, 2, 3, 1, U27_3_4,
-                            6, 2, 4, 1, U27_3_4,
+                            3, 1, 3, 1, TV3_4_10,
+                            4, 1, 4, 1, TV3_4_10,
+                            5, 2, 3, 1, TV3_4_10,
+                            6, 2, 4, 1, TV3_4_10,
 
                             // eight further strips
                             3, 2, 5, 1, U27_4_5,
@@ -3356,71 +3382,71 @@ public class Johnson {
                             9, 2, 5, 1, U27_4_5,
 
                             8, 3, 4, 1, U27_4_5,
-                            11, 1, 3, 1, U27_3_4,
-                            12, 1, 4, 1, U27_3_4,
-                            13, 2, 3, 1, U27_3_4,
-                            14, 2, 4, 1, U27_3_4,
+                            11, 1, 3, 1, TV3_4_10,
+                            12, 1, 4, 1, TV3_4_10,
+                            13, 2, 3, 1, TV3_4_10,
+                            14, 2, 4, 1, TV3_4_10,
 
                             11, 2, 5, 1, U27_4_5,
                             16, 1, 4, 1, U27_4_5,
                             17, 2, 5, 1, U27_4_5,
 
                             16, 3, 4, 1, U27_4_5,
-                            19, 1, 3, 1, U27_3_4,
-                            20, 1, 4, 1, U27_3_4,
-                            21, 2, 3, 1, U27_3_4,
-                            22, 2, 4, 1, U27_3_4,
+                            19, 1, 3, 1, TV3_4_10,
+                            20, 1, 4, 1, TV3_4_10,
+                            21, 2, 3, 1, TV3_4_10,
+                            22, 2, 4, 1, TV3_4_10,
 
                             19, 2, 5, 1, U27_4_5,
                             24, 1, 4, 1, U27_4_5,
                             25, 2, 5, 1, U27_4_5,
 
                             24, 3, 4, 1, U27_4_5,
-                            27, 1, 3, 1, U27_3_4,
-                            28, 1, 4, 1, U27_3_4,
-                            29, 2, 3, 1, U27_3_4,
-                            30, 2, 4, 1, U27_3_4,
+                            27, 1, 3, 1, TV3_4_10,
+                            28, 1, 4, 1, TV3_4_10,
+                            29, 2, 3, 1, TV3_4_10,
+                            30, 2, 4, 1, TV3_4_10,
 
                             27, 2, 5, 1, U27_4_5,
                             32, 1, 4, 1, U27_4_5,
                             33, 2, 5, 1, U27_4_5,
 
                             32, 3, 4, 1, U27_4_5,
-                            35, 1, 3, 1, U27_3_4,
-                            36, 1, 4, 1, U27_3_4,
-                            37, 2, 3, 1, U27_3_4,
-                            38, 2, 4, 1, U27_3_4,
+                            35, 1, 3, 1, TV3_4_10,
+                            36, 1, 4, 1, TV3_4_10,
+                            37, 2, 3, 1, TV3_4_10,
+                            38, 2, 4, 1, TV3_4_10,
 
                             // a gyrated pentagonal cupola on one side
-                            0, 4, 3, 1, U27_4_5 + GeometryUtils.trivalentVertexAngle(3,10,4) - GeometryUtils.trivalentVertexAngle(4,10,3),
-                            40, 1, 4, 1, U27_3_4,
-                            41, 2, 3, 1, U27_3_4,
-                            42, 2, 4, 1, U27_3_4,
-                            43, 2, 3, 1, U27_3_4,
-                            44, 2, 4, 1, U27_3_4,
-                            45, 2, 3, 1, U27_3_4,
-                            46, 2, 4, 1, U27_3_4,
-                            47, 2, 3, 1, U27_3_4,
-                            48, 2, 4, 1, U27_3_4,
+                            0, 4, 3, 1, U27_4_5 + TV3_10_4 - TV4_10_3,
+                            40, 1, 4, 1, TV3_4_10,
+                            41, 2, 3, 1, TV3_4_10,
+                            42, 2, 4, 1, TV3_4_10,
+                            43, 2, 3, 1, TV3_4_10,
+                            44, 2, 4, 1, TV3_4_10,
+                            45, 2, 3, 1, TV3_4_10,
+                            46, 2, 4, 1, TV3_4_10,
+                            47, 2, 3, 1, TV3_4_10,
+                            48, 2, 4, 1, TV3_4_10,
                             49, 3, 5, 1, U27_4_5,
 
                             // a diminishing decagon on the other side
-                            2, 3, 10, 1, U27_4_5 - GeometryUtils.trivalentVertexAngle(4,10,3)
+                            2, 3, 10, 1, U27_4_5 - TV4_10_3
                     },
-
+/*
             new double[] // J78 - metagyrate diminished rhombicosidodecahedron
                     {
                             52,
 
-                            // pentagon-square-pentagon between the gyrate cap and the diminished cap
+                            // pentagon-square-pentagon between the gyrated cap and the diminished cap
                             5, 1,
                             0, 0, 4, 1, U27_4_5,
                             1, 2, 5, 1, U27_4_5,
 
                             // square-triangle-square strip from gyrate cap to diminished cap
                             2, 3, 4, 1, U27_4_5,
-                            3, 1, 3, 1, U27_3_4,
-                            4, 1, 4, 1, U27_3_4,
+                            3, 1, 3, 1, TV3_4_10,
+                            4, 1, 4, 1, TV3_4_10,
 
                             // pentagon-square-pentagon strip from gyrate cap to diminished cap
                             3, 2, 5, 1, U27_4_5,
@@ -3429,12 +3455,12 @@ public class Johnson {
 
                             // square-triangle-square-triangle-square-triangle-square strip from gyrate cap to diminished cap
                             6, 3, 4, 1, U27_4_5,
-                            9, 1, 3, 1, U27_3_4,
-                            10, 1, 4, 1, U27_3_4,
-                            11, 2, 3, 1, U27_3_4,
-                            12, 2, 4, 1, U27_3_4,
-                            13, 2, 3, 1, U27_3_4,
-                            14, 1, 4, 1, U27_3_4,
+                            9, 1, 3, 1, TV3_4_10,
+                            10, 1, 4, 1, TV3_4_10,
+                            11, 2, 3, 1, TV3_4_10,
+                            12, 2, 4, 1, TV3_4_10,
+                            13, 2, 3, 1, TV3_4_10,
+                            14, 1, 4, 1, TV3_4_10,
 
                             // pentagon-square-pentagon-square-pentagon strip from gyrate cap to diminished cap
                             9, 2, 5, 1, U27_4_5,
@@ -3445,22 +3471,22 @@ public class Johnson {
 
                             // square-triangle-square-triangle-square between the end pentagons of the previous strip
                             16, 2, 4, 1, U27_4_5,
-                            21, 1, 3, 1, U27_3_4,
-                            22, 2, 4, 1, U27_3_4,
-                            23, 2, 3, 1, U27_3_4,
-                            24, 2, 4, 1, U27_3_4,
+                            21, 1, 3, 1, TV3_4_10,
+                            22, 2, 4, 1, TV3_4_10,
+                            23, 2, 3, 1, TV3_4_10,
+                            24, 2, 4, 1, TV3_4_10,
 
                             // pentagon between the end squares of the previous strip
                             21, 2, 5, 1, U27_4_5,
 
                             // square-triangle-square-triangle-square-triangle-square strip from gyrate cap to diminished cap
                             16, 3, 4, 1, U27_4_5,
-                            27, 1, 3, 1, U27_3_4,
-                            28, 2, 4, 1, U27_3_4,
-                            29, 2, 3, 1, U27_3_4,
-                            30, 1, 4, 1, U27_3_4,
-                            31, 2, 3, 1, U27_3_4,
-                            32, 2, 4, 1, U27_3_4,
+                            27, 1, 3, 1, TV3_4_10,
+                            28, 2, 4, 1, TV3_4_10,
+                            29, 2, 3, 1, TV3_4_10,
+                            30, 1, 4, 1, TV3_4_10,
+                            31, 2, 3, 1, TV3_4_10,
+                            32, 2, 4, 1, TV3_4_10,
 
                             // pentagon-square-pentagon strip from gyrate cap to diminished cap
                             27, 2, 5, 1, U27_4_5,
@@ -3469,24 +3495,24 @@ public class Johnson {
 
                             // square-triangle-square strip from gyrate cap to diminished cap
                             34, 3, 4, 1, U27_4_5,
-                            37, 1, 3, 1, U27_3_4,
-                            38, 2, 4, 1, U27_3_4,
+                            37, 1, 3, 1, TV3_4_10,
+                            38, 2, 4, 1, TV3_4_10,
 
                             // gyrated pentagonal cupola
-                            0, 1, 3, 1, U27_4_5 + GeometryUtils.trivalentVertexAngle(3,10,4) - GeometryUtils.trivalentVertexAngle(4,10,3),
-                            40, 1, 4, 1, U27_3_4,
-                            41, 2, 3, 1, U27_3_4,
-                            42, 2, 4, 1, U27_3_4,
-                            43, 2, 3, 1, U27_3_4,
-                            44, 2, 4, 1, U27_3_4,
-                            45, 2, 3, 1, U27_3_4,
-                            46, 2, 4, 1, U27_3_4,
-                            47, 2, 3, 1, U27_3_4,
-                            48, 2, 4, 1, U27_3_4,
+                            0, 1, 3, 1, U27_4_5 + TV3_10_4 - TV4_10_3,
+                            40, 1, 4, 1, TV3_4_10,
+                            41, 2, 3, 1, TV3_4_10,
+                            42, 2, 4, 1, TV3_4_10,
+                            43, 2, 3, 1, TV3_4_10,
+                            44, 2, 4, 1, TV3_4_10,
+                            45, 2, 3, 1, TV3_4_10,
+                            46, 2, 4, 1, TV3_4_10,
+                            47, 2, 3, 1, TV3_4_10,
+                            48, 2, 4, 1, TV3_4_10,
                             49, 3, 5, 1, U27_4_5,
 
                             // diminished cap
-                            0, 4, 10, 1, U27_4_5 - GeometryUtils.trivalentVertexAngle(4,10,3)
+                            0, 4, 10, 1, U27_4_5 - TV4_10_3
                     },
 
             new double[] // J79 - bigyrate diminished rhombicosidodecahedron
@@ -3520,46 +3546,46 @@ public class Johnson {
                             18, 3, 4, 1, U27_4_5,
 
                             // triangle and square in small space between three caps
-                            1, 3, 3, 1, U27_3_4,
-                            20, 1, 4, 1, U27_3_4,
+                            1, 3, 3, 1, TV3_4_10,
+                            20, 1, 4, 1, TV3_4_10,
 
                             // triangles and squares in larger Y-shaped space between three caps
-                            5, 3, 3, 1, U27_3_4,
-                            22, 1, 4, 1, U27_3_4,
-                            23, 2, 3, 1, U27_3_4,
-                            24, 1, 4, 1, U27_3_4,
-                            25, 2, 3, 1, U27_3_4,
-                            24, 2, 4, 1, U27_3_4,
-                            27, 2, 3, 1, U27_3_4,
+                            5, 3, 3, 1, TV3_4_10,
+                            22, 1, 4, 1, TV3_4_10,
+                            23, 2, 3, 1, TV3_4_10,
+                            24, 1, 4, 1, TV3_4_10,
+                            25, 2, 3, 1, TV3_4_10,
+                            24, 2, 4, 1, TV3_4_10,
+                            27, 2, 3, 1, TV3_4_10,
 
                             // first gyrate cap
-                            0, 1, 3, 1, U27_4_5 + GeometryUtils.trivalentVertexAngle(3,10,4) - GeometryUtils.trivalentVertexAngle(4,10,3),
-                            29, 1, 4, 1, U27_3_4,
-                            30, 2, 3, 1, U27_3_4,
-                            31, 2, 4, 1, U27_3_4,
-                            32, 2, 3, 1, U27_3_4,
-                            33, 2, 4, 1, U27_3_4,
-                            34, 2, 3, 1, U27_3_4,
-                            35, 2, 4, 1, U27_3_4,
-                            36, 2, 3, 1, U27_3_4,
-                            37, 2, 4, 1, U27_3_4,
+                            0, 1, 3, 1, U27_4_5 + TV3_10_4 - TV4_10_3,
+                            29, 1, 4, 1, TV3_4_10,
+                            30, 2, 3, 1, TV3_4_10,
+                            31, 2, 4, 1, TV3_4_10,
+                            32, 2, 3, 1, TV3_4_10,
+                            33, 2, 4, 1, TV3_4_10,
+                            34, 2, 3, 1, TV3_4_10,
+                            35, 2, 4, 1, TV3_4_10,
+                            36, 2, 3, 1, TV3_4_10,
+                            37, 2, 4, 1, TV3_4_10,
                             38, 3, 5, 1, U27_4_5,
 
                             // second gyrate cap
-                            0, 4, 3, 1, U27_4_5 + GeometryUtils.trivalentVertexAngle(3,10,4) - GeometryUtils.trivalentVertexAngle(4,10,3),
-                            40, 1, 4, 1, U27_3_4,
-                            41, 2, 3, 1, U27_3_4,
-                            42, 2, 4, 1, U27_3_4,
-                            43, 2, 3, 1, U27_3_4,
-                            44, 2, 4, 1, U27_3_4,
-                            45, 2, 3, 1, U27_3_4,
-                            46, 2, 4, 1, U27_3_4,
-                            47, 2, 3, 1, U27_3_4,
-                            48, 2, 4, 1, U27_3_4,
+                            0, 4, 3, 1, U27_4_5 + TV3_10_4 - TV4_10_3,
+                            40, 1, 4, 1, TV3_4_10,
+                            41, 2, 3, 1, TV3_4_10,
+                            42, 2, 4, 1, TV3_4_10,
+                            43, 2, 3, 1, TV3_4_10,
+                            44, 2, 4, 1, TV3_4_10,
+                            45, 2, 3, 1, TV3_4_10,
+                            46, 2, 4, 1, TV3_4_10,
+                            47, 2, 3, 1, TV3_4_10,
+                            48, 2, 4, 1, TV3_4_10,
                             49, 3, 5, 1, U27_4_5,
 
                             // diminished cap
-                            2, 3, 10, 1, U27_4_5 - GeometryUtils.trivalentVertexAngle(4,10,3)
+                            2, 3, 10, 1, U27_4_5 - TV4_10_3
                     },
 
             new double[] // J80 - parabidiminished rhombicosidodecahedron
@@ -3573,10 +3599,10 @@ public class Johnson {
 
                             // a 'strip' of square-triangle-square-triangle-square between the two diminished caps
                             0, 3, 4, 1, U27_4_5,
-                            3, 1, 3, 1, U27_3_4,
-                            4, 1, 4, 1, U27_3_4,
-                            5, 2, 3, 1, U27_3_4,
-                            6, 2, 4, 1, U27_3_4,
+                            3, 1, 3, 1, TV3_4_10,
+                            4, 1, 4, 1, TV3_4_10,
+                            5, 2, 3, 1, TV3_4_10,
+                            6, 2, 4, 1, TV3_4_10,
 
                             // eight further strips
                             3, 2, 5, 1, U27_4_5,
@@ -3584,46 +3610,46 @@ public class Johnson {
                             9, 2, 5, 1, U27_4_5,
 
                             8, 3, 4, 1, U27_4_5,
-                            11, 1, 3, 1, U27_3_4,
-                            12, 1, 4, 1, U27_3_4,
-                            13, 2, 3, 1, U27_3_4,
-                            14, 2, 4, 1, U27_3_4,
+                            11, 1, 3, 1, TV3_4_10,
+                            12, 1, 4, 1, TV3_4_10,
+                            13, 2, 3, 1, TV3_4_10,
+                            14, 2, 4, 1, TV3_4_10,
 
                             11, 2, 5, 1, U27_4_5,
                             16, 1, 4, 1, U27_4_5,
                             17, 2, 5, 1, U27_4_5,
 
                             16, 3, 4, 1, U27_4_5,
-                            19, 1, 3, 1, U27_3_4,
-                            20, 1, 4, 1, U27_3_4,
-                            21, 2, 3, 1, U27_3_4,
-                            22, 2, 4, 1, U27_3_4,
+                            19, 1, 3, 1, TV3_4_10,
+                            20, 1, 4, 1, TV3_4_10,
+                            21, 2, 3, 1, TV3_4_10,
+                            22, 2, 4, 1, TV3_4_10,
 
                             19, 2, 5, 1, U27_4_5,
                             24, 1, 4, 1, U27_4_5,
                             25, 2, 5, 1, U27_4_5,
 
                             24, 3, 4, 1, U27_4_5,
-                            27, 1, 3, 1, U27_3_4,
-                            28, 1, 4, 1, U27_3_4,
-                            29, 2, 3, 1, U27_3_4,
-                            30, 2, 4, 1, U27_3_4,
+                            27, 1, 3, 1, TV3_4_10,
+                            28, 1, 4, 1, TV3_4_10,
+                            29, 2, 3, 1, TV3_4_10,
+                            30, 2, 4, 1, TV3_4_10,
 
                             27, 2, 5, 1, U27_4_5,
                             32, 1, 4, 1, U27_4_5,
                             33, 2, 5, 1, U27_4_5,
 
                             32, 3, 4, 1, U27_4_5,
-                            35, 1, 3, 1, U27_3_4,
-                            36, 1, 4, 1, U27_3_4,
-                            37, 2, 3, 1, U27_3_4,
-                            38, 2, 4, 1, U27_3_4,
+                            35, 1, 3, 1, TV3_4_10,
+                            36, 1, 4, 1, TV3_4_10,
+                            37, 2, 3, 1, TV3_4_10,
+                            38, 2, 4, 1, TV3_4_10,
 
                             // one diminished cap
-                            0, 4, 10, 1, U27_4_5 - GeometryUtils.trivalentVertexAngle(4,10,3),
+                            0, 4, 10, 1, U27_4_5 - TV4_10_3,
 
                             // the other diminished cap
-                            2, 3, 10, 1, U27_4_5 - GeometryUtils.trivalentVertexAngle(4,10,3)
+                            2, 3, 10, 1, U27_4_5 - TV4_10_3
                     },
 
             new double[] // J81 - metabidiminished rhombicosidodecahedron
@@ -3637,8 +3663,8 @@ public class Johnson {
 
                             // square-triangle-square strip from cap to cap
                             2, 3, 4, 1, U27_4_5,
-                            3, 1, 3, 1, U27_3_4,
-                            4, 1, 4, 1, U27_3_4,
+                            3, 1, 3, 1, TV3_4_10,
+                            4, 1, 4, 1, TV3_4_10,
 
                             // pentagon-square-pentagon strip from cap to cap
                             3, 2, 5, 1, U27_4_5,
@@ -3647,12 +3673,12 @@ public class Johnson {
 
                             // square-triangle-square-triangle-square-triangle-square strip from cap to cap
                             6, 3, 4, 1, U27_4_5,
-                            9, 1, 3, 1, U27_3_4,
-                            10, 1, 4, 1, U27_3_4,
-                            11, 2, 3, 1, U27_3_4,
-                            12, 2, 4, 1, U27_3_4,
-                            13, 2, 3, 1, U27_3_4,
-                            14, 1, 4, 1, U27_3_4,
+                            9, 1, 3, 1, TV3_4_10,
+                            10, 1, 4, 1, TV3_4_10,
+                            11, 2, 3, 1, TV3_4_10,
+                            12, 2, 4, 1, TV3_4_10,
+                            13, 2, 3, 1, TV3_4_10,
+                            14, 1, 4, 1, TV3_4_10,
 
                             // pentagon-square-pentagon-square-pentagon strip from cap to cap
                             9, 2, 5, 1, U27_4_5,
@@ -3663,22 +3689,22 @@ public class Johnson {
 
                             // square-triangle-square-triangle-square between the end pentagons of the previous strip
                             16, 2, 4, 1, U27_4_5,
-                            21, 1, 3, 1, U27_3_4,
-                            22, 2, 4, 1, U27_3_4,
-                            23, 2, 3, 1, U27_3_4,
-                            24, 2, 4, 1, U27_3_4,
+                            21, 1, 3, 1, TV3_4_10,
+                            22, 2, 4, 1, TV3_4_10,
+                            23, 2, 3, 1, TV3_4_10,
+                            24, 2, 4, 1, TV3_4_10,
 
                             // pentagon between the end squares of the previous strip
                             21, 2, 5, 1, U27_4_5,
 
                             // square-triangle-square-triangle-square-triangle-square strip from cap to cap
                             16, 3, 4, 1, U27_4_5,
-                            27, 1, 3, 1, U27_3_4,
-                            28, 2, 4, 1, U27_3_4,
-                            29, 2, 3, 1, U27_3_4,
-                            30, 1, 4, 1, U27_3_4,
-                            31, 2, 3, 1, U27_3_4,
-                            32, 2, 4, 1, U27_3_4,
+                            27, 1, 3, 1, TV3_4_10,
+                            28, 2, 4, 1, TV3_4_10,
+                            29, 2, 3, 1, TV3_4_10,
+                            30, 1, 4, 1, TV3_4_10,
+                            31, 2, 3, 1, TV3_4_10,
+                            32, 2, 4, 1, TV3_4_10,
 
                             // pentagon-square-pentagon strip from cap to cap
                             27, 2, 5, 1, U27_4_5,
@@ -3687,14 +3713,14 @@ public class Johnson {
 
                             // square-triangle-square strip from cap to cap
                             34, 3, 4, 1, U27_4_5,
-                            37, 1, 3, 1, U27_3_4,
-                            38, 2, 4, 1, U27_3_4,
+                            37, 1, 3, 1, TV3_4_10,
+                            38, 2, 4, 1, TV3_4_10,
 
                             // one diminished cap
-                            0, 1, 10, 1, U27_4_5 - GeometryUtils.trivalentVertexAngle(4,10,3),
+                            0, 1, 10, 1, U27_4_5 - TV4_10_3,
 
                             // the other diminished cap
-                            0, 4, 10, 1, U27_4_5 - GeometryUtils.trivalentVertexAngle(4,10,3)
+                            0, 4, 10, 1, U27_4_5 - TV4_10_3
                     },
 
             new double[] // J82 - gyrate bidiminished rhombicosidodecahedron
@@ -3728,36 +3754,36 @@ public class Johnson {
                             18, 3, 4, 1, U27_4_5,
 
                             // triangle and square in small space between three caps
-                            1, 3, 3, 1, U27_3_4,
-                            20, 1, 4, 1, U27_3_4,
+                            1, 3, 3, 1, TV3_4_10,
+                            20, 1, 4, 1, TV3_4_10,
 
                             // triangles and squares in larger Y-shaped space between three caps
-                            5, 3, 3, 1, U27_3_4,
-                            22, 1, 4, 1, U27_3_4,
-                            23, 2, 3, 1, U27_3_4,
-                            24, 1, 4, 1, U27_3_4,
-                            25, 2, 3, 1, U27_3_4,
-                            24, 2, 4, 1, U27_3_4,
-                            27, 2, 3, 1, U27_3_4,
+                            5, 3, 3, 1, TV3_4_10,
+                            22, 1, 4, 1, TV3_4_10,
+                            23, 2, 3, 1, TV3_4_10,
+                            24, 1, 4, 1, TV3_4_10,
+                            25, 2, 3, 1, TV3_4_10,
+                            24, 2, 4, 1, TV3_4_10,
+                            27, 2, 3, 1, TV3_4_10,
 
                             // gyrate cap
-                            0, 1, 3, 1, U27_4_5 + GeometryUtils.trivalentVertexAngle(3,10,4) - GeometryUtils.trivalentVertexAngle(4,10,3),
-                            29, 1, 4, 1, U27_3_4,
-                            30, 2, 3, 1, U27_3_4,
-                            31, 2, 4, 1, U27_3_4,
-                            32, 2, 3, 1, U27_3_4,
-                            33, 2, 4, 1, U27_3_4,
-                            34, 2, 3, 1, U27_3_4,
-                            35, 2, 4, 1, U27_3_4,
-                            36, 2, 3, 1, U27_3_4,
-                            37, 2, 4, 1, U27_3_4,
+                            0, 1, 3, 1, U27_4_5 + TV3_10_4 - TV4_10_3,
+                            29, 1, 4, 1, TV3_4_10,
+                            30, 2, 3, 1, TV3_4_10,
+                            31, 2, 4, 1, TV3_4_10,
+                            32, 2, 3, 1, TV3_4_10,
+                            33, 2, 4, 1, TV3_4_10,
+                            34, 2, 3, 1, TV3_4_10,
+                            35, 2, 4, 1, TV3_4_10,
+                            36, 2, 3, 1, TV3_4_10,
+                            37, 2, 4, 1, TV3_4_10,
                             38, 3, 5, 1, U27_4_5,
 
                             // first diminished cap
-                            0, 4, 10, 1, U27_4_5 - GeometryUtils.trivalentVertexAngle(4,10,3),
+                            0, 4, 10, 1, U27_4_5 - TV4_10_3,
 
                             // second diminished cap
-                            2, 3, 10, 1, U27_4_5 - GeometryUtils.trivalentVertexAngle(4,10,3)
+                            2, 3, 10, 1, U27_4_5 - TV4_10_3
                     },
 
             new double[] // J83 - tridiminished rhombicosidodecahedron
@@ -3791,26 +3817,26 @@ public class Johnson {
                             18, 3, 4, 1, U27_4_5,
 
                             // triangle and square in small space between three diminished caps
-                            1, 3, 3, 1, U27_3_4,
-                            20, 1, 4, 1, U27_3_4,
+                            1, 3, 3, 1, TV3_4_10,
+                            20, 1, 4, 1, TV3_4_10,
 
                             // triangles and squares in larger Y-shaped space between three diminished caps
-                            5, 3, 3, 1, U27_3_4,
-                            22, 1, 4, 1, U27_3_4,
-                            23, 2, 3, 1, U27_3_4,
-                            24, 1, 4, 1, U27_3_4,
-                            25, 2, 3, 1, U27_3_4,
-                            24, 2, 4, 1, U27_3_4,
-                            27, 2, 3, 1, U27_3_4,
+                            5, 3, 3, 1, TV3_4_10,
+                            22, 1, 4, 1, TV3_4_10,
+                            23, 2, 3, 1, TV3_4_10,
+                            24, 1, 4, 1, TV3_4_10,
+                            25, 2, 3, 1, TV3_4_10,
+                            24, 2, 4, 1, TV3_4_10,
+                            27, 2, 3, 1, TV3_4_10,
 
                             // first diminished cap
-                            0, 1, 10, 1, U27_4_5 - GeometryUtils.trivalentVertexAngle(4,10,3),
+                            0, 1, 10, 1, U27_4_5 - TV4_10_3,
 
                             // second diminished cap
-                            0, 4, 10, 1, U27_4_5 - GeometryUtils.trivalentVertexAngle(4,10,3),
+                            0, 4, 10, 1, U27_4_5 - TV4_10_3,
 
                             // third diminished cap
-                            2, 3, 10, 1, U27_4_5 - GeometryUtils.trivalentVertexAngle(4,10,3)
+                            2, 3, 10, 1, U27_4_5 - TV4_10_3
                     },
 
             new double[] // J84 - snub disphenoid
@@ -4158,43 +4184,37 @@ public class Johnson {
                             3, 1, 3, 1, U24_3_5,
 
                             // triangles outside the pentagons
-                            1, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1),
-                            1, 3, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1),
-                            2, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1),
-                            2, 3, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1),
-                            3, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1),
-                            3, 3, 3, 1, GeometryUtils.uniformAntiprismTriangleEndDihedralAngle(5,1),
+                            1, 2, 3, 1, AP_5_TE,
+                            1, 3, 3, 1, AP_5_TE,
+                            2, 2, 3, 1, AP_5_TE,
+                            2, 3, 3, 1, AP_5_TE,
+                            3, 2, 3, 1, AP_5_TE,
+                            3, 3, 3, 1, AP_5_TE,
 
                             // triangles between triangles
                             7, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(5,1),
                             9, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(5,1),
                             11, 2, 3, 1, GeometryUtils.uniformAntiprismTriangleTriangleDihedralAngle(5,1),
 
-                            7, 1, 4, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            9, 1, 4, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
-                            11, 1, 4, 1, GeometryUtils.trivalentVertexAngle(3,4,10),
+                            7, 1, 4, 1, TV3_4_10,
+                            9, 1, 4, 1, TV3_4_10,
+                            11, 1, 4, 1, TV3_4_10,
 
-                            16, 3, 6, 1, GeometryUtils.trivalentVertexAngle(4,10,3)+GeometryUtils.trivalentVertexAngle(6,10,3)
-                    }
+                            16, 3, 6, 1, TV4_10_3+GeometryUtils.trivalentVertexAngle(6,10,3)
+                    }*/
     };
 
     // Johnson solids
-    public static Polyhedron Johnson(short index, double edgeLength, Point3 centre, double xRotation, double yRotation)
+    public static Polyhedron Johnson(int index)
     {
         if (index < 1 || index > 92)
             throw new IllegalArgumentException("Invalid Johnson Solid number: " + index);
 
         Polyhedron h;
         if (index >= 84 && index <= 90)
-            h = Polyhedron.Coordinates(JohnsonData[index - 1], edgeLength, centre, xRotation, yRotation);
+            h = Polyhedron.coordinates(JohnsonData[index - 1]);
         else
-            h = null;//h = Polyhedron.FacesAngles(JohnsonData[index - 1], edgeLength, centre, xRotation, yRotation);
-
-        //CopyFrom(H);
-        //DrawingType = Polyhedron.t_drawingType.CONVEX_ORIENTED;
-        //name = JohnsonNames[index - 1];
-        //shortName = "JN" + index.ToString("D2");
-
+            h = Polyhedron.facesAngles(JohnsonData[index - 1]);
         return h;
     }
 }

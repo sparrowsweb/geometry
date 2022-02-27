@@ -262,4 +262,95 @@ public class Polygon3 extends Polygon implements GeometryObject3<Polygon3> {
         return s;
     }
 
+    // Build the next face of a polyhedron. Given a polygon G, we find polygon H
+    // such that:
+    //	      (1) H is regular and has a given number of vertices/density
+    //	      (2) edge 0 of H coincides with a given edge of G
+    //	      (3) the orientation of H is the opposite to that of G (i.e.
+    //		      the directions of the common edge are opposite)
+    //	      (4) the dihedral angle between G and H is a given value
+    public Polygon3 nextPolyhedronFace(int edge, int sides, int density, double angle)
+    {
+        Polygon3 H, J;
+        Point3 p0, p1, GCentroid, JCentroid, midPoint;
+        Vector3 V, V2;
+        Line3 L;
+        double edgeLength;
+
+        // validate parameters
+        if (edge < 0 || edge >= vertexCount())
+            throw new IllegalArgumentException ("Invalid edge: " + edge);
+
+        GeometryUtils.validateSidesDensity (sides, density);
+
+        // get the points on the edge
+        p0 = vertices.get((edge + 1) % vertexCount());
+        p1 = vertices.get (edge);
+
+        // find the centroid of G
+        GCentroid = centroid();
+
+        // find the midpoint of the edge
+        midPoint = p0.midpoint(p1);
+
+        // find the edge length
+        edgeLength = p0.distance(p1);
+
+        // find the centroid of the new polygon
+        V = new Vector3(midPoint, GCentroid);
+        V2 = V.multiply (edgeLength / (2*Math.tan(Math.PI*(double)density/sides)) / V.length());
+        JCentroid = midPoint.translate(V2);
+
+        // construct a new polygon given the centroid and two vertices
+        J = regularPolygonCentroidPointPoint (sides, density, JCentroid, p0, p1);
+
+        // find the line through the edge
+        L = new Line3(p1, p0);
+
+        // rotate the new polygon to the desired angle
+        H = J.rotate (L, -angle);
+
+        return H;
+    }
+
+    // Find a regular polygon with a given centre and first two vertices
+    public Polygon3 regularPolygonCentroidPointPoint (int sides, int density, Point3 centroid, Point3 p0, Point3 P1)
+    {
+        Plane3 plane;
+        Line3 L;
+        double angle;
+        short i;
+        Point3 Q;
+
+        GeometryUtils.validateSidesDensity (sides, density);
+
+        List<Point3> S = new ArrayList<>();
+
+        // find the polygon plane
+        plane = new Plane3(centroid, p0, P1);
+
+        // find the line through the centroid perpendicular to the polygon plane
+        L = plane.lineThroughPointPerpendicularPlane (centroid);
+
+        S.add (p0);
+
+        angle = 2*Math.PI*(double)density/sides;
+
+        // We need the first two vertices of the new polygon to coincide with P0 and P1.
+        // Try rotating P0 about L; if this results in P1, we're OK. Otherwise, we
+        // need to rotate in the opposite direction.
+        Q = p0.rotate (L, angle);
+        if (!Q.identical(P1)) angle = -angle;
+
+        // now take P0 and rotate (vertices-1) times about L, to generate the other vertices
+        Q = p0;
+        for (i = 1; i <= sides-1; i++)
+        {
+            Q = Q.rotate (L, angle);
+            S.add (Q);
+        }
+
+        return new Polygon3(S);
+    }
+
 }

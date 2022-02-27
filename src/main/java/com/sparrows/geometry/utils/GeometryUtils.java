@@ -15,14 +15,13 @@ public abstract class GeometryUtils {
 
     // at a trivalent vertex of regular polygons, find the dihedral angle between a regular a-gon and a regular b-gon
     // when the third face is a regular c-gon
-    public static double trivalentVertexAngle(short a, short b, short c)
+    public static double trivalentVertexAngle(int a, int b, int c)
     {
         return trivalentVertexAngle((a - 2) * Math.PI / a, (b - 2) * Math.PI / b, (c - 2) * Math.PI / c);
     }
 
     // at a trivalent vertex of polygons, find the dihedral angles between faces when the face angles are known
-    public static double trivalentVertexAngle(double A, double B, double C)
-    {
+    public static double trivalentVertexAngle(double A, double B, double C) {
         if (Maths.greaterThanOrEqual(A, B + C) || Maths.greaterThanOrEqual(B, C + A) || Maths.greaterThanOrEqual(C, A + B))
             throw new IllegalArgumentException("Each angle must be less than the sum of the other two at a trivalent vertex.");
         if (Maths.greaterThanOrEqual(A + B + C, 2 * Math.PI))
@@ -32,13 +31,16 @@ public abstract class GeometryUtils {
     }
 
     // the dihedral angle between triangular faces in a uniform n/d-gonal antiprism
-    public static double uniformAntiprismTriangleTriangleDihedralAngle(int vertices, int density)
-    {
-        return 0;
+    public static double uniformAntiprismTriangleTriangleDihedralAngle(int vertices, int density) {
+        double t = Maths.square(Math.tan(Math.PI/2*density/vertices));
+        double s270 = Maths.square(Math.sin(3*Math.PI/2*density/vertices));
+        double s180 = Maths.square(Math.sin(Math.PI*density/vertices));
+        double c = 1f - 2f/3*((3-t)/4 + s270/s180);
+        return Math.acos(c);
     }
 
     // the dihedral angle between an end face and a triangle in a uniform n/d-gonal antiprism
     public static double uniformAntiprismTriangleEndDihedralAngle(int vertices, int density) {
-        return 0;
+        return Math.acos(-Math.tan(Math.PI/2*density/vertices) / Math.sqrt(3));
     }
 }

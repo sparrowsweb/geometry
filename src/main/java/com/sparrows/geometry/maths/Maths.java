@@ -7,7 +7,7 @@ import com.sparrows.geometry.exception.InvalidVertexAngles;
 
 public abstract class Maths {
 
-    public static double ERROR_MARGIN = 0.0000000001;
+    public static double ERROR_MARGIN = 0.000001;
 
     public static final double SQRT2 = Math.sqrt(2);
     public static final double SQRT3 = Math.sqrt(3);

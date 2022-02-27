@@ -118,4 +118,11 @@ public class Plane3 implements GeometryObject3<Plane3> {
     public String toString() {
         return normal.toString() + "," + distanceOrigin;
     }
+
+    // find line through a point perpendicular to plane
+    // the line points in the same direction as the plane vector
+    public Line3 lineThroughPointPerpendicularPlane(Point3 P)
+    {
+        return new Line3(P, normal);
+    }
 }
