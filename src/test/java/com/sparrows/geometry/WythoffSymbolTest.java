@@ -15,6 +15,7 @@ import com.sparrows.geometry.spherical.SchwarzTriangle;
 import com.sparrows.geometry.spherical.SphericalPolyhedron;
 
 import com.sparrows.geometry.utils.GeometryUtils;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -269,8 +270,9 @@ class WythoffSymbolTest {
         Assertions.assertEquals(new Rational(5,3),w.getSchwarzTriangle().getR());
     }
 
-    //!!!@Test
+    @Test
     void testUniforms() throws GeometryException {
+        Assert.fail("too slow");
         for (var u : uniformData) {
             System.out.println(u.index+ " " + u.name);
             for (var w : u.wythoffSymbols) {
@@ -406,14 +408,16 @@ class WythoffSymbolTest {
 
     @Test
     void stuff7() {
-        Polyhedron h = StandardPolyhedra.CUBE;
-        h.unityData();
+        for (int i = 11; i <= 92; i++) {
+            Polyhedron h = Johnson.Johnson(i);
+            System.out.println("case " + i + ":");
+            h.unityData();
+        }
     }
 
     @Test
-    void johnson() {
-        for (int i = 1; i <= 76; i++) {
-            System.out.println("JN" + i);
+    void testJohnson() {
+        for (int i = 1; i <= 92; i++) {
             Polyhedron h = Johnson.Johnson(i);
         }
     }

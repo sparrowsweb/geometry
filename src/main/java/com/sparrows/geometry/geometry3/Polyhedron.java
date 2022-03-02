@@ -562,7 +562,7 @@ public class Polyhedron implements GeometryObject3<Polyhedron> {
     }
 
     public void unityData() {
-        System.out.println("Polyhedron XXX = new Polyhedron(");
+        System.out.println("return new Polyhedron(");
         System.out.println("    new List<Polygon> {");
         for (int f = 0; f < faceCount(); f++) {
             System.out.print("        new Polygon (new List<Vector3> { ");

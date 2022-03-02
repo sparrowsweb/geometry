@@ -98,9 +98,9 @@ class Vector3Test {
         Assertions.assertTrue(v.identical(new Vector3(1, 2.00000000001,3)));
         Assertions.assertTrue(v.identical(new Vector3(1.00000000001, 2,3)));
         Assertions.assertTrue(v.identical(new Vector3(1, 2,3.00000000001)));
-        Assertions.assertFalse(v.identical(new Vector3(1, 2.000000001,3)));
-        Assertions.assertFalse(v.identical(new Vector3(1.000000001, 2,3)));
-        Assertions.assertFalse(v.identical(new Vector3(1, 2,3.000000001)));
+        Assertions.assertFalse(v.identical(new Vector3(1, 2.000001,3)));
+        Assertions.assertFalse(v.identical(new Vector3(1.00001, 2,3)));
+        Assertions.assertFalse(v.identical(new Vector3(1, 2,3.000001)));
     }
 
     @Test
@@ -110,9 +110,9 @@ class Vector3Test {
         Assertions.assertTrue(v.opposite(new Vector3(-1, -2.00000000001,-3)));
         Assertions.assertTrue(v.opposite(new Vector3(-1.00000000001, -2,-3)));
         Assertions.assertTrue(v.opposite(new Vector3(-1, -2,-3.00000000001)));
-        Assertions.assertFalse(v.opposite(new Vector3(-1, -2.000000001,-3)));
-        Assertions.assertFalse(v.opposite(new Vector3(-1.000000001, -2,-3)));
-        Assertions.assertFalse(v.opposite(new Vector3(-1, -2,-3.000000001)));
+        Assertions.assertFalse(v.opposite(new Vector3(-1, -2.000001,-3)));
+        Assertions.assertFalse(v.opposite(new Vector3(-1.00001, -2,-3)));
+        Assertions.assertFalse(v.opposite(new Vector3(-1, -2,-3.000001)));
     }
 
     @Test

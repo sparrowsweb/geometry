@@ -48,8 +48,8 @@ class Point2Test {
         Assertions.assertTrue(p.identical(new Point2(1,2)));
         Assertions.assertTrue(p.identical(new Point2(1,2.00000000001)));
         Assertions.assertTrue(p.identical(new Point2(1.00000000001,2)));
-        Assertions.assertFalse(p.identical(new Point2(1,2.000000001)));
-        Assertions.assertFalse(p.identical(new Point2(1.000000001,2)));
+        Assertions.assertFalse(p.identical(new Point2(1,2.000001)));
+        Assertions.assertFalse(p.identical(new Point2(1.00001,2)));
     }
 
     @Test

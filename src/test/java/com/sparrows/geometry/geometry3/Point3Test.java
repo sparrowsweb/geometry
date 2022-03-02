@@ -50,9 +50,9 @@ class Point3Test {
         Assertions.assertTrue(p.identical(new Point3(1,2.00000000001,3)));
         Assertions.assertTrue(p.identical(new Point3(1.00000000001,2,3)));
         Assertions.assertTrue(p.identical(new Point3(1,2,3.00000000001)));
-        Assertions.assertFalse(p.identical(new Point3(1,2.000000001,3)));
-        Assertions.assertFalse(p.identical(new Point3(1.000000001,2,3)));
-        Assertions.assertFalse(p.identical(new Point3(1,2,3.000000001)));
+        Assertions.assertFalse(p.identical(new Point3(1,2.000001,3)));
+        Assertions.assertFalse(p.identical(new Point3(1.00001,2,3)));
+        Assertions.assertFalse(p.identical(new Point3(1,2,3.000001)));
     }
 
     @Test

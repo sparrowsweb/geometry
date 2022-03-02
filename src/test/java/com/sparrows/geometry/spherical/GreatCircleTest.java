@@ -130,14 +130,14 @@ class GreatCircleTest {
     void TestIntersectionIdentical() throws InvalidSphericalPoint {
         GreatCircle c1 = new GreatCircle(new SphericalPoint(1,0,0));
         GreatCircle c2 = new GreatCircle(new SphericalPoint(1,0,0));
-        Assertions.assertThrows(IdenticalOrOppositeGreatCircles.class, () -> c1.intersection(c2));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> c1.intersection(c2));
     }
 
     @Test
     void TestIntersectionOpposite() {
         GreatCircle c1 = new GreatCircle(new SphericalPoint(1,0,0));
         GreatCircle c2 = new GreatCircle(new SphericalPoint(-1,0,0));
-        Assertions.assertThrows(IdenticalOrOppositeGreatCircles.class, () -> c1.intersection(c2));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> c1.intersection(c2));
     }
 
     @Test

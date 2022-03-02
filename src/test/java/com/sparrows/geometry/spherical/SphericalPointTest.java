@@ -97,7 +97,7 @@ class SphericalPointTest {
         Assertions.assertTrue(p.identical(new SphericalPoint(1,0,0.00000000001)));
         Assertions.assertTrue(p.identical(new SphericalPoint(1,0.00000000001,0)));
         Assertions.assertTrue(p.identical(new SphericalPoint(1.00000000001,0,0)));
-        Assertions.assertFalse(p.identical(new SphericalPoint(1.00000000001,0,0.000000001)));
+        Assertions.assertFalse(p.identical(new SphericalPoint(1.00000000001,0,0.00001)));
     }
 
     @Test
@@ -112,7 +112,7 @@ class SphericalPointTest {
         Assertions.assertTrue(p.antipodal(new SphericalPoint(-1,0,0.00000000001)));
         Assertions.assertTrue(p.antipodal(new SphericalPoint(-1,0.00000000001,0)));
         Assertions.assertTrue(p.antipodal(new SphericalPoint(-1.00000000001,0,0)));
-        Assertions.assertFalse(p.antipodal(new SphericalPoint(-1.00000000001,0,0.000000001)));
+        Assertions.assertFalse(p.antipodal(new SphericalPoint(-1.00000000001,0,0.00001)));
     }
 
     @Test
